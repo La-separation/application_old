@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<stories>
+	<story type="alter">
+		<title>Email</title>
+		<sentences>
+			<sentence>
+				<word>DEAR SERGE,</word>
+			</sentence>
+			<sentence>
+				<word>ON SUNDAY, YOU WILL ARRIVE IN </word>
+				<word font="ombre" next="CONDOM">LONDON</word>
+				<word>. PLEASE BE CAREFUL.</word>
+				<word font="ombre" next="CONDOM">LONDON</word>
+				<word> REQUIRES PRECAUTIONS.</word>
+			</sentence>
+			<sentence>
+				<word>THE BRITISH HAVE A POSITIVE VIEW OF </word>
+				<word font="coupable_bas" next="CHOR^S">^UROP^</word>
+				<word> AND </word>
+				<word font="coupable_bas" next="BULLSHIT">^UROP^AN</word>
+				<word>,</word>
+			</sentence>
+			<sentence>
+				<word>BUT AS YOU KNOW, THEY REFUSE THE SINGLE </word>
+				<word font="coupable_bas" next="CYB^RS^X">CURR^NCY</word>
+				<word>.</word>
+			</sentence>
+			<sentence>
+				<word>YET ARE THE </word>
+				<word font="coupable_bas" next="FR^NCH">ENGLISH</word>
+				<word> AND THE </word>
+				<word font="coupable_bas" next="ENGLISH">FR^NCH</word>
+				<word> SO DIFFERENT?</word>
+			</sentence>
+			<sentence>
+				<word>DON'T FORGET TO PAY A VISIT TO OUR NATIONAL HISTORIC LANDMARKS SUCH AS </word>
+				<word font="coupable_bas" next="DISNEY">BIGBEN</word>
+			</sentence>
+			<sentence>
+				<word>LANDMARKS OF OUR CULTURAL HERITAGE LIKE THE GLOBE</word>
+			</sentence>
+			<sentence>
+				<word>AND OF COURSE ENJOY THE MAJESTIC AUSTERITY OF THE CITY</word>
+			</sentence>
+			<sentence>
+				<word>FINALLY, WELCOME TO </word>
+				<word font="coupable_haut" next="LIBERTY">EPOETRY</word>
+				<word> BUT DON'T FORGET, </word>
+				<word font="coupable_haut" next="opium">e-poetry</word>
+				<word> CAN SHOW TWO FACES!</word>
+			</sentence>
+			<sentence>
+				<word>BEST WISHES,</word>
+			</sentence>
+			<sentence>
+				<word font="coupable_bas" next="MAGIC">MARIA</word>
+			</sentence>
+		</sentences>
+	</story>
+	<story type="alter">
+		<title>Separation</title>
+		<sentences>
+			<sentence>
+				<word>THIS </word>
+				<word font="coupable_bas" next="PERCEPTION">SEPARATION</word>		
+			</sentence>
+			<sentence>
+				<word>which crept</word>		
+			</sentence>
+			<sentence>
+				<word>in the </word>
+				<word font="ombre" next="slicing">shading</word>
+				<word> of words</word>
+			</sentence>
+			<sentence>
+				<word font="centrale" next="CHASES">SHREDS</word>
+				<word> ME</word>
+			</sentence>
+		</sentences>
+	</story>
+</stories>
