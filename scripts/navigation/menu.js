@@ -1,33 +1,7 @@
-/*Displaying the main menu interface*/
-function getMainMenu() {
-	inTuto = false;
-	inLab = false;
-
-	mainLayer.add(tutorielH);
-	mainLayer.add(tutorielB);
-	mainLayer.add(recitH);
-	mainLayer.add(recitB);
-	mainLayer.add(laboratoireH);
-	mainLayer.add(laboratoireB);
-	mainLayer.add(conceptH);
-	mainLayer.add(conceptB);
-	mainLayer.add(fr_w);
-	mainLayer.add(en_w);
-	mainLayer.add(trait);
-
-	actionLayer.add(tutoriel);
-	actionLayer.add(recit);
-	actionLayer.add(laboratoire);
-	actionLayer.add(concept);
-
-	mainLayer.draw();
-	actionLayer.draw();
-}
-
 //Creating the main menu interface
 function initMainMenu() {
 	//sounds['ambiant'].stop();
-	
+
 	mainLayer.removeChildren();
 	actionLayer.removeChildren();
 
@@ -188,7 +162,7 @@ function initMainMenu() {
 		x : stage.getWidth() / 2,
 		y : stage.getHeight() * 0.2,
 		listening : true,
-		opacity: opacite 
+		opacity: opacite
 	} );
 
 	trait = new Kinetic.Text( {
@@ -227,7 +201,7 @@ function initMainMenu() {
 		{
 			var errorMsg = "";
 			if(activeLang == fr) {
-				errorMsg = "Impossible d'utiliser le labo des mots : aucune connection détectée.";
+				errorMsg = "Impossible d'utiliser le labo des mots : aucune connection dÃ©tectÃ©e.";
 			}
 			else {
 				errorMsg = "Can not use the word lab : no connection detected.";
@@ -244,7 +218,7 @@ function initMainMenu() {
 	fr_w.on(events['tap'], function() {
 		fr_w.setOpacity(opacite/3);
 		en_w.setOpacity(opacite);
-		changeLanguage(fr);	
+		changeLanguage(fr);
 	});
 	en_w.on(events['tap'], function(){
 		en_w.setOpacity(opacite/3);
@@ -253,4 +227,31 @@ function initMainMenu() {
 	});
 
 	getMainMenu();
+}
+
+
+/*Displaying the main menu interface*/
+function getMainMenu() {
+	inTuto = false;
+	inLab = false;
+
+	mainLayer.add(tutorielH);
+	mainLayer.add(tutorielB);
+	mainLayer.add(recitH);
+	mainLayer.add(recitB);
+	mainLayer.add(laboratoireH);
+	mainLayer.add(laboratoireB);
+	mainLayer.add(conceptH);
+	mainLayer.add(conceptB);
+	mainLayer.add(fr_w);
+	mainLayer.add(en_w);
+	mainLayer.add(trait);
+
+	actionLayer.add(tutoriel);
+	actionLayer.add(recit);
+	actionLayer.add(laboratoire);
+	actionLayer.add(concept);
+
+	mainLayer.draw();
+	actionLayer.draw();
 }
