@@ -36,7 +36,7 @@ function checkDevice() {
 	loadButtons();
 
 	initImages();
-	//initSounds();
+	initSounds();
 
 	introductionStage();
 	//initMainMenu();

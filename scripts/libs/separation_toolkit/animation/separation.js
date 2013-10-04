@@ -68,7 +68,7 @@ Separation.cut_animation = function(cut_word){
   this.play = function(){
     couper.on(function(){
       if(enable == true){
-        sounds['cut'].play();
+        sound_play("cut");
 
         if(sens == true){
           animation_cut(cut_word.bas_a, cut_word.bas_b);

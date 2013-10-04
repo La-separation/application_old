@@ -52,7 +52,7 @@ Separation.tear_animation = function(tear_word){
   this.play = function(lock){
     dechirer.on(function(){
       if(enable == true){
-        sounds['tear'].play();
+		sound_play("tear");
 
         if(sens == true){
           animation_tear(tear_word.center_a, tear_word.center_b);

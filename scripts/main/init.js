@@ -41,10 +41,12 @@ function initImages() {
 }
 
 function initSounds() {
-	sounds["cut"] = new Media("/android_asset/www/sounds/Coupable_3.wav");
-	sounds["rub"] = new Media("/android_asset/www/sounds/Ombre_2.wav");
-	sounds["tear"] = new Media("/android_asset/www/sounds/Centrale_1.wav");
-	sounds["ambiant"] = new Media("/android_asset/www/sounds/ambiant.wav");
+	if (appOnDevice()) {
+		sounds["cut"] = new Media("/android_asset/www/sounds/cut.wav");
+		sounds["rub"] = new Media("/android_asset/www/sounds/rub.wav");
+		sounds["tear"] = new Media("/android_asset/www/sounds/tear.wav");
+		sounds["ambiant"] = new Media("/android_asset/www/sounds/ambiant.wav");
+	}
 }
 
 btnFunctions['home'] = function () {

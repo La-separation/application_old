@@ -1,5 +1,4 @@
 function introductionStage() {
-	//sounds['ambiant'].play();
 	mainLayer.removeChildren();
 	actionLayer.removeChildren();
 
@@ -53,7 +52,7 @@ separation_size_font = stage.getHeight() / 16;
 	mainLayer.add(separ_haut);
 	mainLayer.add(separ_bas);
 	mainLayer.add(rect_logo);
-	
+
 	function logo_anim(){
 		tween1 = new Kinetic.Tween({
 			node: logo.overall,
@@ -62,7 +61,7 @@ separation_size_font = stage.getHeight() / 16;
 			rotation: Math.PI / 2,
 			x: stage.getWidth() / 2
 		})
-		tween1.play();	
+		tween1.play();
 
 		setTimeout(function(){
 			tween1.finish();
@@ -89,7 +88,7 @@ separation_size_font = stage.getHeight() / 16;
 				easing: Kinetic.Easings.StrongEaseInOut,
 				opacity: 0
 			})
-			tween4.play();	
+			tween4.play();
 		}, 2000);
 	}
 
@@ -132,7 +131,7 @@ separation_size_font = stage.getHeight() / 16;
 			y: stage.getHeight() + separ_haut.getHeight(),
 			opacity: 0
 		})
-		tween8.play();	
+		tween8.play();
 
 		setTimeout(function(){
 			tween1.destroy();
@@ -185,7 +184,7 @@ separation_size_font = stage.getHeight() / 16;
 				declenched = true;
 			}
 		}, 12000);
-	})	
+	})
 
 	mainLayer.draw();
 	actionLayer.draw();

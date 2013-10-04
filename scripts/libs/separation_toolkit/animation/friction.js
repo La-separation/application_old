@@ -54,7 +54,7 @@ Separation.rub_animation = function(rub_word){
   this.play = function(){
     frotter.on(function(){
       if(enable == true){
-        sounds['rub'].play();
+        sound_play("rub");
 
         var new_op = new_opacity();
 
