@@ -1,6 +1,8 @@
 function introductionStage() {
 	mainLayer.removeChildren();
 	actionLayer.removeChildren();
+	
+	sound_play("ambiant");
 
 	logo = new Logo();
 	zoom_logo = 1/3 * stage.getHeight() / logo.getHeight();
