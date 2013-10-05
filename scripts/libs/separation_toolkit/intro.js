@@ -5,7 +5,7 @@
  */
 
 function appOnDevice()	{
-	return true;
+	return false;
 }
 
 var events = {

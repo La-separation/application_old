@@ -194,7 +194,7 @@ function initMainMenu() {
 		if(activeLang == en) {
 			langue = "en";
 		}
-		getStoriesMenu(langue);
+		recit_start();
 	} );
 	laboratoire.on(events['tap'], function() {
 		if(navigator.connection.type == Connection.NONE)
