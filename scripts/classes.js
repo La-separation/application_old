@@ -28,7 +28,7 @@ var Transition = { "up" : 0,
 var Video = { "ELO" : 0,
 				"Prenoms" : 1 };
 
-/*function Word(value)
+function Word(value)
 {
 	this.value = new Kinetic.Text( {
 		fontFamily : "DemiBas",
@@ -36,7 +36,7 @@ var Video = { "ELO" : 0,
 		fill : "#FFF",
 		text : value
 	} );
-}*/
+}
 
 function ActiveWord(value, next, type)
 {

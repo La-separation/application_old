@@ -35,12 +35,12 @@ function Story(title, type, node) {
 	this.type = type;
 	this.sentences = new Array();
 }
-/*
+
 //Object Sentence with the array of words (inactive and active)
 function Sentence() {
 	this.words = new Array();
 }
-*/
+
 //Getting all stories to display titles
 function storiesFromXML() {
 	if(alreadyReadXML) return;
