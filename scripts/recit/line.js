@@ -1,8 +1,21 @@
+/**
+	Classe Line
+*/
 function Line() {
 	this.words = new Array(); // Tableau des mots
 	this.nb = 0; // Nombre de mots
+	this.center = true; // Booléen pour savoir si la ligne doit être centrée ou non
 	this.width = 0; // Largeur totale des mots
-	this.offsetY = 0; // 
+	this.y = 0; // Distance y à laquelle la ligne sera affichée
+	
+	LineConstruct();
+}
+
+/*
+	Constructeur
+*/
+function LineConstruct() {
+	
 }
 
 /*
@@ -11,8 +24,6 @@ function Line() {
 	@return (true/false) : Si la largeur du mot est trop grande, on retourne false, sinon true.
 */
 Line.prototype.add = function(word) {
-	word.generate();
-	
 	if(this.width + word.getWidth() < screenWidth) {
 		this.width += word.getWidth();
 		this.nb++;
@@ -25,32 +36,39 @@ Line.prototype.add = function(word) {
 	}
 }
 
+/*
+	Ajoute un espace à la ligne
+*/
 Line.prototype.addSpace = function() {
-	var word = new Word(' ');
-	this.add(word);
+	this.add(new Word(' '));
 }
 
-Line.prototype.addTab = function() {
-	var word = new Word('    ');
-	this.add(word);
+/*
+	Ajoute une tabulation à la ligne
+*/
+Line.prototype.addTab = function(police) {
+	this.add(new Word('    '));
 }
 
-Line.prototype.reset = function() {
-	this.words = new Array();
-	this.nb = 0;
-	this.width = 0;
-}
+/*
+	Génère la ligne en générant tous les mots et en centrant la ligne si demandé
+*/
+Line.prototype.generate = function(y) {
+	var x = this.center ? (screenWidth - this.width) / 2 : 0;
+	this.y = y;
 
-Line.prototype.display = function(layer) {
 	for(var i = 0; i < this.nb; i++) {
-		this.words[i].display(layer);
+		this.words[i].setX(x);
+		this.words[i].setY(y);
+		x += this.words[i].getWidth();
 	}
 }
 
-Line.prototype.generate = function() {
-	var x = (screenWidth - this.width) / 2;
+/*
+	Affiche la ligne en affichant tous les mots
+*/
+Line.prototype.display = function(layer) {
 	for(var i = 0; i < this.nb; i++) {
-		this.words[i].setX(x);
-		x += this.words[i].getWidth();
+		this.words[i].display(layer);
 	}
 }

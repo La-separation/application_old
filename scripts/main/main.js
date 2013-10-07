@@ -38,8 +38,9 @@ function checkDevice() {
 	initImages();
 	initSounds();
 
-	introductionStage();
+	//introductionStage();
 	//initMainMenu();
+	Recit.start();
 
 	stage.add(mainLayer);
 	stage.add(actionLayer);

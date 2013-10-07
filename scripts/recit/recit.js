@@ -1,58 +1,57 @@
-var heightLine; // Hauteur d'une ligne
-var heightFont; // Hauteur des polices
-var heightChar; // Hauteur d'un caractère
-var heightMarginUp; // Hauteur de la marge (au dessus des caractères)
-var heightMarginDown; // Hauteur de la marge (en dessous des caractères)
-var fontUsed; // Constantes en rapport avec la police utilisée
+/**
+	Namespace recit
+*/
+var Recit = {};
+var rct; // RecitConsTantes (RCT) : Constantes (taille de la police, etc.) utilisÃ©es pour le rÃ©cit
+var DEBUG = true;
 
-function recit_start() {
+/*
+	Point d'entrÃ©e du rÃ©cit
+*/
+Recit.start = function() {
 	clearStage();
 	
-	heightLine = Math.round(screenHeight / 8);
-	heightChar = Math.round(heightLine * 0.6);
-	if(heightChar % 2 == 1)
-		heightChar--;
-	heightMarginUp = Math.round(heightLine * 0.2);
-	heightMarginDown = heightLine - heightMarginUp - heightChar;
-	fontUsed = fontConst['24'];
+	this.computeSizes();
+	if(DEBUG) this.addLines();
 	
-	add_lines();
+	var sentence = new Sentence();
 	
-	/* DEBUG /
-		alert("heightLine = " + heightLine + " ; heightChar = " + heightChar + " ; heightMarginUp = "
-		+ heightMarginUp + " ; heightMarginDown = " + heightMarginDown + " ; heightFont = " + heightFont["coupable_haut"]);
-	//*/
+	sentence.add(new Word('LA'));
+	sentence.addSpace();
+	sentence.add(new Word('SEPARATION'));
+	sentence.newLine();
+	sentence.newLine();
+	sentence.add(new Word('CLEF'));
+	sentence.addTab();
+	sentence.add(new Word('CIEL'));
 	
-	var line = new Line();
-	line.add(new Word("CLEF"));
-	line.addTab();
-	line.add(new Word("CIEL"));
-	line.generate();
-	
-	line.display(mainLayer);
-	
-	//test_mot.display(mainLayer);
-	/*test_mot.set({
-		value: "clef",
-		next_value: "ciel",
-		police: "coupable_haut",
-	});*/
-	
-	/*var test_phrase = new Sentence();
-	test_phrase.addWord(test_mot);
-	test_phrase.generate();
-	*/
+	sentence.generate(12);
+	sentence.display(mainLayer);
+
 	mainLayer.draw();
 }
 
-function add_lines() {
-	for(var i = 0; i < 9; i++)
+/*
+	DÃ©termination de la taille de la police en fonction de la hauteur du canvas
+*/
+Recit.computeSizes = function() {
+	rct = fontConst['24px'];
+	rct.line.nb = Math.floor(screenHeight / rct.line.height);
+}
+
+/** DEBUG **/
+
+/*
+	Ajoute des marges inter-lignes en rouge pour visualiser les lignes
+*/
+Recit.addLines = function() {
+	for(var i = 0; i < rct.line.nb+1; i++)
 	{
 		var rect = new Kinetic.Rect({
 			x: 0,
-			y: heightLine*i - heightMarginDown,
+			y: rct.line.height * i - rct.car.margin.down,
 			width: screenWidth,
-			height: heightMarginDown + heightMarginUp,
+			height: rct.car.margin.down + rct.car.margin.up,
 			fill: "red",
 			opacity: 0.2,
 		});

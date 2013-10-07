@@ -1,18 +1,26 @@
-/*
+/**
 	Class Word
 */
-
 function Word(value) {
 	this.x = 0; // Position x en pixel
 	this.y = 0; // Position y en pixel
-	this.police = "coupable_haut"; // Police
-	this.color = "white"; // Couleur
-	this.fontSize = fontUsed.fontSize; // Hauteur du mot en pixel
+	this.police = rct.police.name; // Police
+	this.fontSize = rct.car.size; // Hauteur du mot en pixel
+	this.color = rct.car.color; // Couleur
 	
 	this.value = value; // Valeur du mot actuel
-	//this.next_value = false; // Valeur du mot après transformation
-	this.font = false; // Groupe Kinetic qui sera affiché
+	//this.next_value = false; // Valeur du mot aprÃ¨s transformation
+	this.font = null; // Groupe Kinetic qui sera affichÃ©
 	//this.animation = false; // Objet Animation
+	
+	WordConstruct(this);
+}
+
+/*
+	Constructeur
+*/
+function WordConstruct(word) {
+	word.generate();
 }
 
 Word.prototype.generate = function() {
@@ -27,7 +35,7 @@ Word.prototype.generate = function() {
 Word.prototype.display = function(layer) {
 	this.font.group.setX(this.x);
 	this.font.group.setY(this.y);
-	
+
 	layer.add(this.font.group);
 }
 
@@ -37,22 +45,24 @@ Word.prototype.getWidth = function() { return this.font.group.getWidth(); }
 Word.prototype.setX = function(data) { this.x = data; }
 Word.prototype.setY = function(data) { this.y = data; }
 
-/////////////////////
+/**********************
+	Groupe Kinetic en fonction de la police
+***********************/
 
 function Word_DemiHaut(data) {
 	this.up = new Kinetic.Text({
-		y: fontUsed.police[data.police].up,
+		y: rct.police[data.police].offset.up,
 		text: data.value,
 		fontSize: data.fontSize,
-		fontFamily: policeName[data.police].up,
+		fontFamily: rct.police[data.police].name.up,
 		fill: data.color,
 	});
 
 	this.down = new Kinetic.Text({
-		y: fontUsed.police[data.police].down,
+		y: rct.police[data.police].offset.down,
 		text: data.value,
 		fontSize: data.fontSize,
-		fontFamily: policeName[data.police].down,
+		fontFamily: rct.police[data.police].name.down,
 		fill: data.color,
 	});
 	
