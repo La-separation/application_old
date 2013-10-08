@@ -1,0 +1,3 @@
+Animation.cut = function(word) {
+	
+}
