@@ -1,7 +1,7 @@
 function getConceptMenu() {
 	clearStage();
 	setHomeBtn();
-	
+
 	initAproposMenu();
 	actionLayer.draw();
 }
@@ -17,7 +17,7 @@ function initAproposMenu(){
 		y : stage.getHeight()*0.05
 	} );
 	conceptTitle.setOffset( conceptTitle.getWidth()/2, 0 );
-	
+
 	creditsH = new Kinetic.Text( {
 		text : "credits",
 		fontFamily : "DemiHautH",
@@ -28,7 +28,7 @@ function initAproposMenu(){
 		y : stage.getHeight()*0.275
 	} );
 	creditsH.setOffset( creditsH.getWidth()/2, creditsH.getHeight()/2 );
-	
+
 	creditsB = new Kinetic.Text( {
 		text : "credits",
 		fontFamily : "DemiHautB",
@@ -40,7 +40,7 @@ function initAproposMenu(){
 		x : stage.getWidth()/2,
 		y : creditsH.getY()+stage.getHeight()*0.025
 	} );
-	
+
 	credits = new Kinetic.Rect( {
 		listening : true,
 		width : creditsH.getWidth()*1.5,
@@ -51,7 +51,7 @@ function initAproposMenu(){
 		opacity : 0,
 		fill : "red"
 	} );
-	
+
 	AlisDescriptionH = new Kinetic.Text( {
 		text : "la compagnie alis",
 		fontFamily : "DemiHautH",
@@ -62,7 +62,7 @@ function initAproposMenu(){
 		y : stage.getHeight()*0.475
 	} );
 	AlisDescriptionH.setOffset( AlisDescriptionH.getWidth()/2, AlisDescriptionH.getHeight()/2 );
-	
+
 	AlisDescriptionB = new Kinetic.Text( {
 		text : "la compagnie alis",
 		fontFamily : "DemiHautB",
@@ -74,7 +74,7 @@ function initAproposMenu(){
 		x : stage.getWidth()/2,
 		y : AlisDescriptionH.getY()+stage.getHeight()*0.025
 	} );
-	
+
 	AlisDescription = new Kinetic.Rect( {
 		listening : true,
 		width : AlisDescriptionH.getWidth()*1.5,
@@ -87,29 +87,29 @@ function initAproposMenu(){
 	} );
 
 	actionLayer.add(conceptTitle);
-	
+
 	actionLayer.add(creditsB);
 	actionLayer.add(creditsH);
 	actionLayer.add(AlisDescriptionB);
 	actionLayer.add(AlisDescriptionH);
 	actionLayer.add(AlisDescription);
 	actionLayer.add(credits);
-	
-	
+
+
 	credits.on("tap click", function() {
-		sounds['tear'].play();
+		sound_play("tear");
 		var tweenTitle = new Kinetic.Tween({
-			node: conceptTitle, 
+			node: conceptTitle,
 			duration: 2,
 			opacity: 0,
 		  });
 		  setTimeout(function() {
 			tweenTitle.play();
 		  }, 0);
-		
-		
+
+
 		var tweenAlisB = new Kinetic.Tween({
-			node: AlisDescriptionB, 
+			node: AlisDescriptionB,
 			duration: 4,
 			X: -window.innerWidth/2,
 			opacity: 1,
@@ -117,20 +117,20 @@ function initAproposMenu(){
 		  setTimeout(function() {
 			tweenAlisB.play();
 		  }, 0);
-		
-		
+
+
 		var tweenAlisH = new Kinetic.Tween({
-			node: AlisDescriptionH, 
+			node: AlisDescriptionH,
 			duration: 2,
 			opacity: 0,
 		  });
 		  setTimeout(function() {
 			tweenAlisH.play();
 		  }, 0);
-		  
-		  
+
+
 		var tweenCreditsB = new Kinetic.Tween({
-			node: creditsB, 
+			node: creditsB,
 			duration: 4,
 			X: window.innerWidth*3/2,
 			opacity: 1,
@@ -138,20 +138,20 @@ function initAproposMenu(){
 		  setTimeout(function() {
 			tweenCreditsB.play();
 		  }, 0);
-		
-		
+
+
 		var tweenCreditsH = new Kinetic.Tween({
-			node: creditsH, 
+			node: creditsH,
 			duration: 2,
 			opacity: 0,
 		  });
 		  setTimeout(function() {
 			tweenCreditsH.play();
-		  }, 0);		
-		
-		
+		  }, 0);
+
+
 		var tweenAlis = new Kinetic.Tween({
-			node: AlisDescription, 
+			node: AlisDescription,
 			duration: 4,
 			X: -window.innerWidth/2,
 			opacity: 0,
@@ -159,9 +159,9 @@ function initAproposMenu(){
 		  setTimeout(function() {
 			tweenAlis.play();
 		  }, 0);
-		  
+
 		  var tweenCredits = new Kinetic.Tween({
-			node: credits, 
+			node: credits,
 			duration: 4,
 			X: -window.innerWidth/2,
 			opacity: 0,
@@ -169,27 +169,27 @@ function initAproposMenu(){
 		  setTimeout(function() {
 			tweenCredits.play();
 		  }, 0);
-		
+
 		getCreditsMenu();
-		
+
 	});
-	
-		
+
+
 	AlisDescription.on("tap click", function() {
-		sounds['tear'].play();
-		
+		sound_play("tear");
+
 		var tweenTitle = new Kinetic.Tween({
-			node: conceptTitle, 
+			node: conceptTitle,
 			duration: 2,
 			opacity: 0,
 		  });
 		  setTimeout(function() {
 			tweenTitle.play();
 		  }, 0);
-		
-		
+
+
 		var tweenAlisB = new Kinetic.Tween({
-			node: AlisDescriptionB, 
+			node: AlisDescriptionB,
 			duration: 4,
 			X: -window.innerWidth/2,
 			opacity: 1,
@@ -197,20 +197,20 @@ function initAproposMenu(){
 		  setTimeout(function() {
 			tweenAlisB.play();
 		  }, 0);
-		
-		
+
+
 		var tweenAlisH = new Kinetic.Tween({
-			node: AlisDescriptionH, 
+			node: AlisDescriptionH,
 			duration: 2,
 			opacity: 0,
 		  });
 		  setTimeout(function() {
 			tweenAlisH.play();
 		  }, 0);
-		  
-		  
+
+
 		var tweenCreditsB = new Kinetic.Tween({
-			node: creditsB, 
+			node: creditsB,
 			duration: 4,
 			X: window.innerWidth*3/2,
 			opacity: 1,
@@ -218,20 +218,20 @@ function initAproposMenu(){
 		  setTimeout(function() {
 			tweenCreditsB.play();
 		  }, 0);
-		
-		
+
+
 		var tweenCreditsH = new Kinetic.Tween({
-			node: creditsH, 
+			node: creditsH,
 			duration: 2,
 			opacity: 0,
 		  });
 		  setTimeout(function() {
 			tweenCreditsH.play();
-		  }, 0);		
-		
-		
+		  }, 0);
+
+
 		var tweenAlis = new Kinetic.Tween({
-			node: AlisDescription, 
+			node: AlisDescription,
 			duration: 4,
 			X: -window.innerWidth/2,
 			opacity: 0,
@@ -239,9 +239,9 @@ function initAproposMenu(){
 		  setTimeout(function() {
 			tweenAlis.play();
 		  }, 0);
-		  
+
 		  var tweenCredits = new Kinetic.Tween({
-			node: credits, 
+			node: credits,
 			duration: 4,
 			X: -window.innerWidth/2,
 			opacity: 0,
@@ -249,8 +249,8 @@ function initAproposMenu(){
 		  setTimeout(function() {
 			tweenCredits.play();
 		  }, 0);
-		
+
 		getAlisDescMenu();
 	});
-	
+
 }
