@@ -5,7 +5,9 @@
  */
 
 function appOnDevice()	{
-	return true;
+	if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|PlayBook|IEMobile)/) != null)
+		return true;
+	return false;
 }
 
 var events = {
