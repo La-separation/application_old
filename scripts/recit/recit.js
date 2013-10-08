@@ -3,19 +3,19 @@
 */
 var Recit = {};
 var rct; // RecitConsTantes (RCT) : Constantes (taille de la police, etc.) utilisées pour le récit
-var DEBUG = false;
+var DEBUG = true;
 
 /*
 	Point d'entrée du récit
 */
 Recit.start = function() {
 	clearStage();
-
+	
 	this.computeSizes();
 	if(DEBUG) this.addLines();
-
+	
 	var sentence = new Sentence();
-
+	
 	sentence.add(new Word('LA'));
 	sentence.addSpace();
 	sentence.add(new Word('SEPARATION'));
@@ -24,7 +24,7 @@ Recit.start = function() {
 	sentence.add(new Word('CLEF'));
 	sentence.addTab();
 	sentence.add(new Word('CIEL'));
-
+	
 	sentence.generate(12);
 	sentence.display(mainLayer);
 
