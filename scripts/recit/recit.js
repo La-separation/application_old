@@ -16,12 +16,14 @@ Recit.start = function() {
 	
 	var sentence = new Sentence();
 	
+	var test = new Word('SEPARATION', 'PERCEPTION');
+	
 	sentence.add(new Word('LA'));
 	sentence.addSpace();
-	sentence.add(new Word('SEPARATION'));
+	sentence.add(test);
 	sentence.newLine();
 	sentence.newLine();
-	sentence.add(new Word('CLEF'));
+	sentence.add(new Word('GREEN', 'PEACE'));
 	sentence.addTab();
 	sentence.add(new Word('CIEL'));
 	
@@ -29,6 +31,8 @@ Recit.start = function() {
 	sentence.display(mainLayer);
 
 	mainLayer.draw();
+	
+	setTimeout(function(){test.animate()},2000);
 }
 
 /*

@@ -1,0 +1,4 @@
+/**
+	Namespace recit
+*/
+var Animation = {};
