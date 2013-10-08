@@ -42,10 +42,10 @@ function initImages() {
 
 function initSounds() {
 	if (appOnDevice()) {
-		sounds["cut"] = new Media("/android_asset/www/sounds/cut.mp3");
-		sounds["rub"] = new Media("/android_asset/www/sounds/rub.mp3");
-		sounds["tear"] = new Media("/android_asset/www/sounds/tear.mp3");
-		sounds["ambiant"] = new Media("/android_asset/www/sounds/ambiant.mp3");
+		sounds["cut"] = new Media("/android_asset/www/sounds/cut.wav");
+		sounds["rub"] = new Media("/android_asset/www/sounds/rub.wav");
+		sounds["tear"] = new Media("/android_asset/www/sounds/tear.wav");
+		sounds["ambiant"] = new Media("/android_asset/www/sounds/ambiant.wav");
 	}
 }
 
