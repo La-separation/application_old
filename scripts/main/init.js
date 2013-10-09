@@ -44,10 +44,10 @@ function initSounds() {
 	if (appOnDevice()) {
 		var path = location.pathname;
 		var tab = path.split("/")
-		sounds["cut"] = new Media(path.replace(tab[tab.length-1], "sounds/cut.wav"));
-		sounds["rub"] = new Media(path.replace(tab[tab.length-1], "sounds/rub.wav"));
-		sounds["tear"] = new Media(path.replace(tab[tab.length-1], "sounds/tear.wav"));
-		sounds["ambiant"] = new Media(path.replace(tab[tab.length-1], "sounds/ambiant.wav"));
+		sounds["cut"] = new Media(path.replace(tab[tab.length-1], "sounds/cut.ogg"));
+		sounds["rub"] = new Media(path.replace(tab[tab.length-1], "sounds/rub.ogg"));
+		sounds["tear"] = new Media(path.replace(tab[tab.length-1], "sounds/tear.ogg"));
+		sounds["ambiant"] = new Media(path.replace(tab[tab.length-1], "sounds/ambiant.ogg"));
 	}
 }
 
