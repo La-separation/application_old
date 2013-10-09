@@ -1,4 +1,4 @@
 Application - La séparation
 ==============
 
-Application développée dans le cadre de la TX d'Alexis et d'Adrien. L'objectif est de continuer le développement de l'application élaborée lors de la TX précédente.
+Application web et tablette sur la poésie à 2 mi-mots

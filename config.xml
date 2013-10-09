@@ -4,12 +4,12 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.phonegap.hello-world"
-        version   = "2.0.2">
+        version   = "2.1.2">
 
     <name>La Séparation</name>
 
     <description>
-		La Séparation
+		Application web et tablette sur la poésie à 2 mi-mots
     </description>
 
     <author href="http://phonegap.com" email="support@phonegap.com">
