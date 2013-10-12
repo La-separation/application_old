@@ -197,20 +197,20 @@ function initMainMenu() {
 		Recit.start();
 	} );
 	laboratoire.on(events['tap'], function() {
-		if(navigator.connection.type == Connection.NONE)
-		{
-			var errorMsg = "";
-			if(activeLang == fr) {
-				errorMsg = "Impossible d'utiliser le labo des mots : aucune connection détectée.";
-			}
-			else {
-				errorMsg = "Can not use the word lab : no connection detected.";
-			}
-			alert(errorMsg);
-		}
-		else {
+		//if(navigator.connection.type == Connection.NONE)
+		//{
+			//var errorMsg = "";
+			//if(activeLang == fr) {
+				//errorMsg = "Impossible d'utiliser le labo des mots : aucune connection détectée.";
+			//}
+			//else {
+				//errorMsg = "Can not use the word lab : no connection detected.";
+			//}
+			//alert(errorMsg);
+		//}
+		//else {
 			getLaboratoryMenu();
-		}
+//		}
 	} );
 	concept.on(events['tap'], function() {
 		getConceptMenu();

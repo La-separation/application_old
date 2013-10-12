@@ -10,14 +10,15 @@ var DEBUG = true;
 */
 Recit.start = function() {
 	clearStage();
-	
+	setHomeBtn();
+
 	this.computeSizes();
 	if(DEBUG) this.addLines();
-	
+
 	var sentence = new Sentence();
-	
+
 	var test = new Word('SEPARATION', 'PERCEPTION');
-	
+
 	sentence.add(new Word('LA'));
 	sentence.addSpace();
 	sentence.add(test);
@@ -26,12 +27,12 @@ Recit.start = function() {
 	sentence.add(new Word('GREEN', 'PEACE'));
 	sentence.addTab();
 	sentence.add(new Word('CIEL'));
-	
+
 	sentence.generate(12);
 	sentence.display(mainLayer);
 
 	mainLayer.draw();
-	
+
 	setTimeout(function(){test.animate()},2000);
 }
 
