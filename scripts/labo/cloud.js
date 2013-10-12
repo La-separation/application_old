@@ -4,7 +4,7 @@
 function Cloud() {
 	this.words = new Array(); // Tableau des mots
 	this.nb = 0; // Nombre de mots
-	this.nb_max=6; //nombre maximum de mots
+	this.nb_max=10; //nombre maximum de mots
 	this.rayon = 0; //rayon du cercle
 
 	CloudConstruct(this);
