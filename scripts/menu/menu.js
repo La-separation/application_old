@@ -209,7 +209,7 @@ function initMainMenu() {
 			//alert(errorMsg);
 		//}
 		//else {
-			getLaboratoryMenu();
+			Labo.start();
 //		}
 	} );
 	concept.on(events['tap'], function() {

@@ -15,7 +15,7 @@ var fontConst = {
 			},
 		},
 		police: {
-			name: 'coupable_haut',	// Police (par défaut coupable_haut)
+			name: 'coupable_bas',	// Police (par défaut coupable_haut)
 			coupable_haut: {			// Police coupable_haut en deux parties
 				offset: {				// Décalage y
 					up: -2,					// Distance en y pour la partie haute
@@ -26,6 +26,16 @@ var fontConst = {
 					down: "DemiHautB",
 				},
 			},
+			coupable_bas: {			// Police coupable_haut en deux parties
+				offset: {				// Décalage y
+					up: -2,					// Distance en y pour la partie haute
+					down: 21,				// Distance en y pour la partie basse
+				},
+				name: {					// Nom des deux parties
+					up: "DemiBasH",
+					down: "DemiBasB",
+				},
+			},
 		},
 		line: {						// Ligne
 			height: 64,					// Hauteur
@@ -33,4 +43,11 @@ var fontConst = {
 		},
 	},
 	
-}
+};
+
+var OPACITY = {
+	word: {
+		light: 1,
+		dark: 0.3,
+	}
+};

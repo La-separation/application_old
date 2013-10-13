@@ -62,7 +62,7 @@ separation_size_font = stage.getHeight() / 16;
 			easing: Kinetic.Easings.StrongEaseInOut,
 			rotation: Math.PI / 2,
 			x: stage.getWidth() / 2
-		})
+			})
 		tween1.play();
 
 		setTimeout(function(){

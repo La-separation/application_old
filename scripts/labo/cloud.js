@@ -50,7 +50,7 @@ Cloud.prototype.generate = function() {
 	var angle=Math.PI/this.nb;
 
 	for(var i = 0; i < this.nb; i++) {
-		x = (center[0] + Math.cos(angle)*screenWidth*0.3) - (this.words[i].getWidth()/2);
+		x = (center[0] + Math.cos(angle)*screenWidth*0.4) - (this.words[i].getWidth()/2);
 		y = (center[1] + Math.sin(angle)*screenHeight*0.4);
 
 		this.words[i].setX(x);

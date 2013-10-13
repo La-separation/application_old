@@ -3,7 +3,7 @@
 */
 var Recit = {};
 var rct; // RecitConsTantes (RCT) : Constantes (taille de la police, etc.) utilisées pour le récit
-var DEBUG = true;
+var DEBUG = false;
 
 /*
 	Point d'entrée du récit
@@ -17,7 +17,7 @@ Recit.start = function() {
 
 	var sentence = new Sentence();
 
-	var test = new Word('SEPARATION', 'PERCEPTION');
+	var test = new Word('utc', 'cle');
 
 	sentence.add(new Word('LA'));
 	sentence.addSpace();
@@ -34,6 +34,7 @@ Recit.start = function() {
 	mainLayer.draw();
 
 	setTimeout(function(){test.animate()},2000);
+	test.activate();
 }
 
 /*
@@ -58,7 +59,7 @@ Recit.addLines = function() {
 			width: screenWidth,
 			height: rct.car.margin.down + rct.car.margin.up,
 			fill: "red",
-			opacity: 0.2,
+			opacity: 0.8,
 		});
 		mainLayer.add(rect);
 	}
