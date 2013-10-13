@@ -4,9 +4,14 @@
 function Word(value, next_down) {
 	this.x = 0; // Position x en pixel
 	this.y = 0; // Position y en pixel
-	this.police = rct.police.name; // Police
-	this.fontSize = rct.car.size; // Hauteur du mot en pixel
-	this.color = rct.car.color; // Couleur
+	
+	this.size = 24; // Taille de la police en pixel
+	this.cst = fontConst['24px']; // Constantes en fonction de la taille
+	
+	this.police = this.cst.police.name; // Police
+	this.fontSize = this.cst.car.size; // Hauteur du mot en pixel
+	this.color = this.cst.car.color; // Couleur
+	
 	
 	this.value = value; // Valeur du mot actuel
 	this.next_down = (next_down == undefined) ? value : next_down; // Valeur du mot après transformation
@@ -33,6 +38,7 @@ Word.prototype.generate = function() {
 		fontSize: this.fontSize,
 		police: this.police,
 		color: this.color,
+		rct: this.cst,
 	});
 	this.animation = Animation.upCutLeft;
 }
@@ -120,26 +126,26 @@ Word.prototype.setY = function(data) { this.y = data; }
 
 function Word_DemiHaut(data) {
 	this.up = new Kinetic.Text({
-		y: rct.police[data.police].offset.up,
+		y: data.cst.police[data.police].offset.up,
 		text: data.value,
 		fontSize: data.fontSize,
-		fontFamily: rct.police[data.police].name.up,
+		fontFamily: data.cst.police[data.police].name.up,
 		fill: data.color,
 	});
 
 	this.down = new Kinetic.Text({
-		y: rct.police[data.police].offset.down,
+		y: data.cst.police[data.police].offset.down,
 		text: data.value,
 		fontSize: data.fontSize,
-		fontFamily: rct.police[data.police].name.down,
+		fontFamily: data.cst.police[data.police].name.down,
 		fill: data.color,
 	});
 	
 	this.next_down = new Kinetic.Text({
-		y: rct.police[data.police].offset.down,
+		y: data.cst.police[data.police].offset.down,
 		text: data.next_down,
 		fontSize: data.fontSize,
-		fontFamily: rct.police[data.police].name.down,
+		fontFamily: data.cst.police[data.police].name.down,
 		fill: data.color,
 		opacity: 0,
 	});
@@ -177,27 +183,27 @@ function Word_DemiHaut(data) {
 
 function Word_DemiBas(data) {
 	this.up = new Kinetic.Text({
-		y: rct.police[data.police].offset.up,
+		y: data.cst.police[data.police].offset.up,
 		text: data.value,
 		fontSize: data.fontSize,
-		fontFamily: rct.police[data.police].name.up,
+		fontFamily: data.cst.police[data.police].name.up,
 		fill: data.color,
 	});
 	
 	this.next_up = new Kinetic.Text({
-		y: rct.police[data.police].offset.up,
+		y: data.cst.police[data.police].offset.up,
 		text: data.next_down,
 		fontSize: data.fontSize,
-		fontFamily: rct.police[data.police].name.up,
+		fontFamily: data.cst.police[data.police].name.up,
 		fill: data.color,
 		opacity: 0,
 	});
 
 	this.down = new Kinetic.Text({
-		y: rct.police[data.police].offset.down,
+		y: data.cst.police[data.police].offset.down,
 		text: data.value,
 		fontSize: data.fontSize,
-		fontFamily: rct.police[data.police].name.down,
+		fontFamily: data.cst.police[data.police].name.down,
 		fill: data.color,
 	});
 	

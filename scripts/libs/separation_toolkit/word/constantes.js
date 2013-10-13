@@ -37,15 +37,11 @@ var fontConst = {
 				},
 			},
 		},
-		line: {						// Ligne
-			height: 64,					// Hauteur
-			nb: 1,						// Nombre de lignes
-		},
 	},
 	
 };
 
-var OPACITY = {
+var wordOpacity = {
 	word: {
 		light: 1,
 		dark: 0.3,

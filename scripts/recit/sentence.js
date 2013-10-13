@@ -53,7 +53,7 @@ Sentence.prototype.newLine = function() {
 */
 Sentence.prototype.generate = function(offsetY) {
 	for(var i = 0; i <= this.actLine; i++) {
-		this.lines[i].generate(offsetY + i * rct.line.height);
+		this.lines[i].generate(offsetY + i * Recit.cst.line.height);
 	}
 }
 

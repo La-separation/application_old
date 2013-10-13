@@ -2,8 +2,14 @@
 	Namespace recit
 */
 var Recit = {};
-var rct; // RecitConsTantes (RCT) : Constantes (taille de la police, etc.) utilisées pour le récit
 var DEBUG = false;
+
+Recit.cst = {
+	line: {				// Ligne
+		height: 64,			// Hauteur
+		nb: 1,				// Nombre de lignes
+	},
+}
 
 /*
 	Point d'entrée du récit
@@ -41,8 +47,8 @@ Recit.start = function() {
 	Détermination de la taille de la police en fonction de la hauteur du canvas
 */
 Recit.computeSizes = function() {
-	rct = fontConst['24px'];
-	rct.line.nb = Math.floor(screenHeight / rct.line.height);
+	Recit.cst.line.height = 26; // TODO dynamique
+	Recit.cst.line.nb = Math.floor(screenHeight / Recit.cst.line.height);
 }
 
 /** DEBUG **/

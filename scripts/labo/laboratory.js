@@ -3,12 +3,9 @@
 **/
 var Labo = {};
 
-var rct; // RecitConsTantes (RCT) : Constantes (taille de la police, etc.) utilisées pour le récit
-
 Labo.start = function() {
 	clearStage();
 	setHomeBtn();
-	rct = fontConst['24px'];
 	Labo.getMenu();
 }
 
