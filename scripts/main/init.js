@@ -48,6 +48,7 @@ function initSounds() {
 		sounds["rub"] = new Media(path.replace(tab[tab.length-1], "sounds/rub.ogg"));
 		sounds["tear"] = new Media(path.replace(tab[tab.length-1], "sounds/tear.ogg"));
 		sounds["ambiant"] = new Media(path.replace(tab[tab.length-1], "sounds/ambiant.ogg"));
+		sounds["ambiant"] = new Media(path.replace(tab[tab.length-1], "sounds/error.ogg"));
 	}
 }
 
