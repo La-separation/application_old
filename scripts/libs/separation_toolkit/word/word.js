@@ -226,6 +226,8 @@ Word.prototype.getHeight = function() { return this.cst.car.height * this.scale;
 // Set
 Word.prototype.setX = function(data) { this.x = data; }
 Word.prototype.setY = function(data) { this.y = data; }
+Word.prototype.setCenterX = function(data) { this.x = data - this.getWidth() / 2; }
+Word.prototype.setCenterY = function(data) { this.y = data - this.getHeight() / 2; }
 
 /**********************
 	Groupe Kinetic en fonction de la police
