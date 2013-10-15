@@ -150,40 +150,23 @@ Word.prototype.addGesture = function() {
 	}
 }
 
-Word.prototype.addGestureActivated = function() {
-	switch(this.police)
-	{
-		case 'coupable_haut':
-		case 'coupable_bas':
-			var word = this;
-			this.gesture = new Array();
-			this.gesture[0] = new Separation.cut({
-				x: this.getX() - this.getWidth() / 4,
-				y:	this.getY() - this.getHeight() / 2,
-				width: this.getWidth() * 1.5,
-				height: this.getHeight() * 2,
-			}, 'lTr');
-			this.gesture[0].on(function(){
-				word.setAnimation('lTr');
-				word.animate();
-			});
-			this.gesture[1] = new Separation.cut({
-				x: this.getX() - this.getWidth() / 4,
-				y:	this.getY() - this.getHeight() / 2,
-				width: this.getWidth() * 1.5,
-				height: this.getHeight() * 2,
-			}, 'rTl');
-			this.gesture[1].on(function(){
-				word.setAnimation('rTl');
-				word.animate();
-			});
-		break;
-		default:
-			alert('Police inconnue : ' + this.police);
-		break;
-	}
+Word.prototype.onTap = function(handler) {
+	this.tap = new Separation.tap({
+		x: this.getX() - this.getWidth() / 4,
+		y: this.getY() - this.getHeight() / 2,
+		width: this.getWidth() * 1.5,
+		height: this.getHeight() * 2,
+	});
+	
+	this.tap.on(handler);
 }
 
+/*Word.prototype.activeOnTap = function() {
+	word = this;
+	this.onTap(function(){word.activate()});
+}*/
+
+	
 // Fonctions de mise en avant
 Word.prototype.activate = function() {
 	this.active = true;
@@ -241,7 +224,7 @@ Word.prototype.zoom = function(scaleTo) {
 		x: this.activeX,
 		y: this.activeY,
 		duration: Word_cst.duration.zoom,
-		onFinish: function(){ word.addGestureActivated(); },
+		onFinish: function(){ word.addGesture(); },
 	}).play();
 }
 	

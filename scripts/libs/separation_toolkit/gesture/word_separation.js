@@ -16,3 +16,31 @@ Separation.cut = function(params, type){
 		});
 	}
 };
+
+
+Separation.tap = function(params){
+
+  function inRectangle(touchPos){
+    if(
+      ((touchPos.x > params.x) && (touchPos.x < (params.x + params.width))) &&
+      ((touchPos.y > params.y) && (touchPos.y < (params.y + params.height)))
+    ){
+      return true;
+    } else { return false; }
+  }
+
+	this.on = function(handler){
+		// touch event
+		function detect_tap(event){
+			event.preventDefault;
+
+			myEvent(event);
+
+			if(inRectangle(touchPos) == true){
+				handler();
+			}
+		};
+
+			window.addEventListener(events['tap'], detect_tap, false);
+		}
+	}

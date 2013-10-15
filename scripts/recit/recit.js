@@ -62,12 +62,15 @@ Recit.start = function() {
 	*/
 
 	mainLayer.draw();
-
-	mot1.addGesture();
-	mot2.addGesture();
+	
+	//mot4.
+	mot4.onTap(function(){
+		mot4.activate();
+	});
+	/*mot2.addGesture();
 	mot3.addGesture();
 	mot4.addGesture();
-	mot4.activate();
+	mot4.activate();*/
 	
 	//setTimeout(function(){test.animate()},4000);
 	//setTimeout(function(){test.activate()},1000);
