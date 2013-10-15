@@ -80,6 +80,7 @@ Recit.start = function() {
 	story.display(mainLayer);
 
 	mainLayer.draw();
+	actionLayer.draw();
 	
 	/*mot4.activeOnTap();
 	mot3.zoom(2);

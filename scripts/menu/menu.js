@@ -195,7 +195,7 @@ function initMainMenu() {
 			langue = "en";
 		}
 		Recit.start();
-	} );
+	});
 	laboratoire.on(events['tap'], function() {
 		//if(navigator.connection.type == Connection.NONE)
 		//{

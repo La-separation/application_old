@@ -154,14 +154,18 @@ Word.prototype.addGesture = function() {
 }
 
 Word.prototype.onTap = function(handler) {
-	this.tap = new Separation.tap({
+	this.tap = new Kinetic.Rect({
+		listening : true,
 		x: this.getX(),
 		y: this.getY(),
 		width: this.getWidth(),
 		height: this.getHeight(),
-	}, this);
+		opacity: 0,
+	});
+	var word = this;
 	
-	this.tap.on(handler);
+	this.tap.on(events['tap'], function(){word.activate();});
+	actionLayer.add(this.tap);
 }
 
 Word.prototype.activeOnTap = function() {
