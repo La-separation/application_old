@@ -11,8 +11,8 @@ Separation.cut = function(params, type){
 
   this.on = function(handler) {
     detect.on(function(){
-      if (type != "l_r") {detect.rightToLeft(handler);}
-      if (type != "r_l") {detect.leftToRight(handler);}
+      if (type != 'lTr') {detect.rightToLeft(handler);}
+      if (type != 'rTl') {detect.leftToRight(handler);}
     });
   }
 };

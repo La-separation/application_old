@@ -1,5 +1,18 @@
-function setPolice(rct, police) {
-	rct.police = police;
+var Word_cst = {
+	zoom: {
+		recit: 2,
+	},
+	duration: {
+		zoom: 1,
+		zoomout: 1,
+		opacity: 1,
+		downCut: 2,
+		upCut: 2,
+	},
+	opacity: {
+		light: 1,
+		dark: 0.3,
+	}
 }
 
 // Selon le choix (exemple : '24px'), deviendra la variable rct (RecitConsTantes)
@@ -9,13 +22,9 @@ var fontConst = {
 			size: 24,					// Taille de la police
 			color: "white",				// Couleur
 			height: 40,					// Hauteur réelle du caractère
-			margin: {					// Marge...
-				up: 12,					// ... supérieure (size/2)
-				down: 12,				// ... inférieure
-			},
 		},
 		police: {
-			name: 'coupable_bas',	// Police (par défaut coupable_haut)
+			name: 'coupable_haut',	// Police (par défaut coupable_haut)
 			coupable_haut: {			// Police coupable_haut en deux parties
 				offset: {				// Décalage y
 					up: -2,					// Distance en y pour la partie haute
@@ -39,11 +48,4 @@ var fontConst = {
 		},
 	},
 	
-};
-
-var wordOpacity = {
-	word: {
-		light: 1,
-		dark: 0.3,
-	}
 };

@@ -10,21 +10,23 @@ Animation.downCut = function(word, x_down, x_next_down) {
 	word.font.next_down.setX(x_next_down);
 	word.font.next_down.setOpacity(1);
 	
-	tween1 = new Kinetic.Tween({
+	word.tween1 = new Kinetic.Tween({
 		node: word.font.down,
 		x: x_next_down,
-		duration: 1,
-		onFinish: function(){tween2.play()},
+		duration: Word_cst.duration.downCut,
+		easing: Kinetic.Easings.EaseIn,
+		onFinish: function(){word.tween2.play()},
 	});
 	
-	tween2 = new Kinetic.Tween({
+	word.tween2 = new Kinetic.Tween({
 		node: word.font.next_down,
 		x: x_down,
-		duration: 1,
+		duration: Word_cst.duration.downCut,
+		easing: Kinetic.Easings.EaseOut,
 		onFinish: function(){word.animationFinished();},
 	});
 	
-	tween1.play();
+	word.tween1.play();
 }
 
 Animation.downCutLeft = function(word) {
@@ -36,7 +38,7 @@ Animation.downCutLeft = function(word) {
 
 Animation.downCutRight = function(word) {
 	var x_down = word.font.down.getX();
-	var x_next_down = screenWidth;
+	var x_next_down = screenWidth - word.getX();
 	
 	Animation.downCut(word, x_down, x_next_down);
 }
@@ -53,21 +55,21 @@ Animation.upCut = function(word, x_up, x_up_next) {
 	word.font.next_up.setX(x_up_next);
 	word.font.next_up.setOpacity(1);
 	
-	tween1 = new Kinetic.Tween({
+	word.tween1 = new Kinetic.Tween({
 		node: word.font.up,
 		x: x_up_next,
-		duration: 1,
-		onFinish: function(){tween2.play()},
+		duration: Word_cst.duration.upCut,
+		onFinish: function(){word.tween2.play()},
 	});
 	
-	tween2 = new Kinetic.Tween({
+	word.tween2 = new Kinetic.Tween({
 		node: word.font.next_up,
 		x: x_up,
-		duration: 1,
+		duration: Word_cst.duration.upCut,
 		onFinish: function(){word.animationFinished();},
 	});
 	
-	tween1.play();
+	word.tween1.play();
 }
 
 Animation.upCutLeft = function(word) {
@@ -79,7 +81,7 @@ Animation.upCutLeft = function(word) {
 
 Animation.upCutRight = function(word) {
 	var x_up = word.font.down.getX();
-	var x_up_next = screenWidth;
+	var x_up_next = screenWidth - word.getX();
 	
 	Animation.upCut(word, x_up, x_up_next);
 }
