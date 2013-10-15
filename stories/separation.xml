@@ -1,0 +1,25 @@
+<story>
+	<title>exemple</title>
+	<sentence>
+		<word next_value="Perception" police="coupable_haut" >Separation</word>
+		<word>word</word>
+	</sentence>
+	<sentence>
+	</sentence>
+	<sentence>
+		<word next_value="noire" police="coupable_haut">neige</word>
+	</sentence>
+</story>
+
+<!--
+retour a la ligne a la fin de chaque sentence
+espace a la fin de chaque word
+<story>
+	<title>Title</title>
+	<sentence>
+		<word next_value="next_value" police="coupable_bas" >value</word>
+		<word>sample</word>
+	</sentence>
+</story>
+
+-->

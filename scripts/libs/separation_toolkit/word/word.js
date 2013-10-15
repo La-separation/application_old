@@ -80,6 +80,7 @@ Word.prototype.animate = function() {
 	{
 		this.inAnimation = true;
 		this.animation(this);
+		this.disableDbltap();
 	}
 }
 
@@ -93,6 +94,8 @@ Word.prototype.animationFinished = function() {
 	
 	this.generate();
 	this.display(mainLayer);
+	
+	this.activeDbltap();
 }
 
 Word.prototype.setAnimation = function(type) {
@@ -152,20 +155,20 @@ Word.prototype.addGesture = function() {
 
 Word.prototype.onTap = function(handler) {
 	this.tap = new Separation.tap({
-		x: this.getX() - this.getWidth() / 4,
-		y: this.getY() - this.getHeight() / 2,
-		width: this.getWidth() * 1.5,
-		height: this.getHeight() * 2,
-	});
+		x: this.getX(),
+		y: this.getY(),
+		width: this.getWidth(),
+		height: this.getHeight(),
+	}, this);
 	
 	this.tap.on(handler);
 }
 
-/*Word.prototype.activeOnTap = function() {
-	word = this;
-	this.onTap(function(){word.activate()});
-}*/
-
+Word.prototype.activeOnTap = function() {
+	if(this.value != this.next_value) {
+		this.onTap(function(word){word.activate();});
+	}
+}
 	
 // Fonctions de mise en avant
 Word.prototype.activate = function() {
@@ -179,13 +182,22 @@ Word.prototype.activate = function() {
 			Effects.setDark(all_words[i]); 
 		}
 	}
-	var word = this;
+
 	this.zoom(Word_cst.zoom.recit);
-	setTimeout(function(){ word.addGesture(); }, Word_cst.duration.zoom);
+	this.addGesture();
 	
-	/*stage.on(events['click'], function() {
-		
-	});*/
+	this.activeDbltap();
+}
+
+Word.prototype.activeDbltap = function() {
+	var word = this;
+	stage.on(events['dbltap'], function() {
+		word.disable();
+	});
+}
+
+Word.prototype.disableDbltap = function() {
+	stage.off(events['dbltap']);
 }
 
 Word.prototype.disable = function() {
@@ -193,7 +205,6 @@ Word.prototype.disable = function() {
 	word_active = false;
 	
 	var all_words = this.font.group.getParent().getChildren();
-	//stage.off("dbltap");
 	for(var i = 0; i < all_words.length ; i++)
 	{
 		if(all_words[i] != this.font.group) { 
@@ -202,12 +213,7 @@ Word.prototype.disable = function() {
 	}
 	
 	this.zoomOut();
-	/*if(inTuto == true || currentStoryType == StoryType['alter']) {
-		node_unzoom(wordGroup, previousPos.x, previousPos.y);
-	}
-	else {
-		alert("story type continue");
-	}*/
+	this.disableDbltap();
 }
 
 Word.prototype.zoom = function(scaleTo) {

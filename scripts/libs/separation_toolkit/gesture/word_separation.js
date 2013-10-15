@@ -17,8 +17,7 @@ Separation.cut = function(params, type){
 	}
 };
 
-
-Separation.tap = function(params){
+Separation.tap = function(params, word){
 
   function inRectangle(touchPos){
     if(
@@ -31,13 +30,14 @@ Separation.tap = function(params){
 
 	this.on = function(handler){
 		// touch event
+		
 		function detect_tap(event){
 			event.preventDefault;
 
 			myEvent(event);
 
 			if(inRectangle(touchPos) == true){
-				handler();
+				handler(word);
 			}
 		};
 

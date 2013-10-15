@@ -24,6 +24,8 @@ function LineConstruct() {
 	@return (true/false) : Si la largeur du mot est trop grande, on retourne false, sinon true.
 */
 Line.prototype.add = function(word) {
+	if(word.value != ' ')
+		this.addSpace();
 	if(this.width + word.getWidth() < screenWidth) {
 		this.width += word.getWidth();
 		this.nb++;
@@ -60,6 +62,7 @@ Line.prototype.generate = function(y) {
 	for(var i = 0; i < this.nb; i++) {
 		this.words[i].setX(x);
 		this.words[i].setY(y);
+		this.words[i].activeOnTap();
 		x += this.words[i].getWidth();
 	}
 }

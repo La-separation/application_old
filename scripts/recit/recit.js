@@ -25,7 +25,7 @@ Recit.start = function() {
 	this.computeSizes();
 	if(DEBUG) this.addLines();
 
-	var sentence = new Sentence();
+	/*var sentence = new Sentence();
 
 	var mot1 = new Word('Separation', 'Perception');
 	var mot2 = new Word('green', 'peace');
@@ -74,13 +74,14 @@ Recit.start = function() {
 	line.generate(12);
 	line.display(mainLayer);
 	*/
+	
+	var story = Xml.importStory('stories/separation.xml');
+	story.generate(12);
+	story.display(mainLayer);
 
 	mainLayer.draw();
 	
-	//mot4.
-	mot4.onTap(function(){
-		mot4.activate();
-	});
+	/*mot4.activeOnTap();
 	mot3.zoom(2);
 	/*mot2.addGesture();
 	mot3.addGesture();

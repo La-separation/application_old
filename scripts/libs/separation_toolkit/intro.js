@@ -13,6 +13,7 @@ function appOnDevice()	{
 var events = {
 	tap : (appOnDevice() ? 'tap' : 'click'),
 	touchmove : (appOnDevice() ? 'touchmove' : 'mousemove'),
+	dbltap : (appOnDevice() ? 'dbltap' : 'dblclick'),
 };
 var touchPos = {x:0,y:0};
 

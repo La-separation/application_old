@@ -34,6 +34,8 @@ Separation.horizontal_move = function(params){
         if(x < oldx){
           if((x > (params.x + section * 2)) && (x < (params.x + section * 3))){
             rTl = 2;
+			//sound_stop('cut');
+			//sound_play('cut');
           }
         } else { rTl = 0; }
         break;
