@@ -27,18 +27,27 @@ Recit.start = function() {
 
 	var sentence = new Sentence();
 
-	var mot1 = new Word('SEPARATION', 'PERCEPTION');
+	var mot1 = new Word('Separation', 'Perception');
 	var mot2 = new Word('green', 'peace');
 	var mot3 = new Word('clef', 'ciel', 'coupable_bas');
+	var mot4 = new Word('cle', 'utc', 'coupable_bas');
 
-	sentence.add(new Word('La'));
-	sentence.addSpace();
+	sentence.add(new Word('La '));
 	sentence.add(mot1);
 	sentence.newLine();
+	sentence.add(new Word('Projet '));
+	sentence.add(new Word('initie et '))
+	sentence.add(new Word('porte par '));
+	sentence.add(new Word('Pierre Fourny '));
+	sentence.add(new Word('de la compagnie '));
+	sentence.add(new Word('de spectacle ALIS '));
+	sentence.add(new Word('et Serge Bourchadon '));
+	sentence.add(new Word('de l\''));
+	sentence.add(mot4);
 	sentence.newLine();
-	sentence.add(mot2);
-	sentence.addTab();
 	sentence.add(mot3);
+	sentence.addTab();sentence.addTab();
+	sentence.add(mot2);
 
 	sentence.generate(12);
 	sentence.display(mainLayer);
@@ -57,6 +66,7 @@ Recit.start = function() {
 	mot1.addGesture();
 	mot2.addGesture();
 	mot3.addGesture();
+	mot4.addGesture();
 	
 	//setTimeout(function(){test.animate()},4000);
 	//setTimeout(function(){test.activate()},1000);
