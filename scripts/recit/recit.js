@@ -41,7 +41,7 @@ Recit.start = function() {
 	sentence.add(new Word('Pierre Fourny '));
 	sentence.add(new Word('de la compagnie '));
 	sentence.add(new Word('de spectacle ALIS '));
-	sentence.add(new Word('et Serge Bourchadon '));
+	sentence.add(new Word('et Serge Bouchardon '));
 	sentence.add(new Word('de l\''));
 	sentence.add(mot4);
 	sentence.newLine();
@@ -67,6 +67,7 @@ Recit.start = function() {
 	mot2.addGesture();
 	mot3.addGesture();
 	mot4.addGesture();
+	mot4.activate();
 	
 	//setTimeout(function(){test.animate()},4000);
 	//setTimeout(function(){test.activate()},1000);

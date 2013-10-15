@@ -7,12 +7,12 @@
  * faire attention à définir la fonction après les autres variables pour que le rectangle soit au premier plan
  */
 Separation.cut = function(params, type){
-  var detect = new Separation.horizontal_move(params);
+	var detect = new Separation.horizontal_move(params);
 
-  this.on = function(handler) {
-    detect.on(function(){
-      if (type != 'lTr') {detect.rightToLeft(handler);}
-      if (type != 'rTl') {detect.leftToRight(handler);}
-    });
-  }
+	this.on = function(handler) {
+		detect.on(function(){
+			if (type != 'lTr') {detect.rightToLeft(handler);}
+			if (type != 'rTl') {detect.leftToRight(handler);}
+		});
+	}
 };

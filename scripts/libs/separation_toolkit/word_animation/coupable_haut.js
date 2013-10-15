@@ -30,15 +30,15 @@ Animation.downCut = function(word, x_down, x_next_down) {
 }
 
 Animation.downCutLeft = function(word) {
-	var x_down = word.font.down.getX();
-	var x_next_down = -(word.getWidth() + word.getX());
+	var x_down = word.font.down.getX() / word.getScale();
+	var x_next_down = -(word.getWidth() + word.getX()) / word.getScale();
 	
 	Animation.downCut(word, x_down, x_next_down);
 }
 
 Animation.downCutRight = function(word) {
-	var x_down = word.font.down.getX();
-	var x_next_down = screenWidth - word.getX();
+	var x_down = word.font.down.getX() / word.getScale();
+	var x_next_down = (screenWidth - word.getX()) / word.getScale();
 	
 	Animation.downCut(word, x_down, x_next_down);
 }
@@ -59,6 +59,7 @@ Animation.upCut = function(word, x_up, x_up_next) {
 		node: word.font.up,
 		x: x_up_next,
 		duration: Word_cst.duration.upCut,
+		easing: Kinetic.Easings.EaseIn,
 		onFinish: function(){word.tween2.play()},
 	});
 	
@@ -66,6 +67,7 @@ Animation.upCut = function(word, x_up, x_up_next) {
 		node: word.font.next_up,
 		x: x_up,
 		duration: Word_cst.duration.upCut,
+		easing: Kinetic.Easings.EaseOut,
 		onFinish: function(){word.animationFinished();},
 	});
 	
@@ -73,15 +75,15 @@ Animation.upCut = function(word, x_up, x_up_next) {
 }
 
 Animation.upCutLeft = function(word) {
-	var x_up = word.font.down.getX();
-	var x_up_next = -(word.getWidth() + word.getX());
+	var x_up = word.font.down.getX() / word.getScale();
+	var x_up_next = -(word.getWidth() + word.getX()) / word.getScale();
 	
 	Animation.upCut(word, x_up, x_up_next);
 }
 
 Animation.upCutRight = function(word) {
-	var x_up = word.font.down.getX();
-	var x_up_next = screenWidth - word.getX();
+	var x_up = word.font.down.getX() / word.getScale();
+	var x_up_next = (screenWidth - word.getX()) / word.getScale();
 	
 	Animation.upCut(word, x_up, x_up_next);
 }

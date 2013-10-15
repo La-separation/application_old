@@ -1,3 +1,5 @@
+word_active = false;
+
 /**
 	Class Word
 */
@@ -19,6 +21,8 @@ function Word(value, next_value, police) {
 	this.inAnimation = false;
 	
 	this.active = false; // Booléen pour savoir si il est mis en avant
+	this.activeX = 0;
+	this.activeY = 0;
 	this.scale = 1; // Zoom de la police (100% = 1)
 	
 	this.gesture = null;
@@ -60,17 +64,19 @@ Word.prototype.generate = function() {
 			alert('Police inconnue : ' + this.police);
 		break;
 	}
+	this.font.group.setScaleX(this.scale);
+	this.font.group.setScaleY(this.scale);
 }
 
 Word.prototype.display = function(layer) {
-	this.font.group.setX(this.x);
-	this.font.group.setY(this.y);
+	this.font.group.setX(this.getX());
+	this.font.group.setY(this.getY());
 
 	layer.add(this.font.group);
 }
 
 Word.prototype.animate = function() {
-	if(!this.inAnimation)
+	if(!this.inAnimation && (!word_active || this.active))
 	{
 		this.inAnimation = true;
 		this.animation(this);
@@ -144,9 +150,44 @@ Word.prototype.addGesture = function() {
 	}
 }
 
+Word.prototype.addGestureActivated = function() {
+	switch(this.police)
+	{
+		case 'coupable_haut':
+		case 'coupable_bas':
+			var word = this;
+			this.gesture = new Array();
+			this.gesture[0] = new Separation.cut({
+				x: this.getX() - this.getWidth() / 4,
+				y:	this.getY() - this.getHeight() / 2,
+				width: this.getWidth() * 1.5,
+				height: this.getHeight() * 2,
+			}, 'lTr');
+			this.gesture[0].on(function(){
+				word.setAnimation('lTr');
+				word.animate();
+			});
+			this.gesture[1] = new Separation.cut({
+				x: this.getX() - this.getWidth() / 4,
+				y:	this.getY() - this.getHeight() / 2,
+				width: this.getWidth() * 1.5,
+				height: this.getHeight() * 2,
+			}, 'rTl');
+			this.gesture[1].on(function(){
+				word.setAnimation('rTl');
+				word.animate();
+			});
+		break;
+		default:
+			alert('Police inconnue : ' + this.police);
+		break;
+	}
+}
+
 // Fonctions de mise en avant
 Word.prototype.activate = function() {
 	this.active = true;
+	word_active = true;
 	
 	var all_words = this.font.group.getParent().getChildren();
 	for(var i = 0; i < all_words.length ; i++)
@@ -154,7 +195,6 @@ Word.prototype.activate = function() {
 		if(all_words[i] != this.font.group) { 
 			Effects.setDark(all_words[i]); 
 		}
-		all_words[i].setListening(false);
 	}
 	
 	this.zoom(Word_cst.zoom.recit);
@@ -166,6 +206,7 @@ Word.prototype.activate = function() {
 
 Word.prototype.disable = function() {
 	this.active = false;
+	word_active = false;
 	
 	var all_words = this.font.group.getParent().getChildren();
 	//stage.off("dbltap");
@@ -174,7 +215,6 @@ Word.prototype.disable = function() {
 		if(all_words[i] != this.font.group) { 
 			Effects.setLight(all_words[i]);
 		}
-		all_words[i].setListening(true);
 	}
 	
 	this.zoomOut();
@@ -188,17 +228,20 @@ Word.prototype.disable = function() {
 
 Word.prototype.zoom = function(scaleTo) {
 	this.scale = scaleTo;
+
+	this.activeX = (screenWidth - this.getWidth()) / 2;
+	this.activeY = (screenHeight - this.getHeight()) / 2;
 	
-	var x = (screenWidth - this.getWidth()) / 2;
-	var y = (screenHeight - this.getHeight()) / 2;
+	var word = this;
 	
 	new Kinetic.Tween({
 		node: this.font.group,
 		scaleX: scaleTo,
 		scaleY: scaleTo,
-		x: x,
-		y: y,
+		x: this.activeX,
+		y: this.activeY,
 		duration: Word_cst.duration.zoom,
+		onFinish: function(){ word.addGestureActivated(); },
 	}).play();
 }
 	
@@ -219,148 +262,13 @@ Word.prototype.zoomOut = function() {
 }
 
 // Get
-Word.prototype.getX = function() { return this.x; }
-Word.prototype.getY = function() { return this.y; }
+Word.prototype.getX = function() { if(!this.active) return this.x; else return this.activeX; }
+Word.prototype.getY = function() { if(!this.active) return this.y; else return this.activeY; }
 Word.prototype.getWidth = function() { return this.font.group.getWidth() * this.scale; }
 Word.prototype.getHeight = function() { return this.cst.car.height * this.scale; }
+Word.prototype.getScale = function(data) { return this.scale; }
 // Set
 Word.prototype.setX = function(data) { this.x = data; }
 Word.prototype.setY = function(data) { this.y = data; }
 Word.prototype.setCenterX = function(data) { this.x = data - this.getWidth() / 2; }
 Word.prototype.setCenterY = function(data) { this.y = data - this.getHeight() / 2; }
-
-/**********************
-	Groupe Kinetic en fonction de la police
-***********************/
-
-function Word_DemiHaut(data) {
-	this.up = new Kinetic.Text({
-		y: data.cst.police[data.police].offset.up,
-		text: data.value,
-		fontSize: data.fontSize,
-		fontFamily: data.cst.police[data.police].name.up,
-		fill: data.color,
-	});
-
-	this.down = new Kinetic.Text({
-		y: data.cst.police[data.police].offset.down,
-		text: data.value,
-		fontSize: data.fontSize,
-		fontFamily: data.cst.police[data.police].name.down,
-		fill: data.color,
-	});
-	
-	this.next_down = new Kinetic.Text({
-		y: data.cst.police[data.police].offset.down,
-		text: data.next_value,
-		fontSize: data.fontSize,
-		fontFamily: data.cst.police[data.police].name.down,
-		fill: data.color,
-		opacity: 0,
-	});
-	
-	this.group = new Kinetic.Group({
-		width: this.up.getWidth(),
-	});
-	
-	this.group.add(this.up);
-	this.group.add(this.down);
-	this.group.add(this.next_down);
-	
-	this.destroy = function() {
-		this.up.destroy();
-		this.down.destroy();
-		this.next_down.destroy();
-		this.group.destroy();
-	}
-	
-	// DEBUG
-	if(DEBUG)
-	{
-		this.debug_up = new Kinetic.Rect({
-			x: this.up.getX(),
-			y: this.up.getY(),
-			width: this.up.getWidth(),
-			height: this.up.getHeight(),
-			fill: "#0F0",
-			opacity: 0.2,
-		});
-		this.debug_down = new Kinetic.Rect({
-			x: this.down.getX(),
-			y: this.down.getY(),
-			width: this.down.getWidth(),
-			height: this.down.getHeight(),
-			fill: "#00F",
-			opacity: 0.2,
-		});
-
-		this.group.add(this.debug_up);
-		this.group.add(this.debug_down);
-	}
-}
-
-function Word_DemiBas(data) {
-	this.up = new Kinetic.Text({
-		y: data.cst.police[data.police].offset.up,
-		text: data.value,
-		fontSize: data.fontSize,
-		fontFamily: data.cst.police[data.police].name.up,
-		fill: data.color,
-	});
-	
-	this.next_up = new Kinetic.Text({
-		y: data.cst.police[data.police].offset.up,
-		text: data.next_value,
-		fontSize: data.fontSize,
-		fontFamily: data.cst.police[data.police].name.up,
-		fill: data.color,
-		opacity: 0,
-	});
-
-	this.down = new Kinetic.Text({
-		y: data.cst.police[data.police].offset.down,
-		text: data.value,
-		fontSize: data.fontSize,
-		fontFamily: data.cst.police[data.police].name.down,
-		fill: data.color,
-	});
-	
-	this.group = new Kinetic.Group({
-		width: this.up.getWidth(),
-	});
-	
-	this.group.add(this.up);
-	this.group.add(this.down);
-	this.group.add(this.next_up);
-	
-	this.destroy = function() {
-		this.up.destroy();
-		this.down.destroy();
-		this.next_up.destroy();
-		this.group.destroy();
-	}
-	
-	// DEBUG
-	if(DEBUG)
-	{
-		this.debug_up = new Kinetic.Rect({
-			x: this.up.getX(),
-			y: this.up.getY(),
-			width: this.up.getWidth(),
-			height: this.up.getHeight(),
-			fill: "#0F0",
-			opacity: 0.2,
-		});
-		this.debug_down = new Kinetic.Rect({
-			x: this.down.getX(),
-			y: this.down.getY(),
-			width: this.down.getWidth(),
-			height: this.down.getHeight(),
-			fill: "#00F",
-			opacity: 0.2,
-		});
-
-		this.group.add(this.debug_up);
-		this.group.add(this.debug_down);
-	}
-}
