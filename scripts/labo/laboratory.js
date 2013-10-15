@@ -11,6 +11,8 @@ Labo.start = function() {
 
 Labo.getMenu = function() {
 	var cloud = new Cloud();
+
+	cloud.addCentralWord(new Word("central"));
 	cloud.add(new Word("cle"));
 	cloud.add(new Word("pierre"));
 	cloud.add(new Word("helene"));
@@ -21,8 +23,8 @@ Labo.getMenu = function() {
 	cloud.add(new Word("SEPARATION"));
 	cloud.add(new Word("alexis"));
 	cloud.add(new Word("adrien"));
+
 	cloud.generate();
 	cloud.display(mainLayer);
-
 	mainLayer.draw();
 };
