@@ -11,6 +11,10 @@ function SentenceConstruct(sentence) {
 	sentence.newLine(); // On initialise la première ligne
 }
 
+Sentence.prototype.getNbLines = function() {
+	return this.actLine + 1;
+}
+
 /*
 	Ajoute un mot (objet Word) à la phrase
 */

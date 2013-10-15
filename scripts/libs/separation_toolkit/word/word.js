@@ -10,12 +10,12 @@ function Word(value, next_value, police) {
 	this.size = 24; // Taille de la police en pixel
 	this.cst = fontConst['24px']; // Constantes en fonction de la taille
 	
-	this.police = (police == undefined) ? this.cst.police.name : police; // Police
+	this.police = ((police == undefined) || (police == null)) ? this.cst.police.name : police; // Police
 	this.fontSize = this.cst.car.size; // Hauteur du mot en pixel
 	this.color = this.cst.car.color; // Couleur
 	
 	this.value = value; // Valeur du mot actuel
-	this.next_value = (next_value == undefined) ? value : next_value; // Valeur du mot après transformation
+	this.next_value = ((next_value == undefined) || (next_value == null)) ? value : next_value; // Valeur du mot après transformation
 	this.font = null; // Groupe Kinetic qui sera affiché
 	this.animation = null; // Fonction de callback pour l'animation ('Animation.x')
 	this.inAnimation = false;
@@ -179,8 +179,9 @@ Word.prototype.activate = function() {
 			Effects.setDark(all_words[i]); 
 		}
 	}
-	
+	var word = this;
 	this.zoom(Word_cst.zoom.recit);
+	setTimeout(function(){ word.addGesture(); }, Word_cst.duration.zoom);
 	
 	/*stage.on(events['click'], function() {
 		
@@ -210,10 +211,7 @@ Word.prototype.disable = function() {
 }
 
 Word.prototype.zoom = function(scaleTo) {
-	this.scale = scaleTo;
-
-	this.activeX = (screenWidth - this.getWidth()) / 2;
-	this.activeY = (screenHeight - this.getHeight()) / 2;
+	this.setScale(scaleTo);
 	
 	var word = this;
 	
@@ -221,25 +219,21 @@ Word.prototype.zoom = function(scaleTo) {
 		node: this.font.group,
 		scaleX: scaleTo,
 		scaleY: scaleTo,
-		x: this.activeX,
-		y: this.activeY,
+		x: this.getX(),
+		y: this.getY(),
 		duration: Word_cst.duration.zoom,
-		onFinish: function(){ word.addGesture(); },
 	}).play();
 }
 	
 Word.prototype.zoomOut = function() {
 	this.scale = 1;
 	
-	var x = (screenWidth - this.getWidth()) / 2;
-	var y = (screenHeight - this.getHeight()) / 2;
-	
 	new Kinetic.Tween({
 		node: this.font.group,
 		scaleX: 1,
 		scaleY: 1,
-		x: this.x,
-		y: this.y,
+		x: this.getX(),
+		y: this.getY(),
 		duration: Word_cst.duration.zoomout,
 	}).play();
 }
@@ -255,3 +249,8 @@ Word.prototype.setX = function(data) { this.x = data; }
 Word.prototype.setY = function(data) { this.y = data; }
 Word.prototype.setCenterX = function(data) { this.x = data - this.getWidth() / 2; }
 Word.prototype.setCenterY = function(data) { this.y = data - this.getHeight() / 2; }
+Word.prototype.setScale = function(data) {
+	this.scale = data;
+	this.activeX = (screenWidth - this.getWidth()) / 2;
+	this.activeY = (screenHeight - this.getHeight()) / 2;
+}

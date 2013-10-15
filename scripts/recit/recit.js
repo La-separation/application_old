@@ -48,9 +48,23 @@ Recit.start = function() {
 	sentence.add(mot3);
 	sentence.addTab();sentence.addTab();
 	sentence.add(mot2);
-
-	sentence.generate(12);
+	
+	var sentence2 = new Sentence();
+	var sentence3 = new Sentence();
+	
+	sentence3.add(new Word('YEEEEES'));
+	
+	var story = new Story();
+	story.add(sentence);
+	story.add(sentence2);
+	story.add(sentence3);
+	story.generate(12);
+	story.display(mainLayer);
+	
+	/*sentence.generate(12);
 	sentence.display(mainLayer);
+	*/
+	
 	
 	/*
 	var line = new Line();
@@ -67,6 +81,7 @@ Recit.start = function() {
 	mot4.onTap(function(){
 		mot4.activate();
 	});
+	mot3.zoom(2);
 	/*mot2.addGesture();
 	mot3.addGesture();
 	mot4.addGesture();
