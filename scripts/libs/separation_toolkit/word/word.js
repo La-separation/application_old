@@ -176,21 +176,24 @@ Word.prototype.activeOnTap = function() {
 	
 // Fonctions de mise en avant
 Word.prototype.activate = function() {
-	this.active = true;
-	word_active = true;
-	
-	var all_words = this.font.group.getParent().getChildren();
-	for(var i = 0; i < all_words.length ; i++)
+	if(!word_active)
 	{
-		if(all_words[i] != this.font.group) { 
-			Effects.setDark(all_words[i]); 
+		this.active = true;
+		word_active = true;
+		
+		var all_words = this.font.group.getParent().getChildren();
+		for(var i = 0; i < all_words.length ; i++)
+		{
+			if(all_words[i] != this.font.group) { 
+				Effects.setDark(all_words[i]); 
+			}
 		}
-	}
 
-	this.zoom(Word_cst.zoom.recit);
-	this.addGesture();
-	
-	this.activeDbltap();
+		this.zoom(Word_cst.zoom.recit);
+		this.addGesture();
+		
+		this.activeDbltap();
+	}
 }
 
 Word.prototype.activeDbltap = function() {
