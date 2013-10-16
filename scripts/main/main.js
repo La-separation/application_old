@@ -1,14 +1,3 @@
-if(appOnDevice()) {
-	document.addEventListener("deviceready", checkDevice, false);
-}
-else {
-	checkDevice();
-}
-
-document.body.addEventListener('touchmove', function(event) {
-  event.preventDefault();
-}, false);
-
 function computeSizes() {
 	screenWidth = window.innerWidth;
 	screenHeight = window.innerHeight;
@@ -20,7 +9,7 @@ function computeSizes() {
 	centraleSize = entireSize*(9/11);
 }
 
-function checkDevice() {
+function appStart() {
 	computeSizes();
 
 	//Creation of stage with the same size of the device's screen
@@ -38,9 +27,9 @@ function checkDevice() {
 	initImages();
 	initSounds();
 
-	//introductionStage();
-	initMainMenu();
-	//Recit.start();
+	// setTimeout important, résolution d'un bug
+	//setTimeout(introductionStage, 1);
+	setTimeout(initMainMenu, 1);
 
 	stage.add(mainLayer);
 	stage.add(actionLayer);

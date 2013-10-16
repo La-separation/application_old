@@ -1,27 +1,129 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
 	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="style/style.css" />
+		<title>La Séparation</title>
+	</head>
+	<body>
+		<div id="main">
+			<center>
+				<br />
+				Loading...
+				<br />
+				<img src="imgs/loading.gif" />
+				<br />
+			</center>
+		</div>
+		<div id="sound">
+			<audio id="ambiant" src="sounds/ambiant.ogg"></audio>
+			<audio id="rub" src="sounds/rub.ogg"></audio>
+			<audio id="tear" src="sounds/tear.ogg"></audio>
+			<audio id="cut" src="sounds/cut.ogg"></audio>
+			<audio id="error" src="sounds/error.ogg"></audio>
+			<audio id="tap" src="sounds/tap.ogg"></audio>
+			<audio id="cut1" src="sounds/cut1.ogg"></audio>
+			<audio id="cut2" src="sounds/cut2.ogg"></audio>
+			<audio id="login" src="sounds/login.ogg"></audio>
+		</div>
+	</body>
+	<!-- scripts -->	
+		<script type="text/javascript" src="phonegap.js"></script>
+
+		<!-- scripts/libs -->
+		<script type="text/javascript" src="scripts/libs/jquery-2.0.2.min.js"></script>
+		<script type="text/javascript" src="scripts/libs/kinetic-v4.6.0.min.js"></script>
+
+		<!-- scripts/libs/separation_toolkit -->
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/intro.js"></script>
+
+		<!-- scripts/libs/separation_toolkit/word -->
+		<script type="text/javascript" src="scripts/libs/separation_toolkit/word/constantes.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/word/word.js"></script>
+
+		<!-- scripts/libs/separation_toolkit/word_animation -->
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/word_animation/animation.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/word_animation/coupable_haut.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/word_animation/effects.js"></script>
+
+		<!-- scripts/libs/separation_toolkit/gesture -->
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/gesture/horizontal_move.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/gesture/move_detect.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/gesture/story_scroll.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/gesture/vertical_move.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/gesture/word_friction.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/gesture/word_rip.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/gesture/word_separation.js"></script>
+
+		<!-- scripts/libs/separation_toolkit/word_constructor -->
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/word_constructor/central.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/word_constructor/demihaut.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/word_constructor/ombre.js"></script>
+
+		<!-- scripts/libs/separation_toolkit/animation -->
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/animation/friction.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/animation/rip.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/animation/separation.js"></script>
+
+		<!-- scripts/libs/separation_toolkit/sound -->
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/sound/sound_play.js"></script>
+
+		<!-- scripts/libs/separation_toolkit -->
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/opacity.js"></script>
+		<script defer type="text/javascript" src="scripts/libs/separation_toolkit/zoom.js"></script>
+
+		<!-- scripts -->
+		<script defer type="text/javascript" src="scripts/variables.js"></script>
+		<script defer type="text/javascript" src="scripts/classes.js"></script>
+
+		<!-- scripts/a_propos -->
+		<script defer type="text/javascript" src="scripts/a_propos/alisDescription.js"></script>
+		<script defer type="text/javascript" src="scripts/a_propos/concept.js"></script>
+		<script defer type="text/javascript" src="scripts/a_propos/credits.js"></script>
+
+		<!-- scripts/introduction -->
+		<script defer type="text/javascript" src="scripts/introduction/introduction.js"></script>
+		
+		<!-- scripts/xml -->
+		<script defer type="text/javascript" src="scripts/xml/xml.js"></script>
+
+		<!-- scripts/labo -->
+		<script defer type="text/javascript" src="scripts/labo/laboratory.js"></script>
+		<script defer type="text/javascript" src="scripts/labo/cloud.js"></script>
+
+		<!-- scripts/recit -->
+		<script defer type="text/javascript" src="scripts/recit/word_kinetic.js"></script>
+		<script defer type="text/javascript" src="scripts/recit/recit.js"></script>
+		<script defer type="text/javascript" src="scripts/recit/story.js"></script>
+		<script defer type="text/javascript" src="scripts/recit/sentence.js"></script>
+		<script defer type="text/javascript" src="scripts/recit/line.js"></script>
+
+		<!-- scripts/aide -->
+		<script defer type="text/javascript" src="scripts/aide/tutoriel.js"></script>
+
+		<!-- scripts/menu -->
+		<script defer type="text/javascript" src="scripts/menu/language.js"></script>
+		<script defer type="text/javascript" src="scripts/menu/menu.js"></script>
+
+		<!-- scripts/main -->
+		<script defer type="text/javascript" src="scripts/main/init.js"></script>
+		<script defer type="text/javascript" src="scripts/main/main.js"></script>
+		
 		<script async type="text/javascript" src="scripts/libs/google-webfont.js"></script>
 		<script type="text/javascript">
 			WebFontConfig =
 			{
 				custom: { families: ['DemiBas','DemiHaut','DemiHautH','DemiHautB','DemiBasH','DemiBasB','CentraleH','CentraleC','CentraleB'],
 				urls: [ 'style/style.css' ] },
-				active: function()
-				{
-					window.location='./main.html';
+				active: function() {
+					if(appOnDevice()) {
+					document.addEventListener("deviceready", appStart, false);
+				}
+				else {
+					appStart();
+				}
 				}
 			};
 		</script>
-	</head>
-	<body>
-		<center>
-			<br />
-			Loading...
-			<br />
-			<img src="imgs/loading.gif" />
-			<br />
-		</center>
-	</body>
 </html>

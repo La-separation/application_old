@@ -2,8 +2,14 @@
 function initMainMenu() {
 	//sounds['ambiant'].stop();
 
+	mainLayer.draw();
+	actionLayer.draw();
 	mainLayer.removeChildren();
 	actionLayer.removeChildren();
+	mainLayer.draw();
+	actionLayer.draw();
+	mainLayer.clear();
+	actionLayer.clear();
 
 	opacite = 0.5;
 
@@ -226,7 +232,8 @@ function initMainMenu() {
 		changeLanguage(en);
 	});
 
-	getMainMenu();
+	// setTimeout important, résolution d'un bug
+	setTimeout(getMainMenu, 1);
 }
 
 
