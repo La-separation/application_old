@@ -164,36 +164,38 @@ Word.prototype.onTap = function(handler) {
 	});
 	var word = this;
 	
-	this.tap.on(events['tap'], function(){word.activate();});
+	this.tap.on(events['tap'], function(){
+		if(!word_active)
+			handler(word);
+	});
 	actionLayer.add(this.tap);
 }
 
 Word.prototype.activeOnTap = function() {
 	if(this.value != this.next_value) {
-		this.onTap(function(word){word.activate();});
+		this.onTap(function(word){
+			word.activate();
+		});
 	}
 }
 	
 // Fonctions de mise en avant
 Word.prototype.activate = function() {
-	if(!word_active)
+	this.active = true;
+	word_active = true;
+	
+	var all_words = this.font.group.getParent().getChildren();
+	for(var i = 0; i < all_words.length ; i++)
 	{
-		this.active = true;
-		word_active = true;
-		
-		var all_words = this.font.group.getParent().getChildren();
-		for(var i = 0; i < all_words.length ; i++)
-		{
-			if(all_words[i] != this.font.group) { 
-				Effects.setDark(all_words[i]); 
-			}
+		if(all_words[i] != this.font.group) { 
+			Effects.setDark(all_words[i]); 
 		}
-
-		this.zoom(Word_cst.zoom.recit);
-		this.addGesture();
-		
-		this.activeDbltap();
 	}
+
+	this.zoom(Word_cst.zoom.recit);
+	this.addGesture();
+	
+	this.activeDbltap();
 }
 
 Word.prototype.activeDbltap = function() {
