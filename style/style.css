@@ -101,6 +101,10 @@ body {
 	font-size:3em;
 }
 
+.scriptLoaded {
+	font-size:10px
+}
+
 div #main {
 	border:0;
 	padding:0;

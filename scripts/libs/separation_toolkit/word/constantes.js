@@ -49,3 +49,5 @@ var fontConst = {
 	},
 	
 };
+
+scriptLoaded('scripts/libs/separation_toolkit/word/constantes.js');

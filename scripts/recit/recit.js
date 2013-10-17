@@ -121,3 +121,6 @@ Recit.addLines = function() {
 		mainLayer.add(rect);
 	}
 }
+
+
+scriptLoaded('scripts/recit/recit.js');

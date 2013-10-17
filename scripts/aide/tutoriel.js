@@ -133,3 +133,5 @@ function getTutorielMenu() {
       }
     });
   }*/
+
+scriptLoaded('scripts/aide/tutoriel.js');

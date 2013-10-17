@@ -16,3 +16,6 @@ Separation.scroll = function(params, type){
     });
   }
 };
+
+
+scriptLoaded('scripts/libs/separation_toolkit/gesture/story_scroll.js');

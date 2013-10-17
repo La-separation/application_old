@@ -5,15 +5,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="style/style.css" />
 		<title>La Séparation</title>
+		
+		<script type="text/javascript" class="scriptLoaded">
+			var loaded_scripts = 1;
+			var n_scripts = 44;
+			function scriptLoaded(script_path) {
+				document.getElementById("main" ).innerHTML += "<center>"+loaded_scripts+"/"+n_scripts+": "+script_path+"</center>";
+				loaded_scripts+=1;
+			}
+		</script>
+		
 	</head>
 	<body>
 		<div id="main">
 			<center>
 				<br />
-				Loading...
-				<br />
 				<img src="imgs/loading.gif" />
-				<br />
+				<br /><br />
 			</center>
 		</div>
 		<div id="sound">
@@ -28,7 +36,7 @@
 			<audio id="login" src="sounds/login.ogg"></audio>
 		</div>
 	</body>
-	<!-- scripts -->	
+		<!-- scripts -->
 		<script type="text/javascript" src="phonegap.js"></script>
 
 		<!-- scripts/libs -->
@@ -111,6 +119,7 @@
 		<script defer type="text/javascript" src="scripts/main/main.js"></script>
 		
 		<script async type="text/javascript" src="scripts/libs/google-webfont.js"></script>
+		
 		<script type="text/javascript">
 			WebFontConfig =
 			{
@@ -121,7 +130,7 @@
 					document.addEventListener("deviceready", appStart, false);
 				}
 				else {
-					appStart();
+					//appStart();
 				}
 				}
 			};

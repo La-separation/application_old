@@ -54,3 +54,6 @@ function word_centrale(params){
   this.group.add(this.bas);
 
 };
+
+
+scriptLoaded('scripts/libs/separation_toolkit/word_constructor/central.js');

@@ -133,3 +133,5 @@ function Word_DemiBas(data) {
 		this.group.add(this.debug_down);
 	}
 }
+
+scriptLoaded('scripts/recit/word_kinetic.js');

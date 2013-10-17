@@ -76,3 +76,6 @@ Cloud.prototype.display = function(layer) {
 	}
 	this.central_word.display(layer);
 }
+
+
+scriptLoaded('scripts/labo/cloud.js');

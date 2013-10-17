@@ -171,3 +171,5 @@ function getRandomStory() {
 	var randomIndex = Math.floor((Math.random()*stories.length));
 	getStoryLayout(stories[randomIndex].title);
 }
+
+scriptLoaded('scripts/recit.js');

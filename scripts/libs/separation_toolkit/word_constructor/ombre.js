@@ -37,3 +37,6 @@ function word_ombre(params){
   this.group.add(this.img_b);
 
 };
+
+
+scriptLoaded('scripts/libs/separation_toolkit/word_constructor/ombre.js');

@@ -254,3 +254,6 @@ function initAproposMenu(){
 	});
 
 }
+
+
+scriptLoaded('scripts/a_propos/concept.js');

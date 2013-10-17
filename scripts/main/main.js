@@ -34,3 +34,6 @@ function appStart() {
 	stage.add(mainLayer);
 	stage.add(actionLayer);
 }
+
+
+scriptLoaded('scripts/main/main.js');

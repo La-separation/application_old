@@ -44,3 +44,6 @@ Xml.importStory = function(xml_path) {
 	return story;
 
 }
+
+
+scriptLoaded('scripts/xml/xml.js');

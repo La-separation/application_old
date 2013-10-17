@@ -75,3 +75,6 @@ Line.prototype.display = function(layer) {
 		this.words[i].display(layer);
 	}
 }
+
+
+scriptLoaded('scripts/recit/line.js');

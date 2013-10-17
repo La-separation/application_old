@@ -69,3 +69,5 @@ Sentence.prototype.display = function(layer) {
 		this.lines[i].display(layer);
 	}
 }
+
+scriptLoaded('scripts/recit/sentence.js');

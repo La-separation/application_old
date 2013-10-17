@@ -65,3 +65,6 @@ Separation.tear_animation = function(tear_word){
     });
   }
 }
+
+
+scriptLoaded('scripts/libs/separation_toolkit/animation/rip.js');

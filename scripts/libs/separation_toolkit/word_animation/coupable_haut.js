@@ -91,3 +91,5 @@ Animation.upCutRight = function(word) {
 	
 	Animation.upCut(word, x_up, x_up_next);
 }
+
+scriptLoaded('scripts/libs/separation_toolkit/word_animation/coupable_haut.js');

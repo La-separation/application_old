@@ -81,3 +81,6 @@ Separation.cut_animation = function(cut_word){
     });
   }
 }
+
+
+scriptLoaded('scripts/libs/separation_toolkit/animation/separation.js');

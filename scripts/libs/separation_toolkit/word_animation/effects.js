@@ -15,3 +15,5 @@ Effects.setDark = function(word_node) {
 		duration: Word_cst.duration.opacity,
 	}).play();
 }
+
+scriptLoaded('scripts/libs/separation_toolkit/word_animation/effects.js');

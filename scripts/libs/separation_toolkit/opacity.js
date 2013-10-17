@@ -13,3 +13,6 @@ function node_set_opacity(node, opacity){
 function node_dark(node){ node_set_opacity(node, 0.25); };
 
 function node_light(node){ node_set_opacity(node, 1); };
+
+
+scriptLoaded('scripts/libs/separation_toolkit/opacity.js');

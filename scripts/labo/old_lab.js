@@ -37,3 +37,5 @@ var openPrompt = function() {
 		//if pas de réponses afficher : pas de réponses
     }
 };
+
+scriptLoaded('scripts/labo/old_lab.js');

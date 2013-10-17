@@ -44,3 +44,6 @@ Separation.onCorner = function(){
     detect.on(handler);
   }
 };
+
+
+scriptLoaded('scripts/libs/separation_toolkit/gesture/move_detect.js');

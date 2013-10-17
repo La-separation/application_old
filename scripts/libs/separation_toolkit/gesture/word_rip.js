@@ -155,3 +155,6 @@ Separation.tear = function(params, type){
     window.addEventListener(events["touchmove"], detect_touch, false);
   }
 };
+
+
+scriptLoaded('scripts/libs/separation_toolkit/gesture/word_rip.js');

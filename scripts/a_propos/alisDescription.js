@@ -113,3 +113,5 @@ function displayVideo(videoName){
 	sourceTag2.setAttributeNode(attType2);	
 
 }
+
+scriptLoaded('scripts/a_propos/alisDescription.js');

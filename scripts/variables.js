@@ -82,3 +82,5 @@ var activeLang = fr;
 var wordLabo;
 
 var answers = new Array();
+
+scriptLoaded('scripts/variables.js');

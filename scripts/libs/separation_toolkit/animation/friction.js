@@ -75,3 +75,6 @@ Separation.rub_animation = function(rub_word){
     });
   }
 };
+
+
+scriptLoaded('scripts/libs/separation_toolkit/animation/friction.js');

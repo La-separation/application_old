@@ -118,3 +118,6 @@ Separation.horizontal_move = function(params){
     window.addEventListener(events['touchmove'], detect_touch, false);
   }
 }
+
+
+scriptLoaded('scripts/libs/separation_toolkit/gesture/horizontal_move.js');

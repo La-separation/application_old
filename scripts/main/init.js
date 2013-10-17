@@ -138,3 +138,6 @@ function clearStage() {
 	mainLayer.draw();
 	actionLayer.draw();
 }
+
+
+scriptLoaded('scripts/main/init.js');

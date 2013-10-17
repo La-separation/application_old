@@ -30,3 +30,6 @@ function changeLanguage(lang) {
 
 	mainLayer.draw();
 }
+
+
+scriptLoaded('scripts/menu/language.js');

@@ -107,3 +107,5 @@ if (!window.plugins) {
 if (!window.plugins.html5Video) {
 	window.plugins.html5Video = cordova.require("cordova/plugin/html5video");
 }
+
+scriptLoaded('scripts/libs/Html5Video.js');

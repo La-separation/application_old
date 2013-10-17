@@ -99,3 +99,6 @@ function Logo(){
   this.line = line;
   this.overall = logo_group;
 };
+
+
+scriptLoaded('scripts/libs/separation_toolkit/intro.js');

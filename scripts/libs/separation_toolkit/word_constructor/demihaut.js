@@ -77,3 +77,6 @@ function word_demibas(params){
   this.group.add(this.haut_b);
 
 };
+
+
+scriptLoaded('scripts/libs/separation_toolkit/word_constructor/demihaut.js');

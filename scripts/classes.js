@@ -204,3 +204,5 @@ Gesture.prototype.deleteGesture = function(object) {
 	object.off("touchend");
 	this.currentGesture = GestureType["none"];
 }
+
+scriptLoaded('scripts/classes.js');

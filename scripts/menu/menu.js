@@ -262,3 +262,6 @@ function getMainMenu() {
 	mainLayer.draw();
 	actionLayer.draw();
 }
+
+
+scriptLoaded('scripts/menu/menu.js');

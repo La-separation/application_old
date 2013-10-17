@@ -132,3 +132,6 @@ function writePerson(i, j, sentenceNode){
 	alisDescText.setOffset(alisDescText.getWidth()/2, 0 );
 	actionLayer.add(alisDescText);
 }
+
+
+scriptLoaded('scripts/a_propos/credits.js');

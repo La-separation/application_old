@@ -101,3 +101,6 @@ Separation.vertical_move = function(params){
     window.addEventListener(events['touchmove'], detect_touch, false);
   }
 }
+
+
+scriptLoaded('scripts/libs/separation_toolkit/gesture/vertical_move.js');

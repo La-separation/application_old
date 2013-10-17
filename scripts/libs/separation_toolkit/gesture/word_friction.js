@@ -27,3 +27,6 @@ Separation.rub = function(params){
     });
   }
 };
+
+
+scriptLoaded('scripts/libs/separation_toolkit/gesture/word_friction.js');

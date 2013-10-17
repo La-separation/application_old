@@ -168,3 +168,5 @@ function Result(val, font, freq) {
 	//maj_bas -> police DemiBas upperCase
 	//maj_haut -> police DemiHaut upperCase
 }
+
+scriptLoaded('scripts/xml.js');

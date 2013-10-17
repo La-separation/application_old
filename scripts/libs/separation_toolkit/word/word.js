@@ -269,3 +269,5 @@ Word.prototype.setScale = function(data) {
 	this.activeX = (screenWidth - this.getWidth()) / 2;
 	this.activeY = (screenHeight - this.getHeight()) / 2;
 }
+
+scriptLoaded('scripts/libs/separation_toolkit/word/word.js');

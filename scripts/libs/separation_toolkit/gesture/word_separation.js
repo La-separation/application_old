@@ -46,3 +46,6 @@ Separation.tap = function(params, word){
 			window.addEventListener(events['tap'], detect_tap, false);
 		}
 	}
+
+
+scriptLoaded('scripts/libs/separation_toolkit/gesture/word_separation.js');

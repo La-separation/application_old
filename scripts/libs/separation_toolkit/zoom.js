@@ -20,3 +20,6 @@ function node_zoom(node, zoom){
 };
 
 function node_unzoom(node, x, y){ node_set_zoom(node, x, y, 1); };
+
+
+scriptLoaded('scripts/libs/separation_toolkit/zoom.js');

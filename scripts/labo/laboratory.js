@@ -28,3 +28,6 @@ Labo.getMenu = function() {
 	cloud.display(mainLayer);
 	mainLayer.draw();
 };
+
+
+scriptLoaded('scripts/labo/laboratory.js');

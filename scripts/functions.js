@@ -5,3 +5,5 @@
 function log(str) {
 	alert(str);
 }
+
+scriptLoaded('scripts/functions.js');

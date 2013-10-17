@@ -191,3 +191,6 @@ separation_size_font = stage.getHeight() / 16;
 	mainLayer.draw();
 	actionLayer.draw();
 }
+
+
+scriptLoaded('scripts/introduction/introduction.js');

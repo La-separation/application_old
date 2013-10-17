@@ -16,3 +16,6 @@ function sound_stop(name) {
 		document.getElementById(name).currentTime = 0;
 	}
 }
+
+
+scriptLoaded('scripts/libs/separation_toolkit/sound/sound_play.js');

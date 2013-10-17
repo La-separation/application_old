@@ -38,3 +38,5 @@ Story.prototype.display = function(layer) {
 		this.sentences[i].display(layer);
 	}
 }
+
+scriptLoaded('scripts/recit/story.js');
