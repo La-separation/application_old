@@ -101,8 +101,22 @@ body {
 	font-size:3em;
 }
 
-.scriptLoaded {
-	font-size:10px
+p {
+	font-family: Arial;
+	font-size: 14px
+}
+
+#pourcentage {
+	font-size: 28px;
+}
+
+#img_loading {
+	margin-top: 20px;
+	width: 100px;
+}
+
+.center {
+	text-align: center;
 }
 
 div #main {

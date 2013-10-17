@@ -6,12 +6,13 @@
 		<link rel="stylesheet" href="style/style.css" />
 		<title>La Séparation</title>
 		
-		<script type="text/javascript" class="scriptLoaded">
+		<script type="text/javascript">
 			var loaded_scripts = 1;
 			var n_scripts = 44;
 			function scriptLoaded(script_path) {
-				document.getElementById("main" ).innerHTML += "<center>"+loaded_scripts+"/"+n_scripts+": "+script_path+"</center>";
-				loaded_scripts+=1;
+				document.getElementById("main").innerHTML += "<p class=\"center\" >"+loaded_scripts+"/"+n_scripts+" : "+script_path+"</p>";
+				document.getElementById("pourcentage").innerHTML = Math.floor((loaded_scripts/n_scripts)*100) + '%';
+				loaded_scripts++;
 			}
 		</script>
 		
@@ -19,9 +20,8 @@
 	<body>
 		<div id="main">
 			<center>
-				<br />
-				<img src="imgs/loading.gif" />
-				<br /><br />
+				<p><img id="img_loading" src="imgs/loading.gif" /></p>
+				<p id="pourcentage">0%</p>
 			</center>
 		</div>
 		<div id="sound">
