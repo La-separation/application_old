@@ -45,5 +45,24 @@ Xml.importStory = function(xml_path) {
 
 }
 
+Xml.importLabRequest = function(xml_link, word_requested) {
+	var xml_file = Xml.load(xml_link);
+	var cloud = new Cloud();
+	cloud.addCentralWord(new Word(word_requested));
+	var xroot = xml_file.getElementsByTagName("words")[0]
+	var xwords = xroot.getElementsByTagName("word")
+	i=0;
+	while (cloud.nb <= cloud.nb_max) {
+		var xword = xwords[xwords.length-1-i];
+		if (xword.getAttribute("name") != word_requested) {
+			var value = xword.getAttribute("name");
+			var word = new Word(value);
+			cloud.add(word);
+		}
+		i++;
+	}
+	return cloud;
+}
+
 
 scriptLoaded('scripts/xml/xml.js');

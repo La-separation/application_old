@@ -202,22 +202,28 @@ function initMainMenu() {
 		}
 		Recit.start();
 	});
+	
+/////////////////////////////////////////////////////////////////////////////////////////////
 	laboratoire.on(events['tap'], function() {
-		//if(navigator.connection.type == Connection.NONE)
-		//{
-			//var errorMsg = "";
-			//if(activeLang == fr) {
-				//errorMsg = "Impossible d'utiliser le labo des mots : aucune connection détectée.";
-			//}
-			//else {
-				//errorMsg = "Can not use the word lab : no connection detected.";
-			//}
-			//alert(errorMsg);
-		//}
-		//else {
+		//~ clearStage();
+
+		//~ if(navigator.connection.type == Connection.NONE)
+		//~ {
+			//~ var errorMsg = "";
+			//~ if(activeLang == fr) {
+				//~ errorMsg = "Impossible d'utiliser le Labo : aucune connexions détéctées";
+			//~ }
+			//~ else {
+				//~ errorMsg = "Cannot use the Lab : no connection detected.";
+			//~ }
+			//~ alert(errorMsg);
+		//~ }
+		//~ else {
 			Labo.start();
-//		}
+		//~ }
 	} );
+/////////////////////////////////////////////////////////////////////////////////////////////
+
 	concept.on(events['tap'], function() {
 		getConceptMenu();
 	} );

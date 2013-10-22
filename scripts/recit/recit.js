@@ -75,7 +75,7 @@ Recit.start = function() {
 	line.display(mainLayer);
 	*/
 	
-	var story = Xml.importStory('stories/separation.xml');
+	var story = Xml.importStory('stories/test.xml');
 	story.generate(12);
 	story.display(mainLayer);
 

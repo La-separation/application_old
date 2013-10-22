@@ -5,24 +5,13 @@ var Labo = {};
 
 Labo.start = function() {
 	clearStage();
-	setHomeBtn();
 	Labo.getMenu();
 }
 
 Labo.getMenu = function() {
-	var cloud = new Cloud();
+	setHomeBtn();
 
-	cloud.addCentralWord(new Word("central"));
-	cloud.add(new Word("cle"));
-	cloud.add(new Word("pierre"));
-	cloud.add(new Word("helene"));
-	cloud.add(new Word("serge"));
-	cloud.add(new Word("UTC"));
-	cloud.add(new Word("bonjour"));
-	cloud.add(new Word("test"));
-	cloud.add(new Word("SEPARATION"));
-	cloud.add(new Word("alexis"));
-	cloud.add(new Word("adrien"));
+	var cloud = Xml.importLabRequest("XML/lab_request.xml" ,"neige")
 
 	cloud.generate();
 	cloud.display(mainLayer);

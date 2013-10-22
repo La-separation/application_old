@@ -22,14 +22,8 @@ function CloudConstruct(cloud) {
 	@param (word) : Objet Word
 */
 Cloud.prototype.add = function(word) {
-	if (this.nb < this.nb_max) {
-		this.nb++;
-		this.words.push(word);
-		return true;
-	}
-	else {
-		return false;
-	}
+	this.nb++;
+	this.words.push(word);
 }
 
 /*
