@@ -15,6 +15,13 @@ var Word_cst = {
 	}
 }
 
+var Word_polices = {
+	0 : "coupable_haut",
+	1 : "coupable_bas",
+	2 : "centrale",
+	3 : "ombre",
+}
+
 // Selon le choix (exemple : '24px'), deviendra la variable rct (RecitConsTantes)
 var fontConst = {
 	'24px': {
@@ -24,8 +31,8 @@ var fontConst = {
 			height: 40,					// Hauteur réelle du caractère
 		},
 		police: {
-			name: 'coupable_haut',	// Police (par défaut coupable_haut)
-			coupable_haut: {			// Police coupable_haut en deux parties
+			name: 0,	// Police (par défaut coupable_haut)
+			0 : {			// Police coupable_haut en deux parties
 				offset: {				// Décalage y
 					up: -2,					// Distance en y pour la partie haute
 					down: 19,				// Distance en y pour la partie basse
@@ -35,7 +42,7 @@ var fontConst = {
 					down: "DemiHautB",
 				},
 			},
-			coupable_bas: {			// Police coupable_haut en deux parties
+			1 : {			// Police coupable_haut en deux parties
 				offset: {				// Décalage y
 					up: -2,					// Distance en y pour la partie haute
 					down: 21,				// Distance en y pour la partie basse

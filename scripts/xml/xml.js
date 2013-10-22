@@ -30,7 +30,7 @@ Xml.importStory = function(xml_path) {
 			var xword = xwords[j];
 			var value = xword.textContent;
 			var next_value = xword.getAttribute("next_value");
-			var police = xword.getAttribute("police");
+			var police = Xml.getNormalizedPolice(xword.getAttribute("police"));
 
 			var word = new Word(value , next_value , police );
 			sentence.add(word);
@@ -47,22 +47,39 @@ Xml.importStory = function(xml_path) {
 
 Xml.importLabRequest = function(xml_link, word_requested) {
 	var xml_file = Xml.load(xml_link);
-	var cloud = new Cloud();
-	cloud.addCentralWord(new Word(word_requested));
-	var xroot = xml_file.getElementsByTagName("words")[0]
-	var xwords = xroot.getElementsByTagName("word")
-	i=0;
-	while (cloud.nb <= cloud.nb_max) {
-		var xword = xwords[xwords.length-1-i];
-		if (xword.getAttribute("name") != word_requested) {
-			var value = xword.getAttribute("name");
-			var word = new Word(value);
-			cloud.add(word);
+	
+	var p = new Array();
+	
+	var xroot = xml_file.getElementsByTagName("words")[0];
+	var xwords = xroot.getElementsByTagName("word");
+	
+	for(i=xwords.length-1 ; i >= 0 && i > xwords.length-Labo_max_possibilities ; i--) {
+		var xword = xwords[i];
+		if (xword.getAttribute("name") != word_requested.value) {
+			var value=xword.getAttribute("name");
+			
+			
+			var police=Xml.getNormalizedPolice(xword.getAttribute("font"));
+			
+			
+			p.push(new Possibility(value, police));
 		}
-		i++;
 	}
-	return cloud;
+	
+	return p;
 }
 
+Xml.getNormalizedPolice = function(police) {
+	switch (police) {
+		case "coupable_min_bas" :
+		case "coupable_maj_bas" :
+		case "coupable_bas" :
+			return 1;
+		case "coupable_min_haut" :
+		case "coupable_maj_haut" :
+		case "coupable_haut" :
+			return 0;
+	}
+}
 
 scriptLoaded('scripts/xml/xml.js');

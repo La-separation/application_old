@@ -26,6 +26,7 @@ function Word(value, next_value, police) {
 	this.scale = 1; // Zoom de la police (100% = 1)
 	
 	this.gesture = null;
+	this.zoomOnActive = true;
 	
 	WordConstruct(this);
 }
@@ -40,7 +41,7 @@ function WordConstruct(word) {
 Word.prototype.generate = function() {
 	switch(this.police)
 	{
-		case 'coupable_haut':
+		case 0:
 			this.font = new Word_DemiHaut({
 				value: this.value,
 				next_value: this.next_value,
@@ -50,7 +51,7 @@ Word.prototype.generate = function() {
 				cst: this.cst,
 			});
 		break;
-		case 'coupable_bas':
+		case 1:
 			this.font = new Word_DemiBas({
 				value: this.value,
 				next_value: this.next_value,
@@ -100,13 +101,13 @@ Word.prototype.animationFinished = function() {
 
 Word.prototype.setAnimation = function(type) {
 	switch(this.police) {
-		case 'coupable_haut':
+		case 0:
 			if(type == 'rTl')
 				this.animation = Animation.downCutLeft;
 			else
 				this.animation = Animation.downCutRight;
 		break;
-		case 'coupable_bas':
+		case 1:
 			if(type == 'rTl')
 				this.animation = Animation.upCutLeft;
 			else
@@ -122,8 +123,8 @@ Word.prototype.setAnimation = function(type) {
 Word.prototype.addGesture = function() {
 	switch(this.police)
 	{
-		case 'coupable_haut':
-		case 'coupable_bas':
+		case 0:
+		case 1:
 			var word = this;
 			this.gesture = new Array();
 			this.gesture[0] = new Separation.cut({
@@ -162,8 +163,7 @@ Word.prototype.onTap = function(handler) {
 		height: this.getHeight(),
 		opacity: 0,
 	});
-	var word = this;
-	
+	var word = this;	
 	this.tap.on(events['tap'], function(){
 		if(!word_active)
 			handler(word);
@@ -192,7 +192,12 @@ Word.prototype.activate = function() {
 		}
 	}
 
-	this.zoom(Word_cst.zoom.recit);
+	if(this.zoomOnActive) {
+		this.zoom(Word_cst.zoom.recit);
+	}
+	else
+		this.setScale(this.scale);
+	
 	this.addGesture();
 	
 	this.activeDbltap();
@@ -221,7 +226,9 @@ Word.prototype.disable = function() {
 		}
 	}
 	
-	this.zoomOut();
+	if(this.zoomOnActive) {
+		this.zoomOut();
+	}
 	this.disableDbltap();
 }
 
@@ -264,6 +271,7 @@ Word.prototype.setX = function(data) { this.x = data; }
 Word.prototype.setY = function(data) { this.y = data; }
 Word.prototype.setCenterX = function(data) { this.x = data - this.getWidth() / 2; }
 Word.prototype.setCenterY = function(data) { this.y = data - this.getHeight() / 2; }
+Word.prototype.setZoomOnActive = function(data) { this.zoomOnActive = data; }
 Word.prototype.setScale = function(data) {
 	this.scale = data;
 	this.activeX = (screenWidth - this.getWidth()) / 2;
