@@ -4,17 +4,6 @@
 var Recit = {};
 var DEBUG = false;
 
-Recit.cst = {
-	margin: {				// Marge...
-		up: 12,					// ... supérieure (size/2)
-		down: 12,				// ... inférieure
-	},
-	line: {				// Ligne
-		height: 64,			// Hauteur
-		nb: 1,				// Nombre de lignes
-	},
-}
-
 /*
 	Point d'entrée du récit
 */
@@ -76,7 +65,7 @@ Recit.start = function() {
 	*/
 	
 	var story = Xml.importStory('stories/test.xml');
-	story.generate(12);
+	story.generate(Recit.cst.margin.up);
 	story.display(mainLayer);
 
 	mainLayer.draw();
@@ -98,7 +87,7 @@ Recit.start = function() {
 	Détermination de la taille de la police en fonction de la hauteur du canvas
 */
 Recit.computeSizes = function() {
-	Recit.cst.line.height = 64; // TODO dynamique
+	Recit.cst = fontConst[fontSize].recit;
 	Recit.cst.line.nb = Math.floor(screenHeight / Recit.cst.line.height);
 }
 

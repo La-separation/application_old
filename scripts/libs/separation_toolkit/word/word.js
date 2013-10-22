@@ -1,4 +1,5 @@
-word_active = false;
+var word_active = false;
+var fontSize = '24px';
 
 /**
 	Class Word
@@ -8,7 +9,7 @@ function Word(value, next_value, police) {
 	this.y = 0; // Position y en pixel
 	
 	this.size = 24; // Taille de la police en pixel
-	this.cst = fontConst['24px']; // Constantes en fonction de la taille
+	this.cst = fontConst[fontSize]; // Constantes en fonction de la taille
 	
 	this.police = ((police == undefined) || (police == null)) ? this.cst.police.name : police; // Police
 	this.fontSize = this.cst.car.size; // Hauteur du mot en pixel
@@ -21,12 +22,12 @@ function Word(value, next_value, police) {
 	this.inAnimation = false;
 	
 	this.active = false; // Booléen pour savoir si il est mis en avant
+	this.zoomOnActive = true;
 	this.activeX = 0;
 	this.activeY = 0;
 	this.scale = 1; // Zoom de la police (100% = 1)
 	
 	this.gesture = null;
-	this.zoomOnActive = true;
 	
 	WordConstruct(this);
 }

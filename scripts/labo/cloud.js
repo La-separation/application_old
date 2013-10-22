@@ -8,6 +8,7 @@ function Cloud() {
 	this.nb_max=10; //nombre maximum de mots
 	this.rayon = 0; //rayon du cercle
 	this.central_word = null; // objet Word
+	this.central_word_value = null;
 
 	CloudConstruct(this);
 }
@@ -36,6 +37,7 @@ Cloud.prototype.resetWords = function() {
 */
 Cloud.prototype.addCentralWord = function(word) {
 	this.central_word = word;
+	this.central_word_value = word.value;
 }
 
 Cloud.prototype.getCentralWord = function() {
@@ -92,6 +94,7 @@ Cloud.prototype.generate = function(page) {
 }
 
 Cloud.prototype.generateCentralWord = function(next_value, police) {
+	this.central_word.value = this.central_word_value;
 	this.central_word.next_value = next_value;
 	this.central_word.police = police;
 	this.central_word.font.destroy();

@@ -32,7 +32,7 @@ var fontConst = {
 		},
 		police: {
 			name: 0,	// Police (par défaut coupable_haut)
-			0 : {			// Police coupable_haut en deux parties
+			0: {			// Police coupable_haut en deux parties
 				offset: {				// Décalage y
 					up: -2,					// Distance en y pour la partie haute
 					down: 19,				// Distance en y pour la partie basse
@@ -42,7 +42,7 @@ var fontConst = {
 					down: "DemiHautB",
 				},
 			},
-			1 : {			// Police coupable_haut en deux parties
+			1: {			// Police coupable_haut en deux parties
 				offset: {				// Décalage y
 					up: -2,					// Distance en y pour la partie haute
 					down: 21,				// Distance en y pour la partie basse
@@ -51,6 +51,56 @@ var fontConst = {
 					up: "DemiBasH",
 					down: "DemiBasB",
 				},
+			},
+		},
+		recit: {
+			margin: {				// Marge...
+				up: 12,					// ... supérieure (size/2)
+				down: 12,				// ... inférieure
+			},
+			line: {				// Ligne
+				height: 64,			// Hauteur
+				nb: 1,				// Nombre de lignes
+			},
+		},
+	},
+	'14px': {
+		car: {						// Caractère (lettre)
+			size: 14,					// Taille de la police
+			color: "white",				// Couleur
+			height: 24,					// Hauteur réelle du caractère
+		},
+		police: {
+			name: 0,	// Police (par défaut coupable_haut)
+			0: {			// Police coupable_haut en deux parties
+				offset: {				// Décalage y
+					up: -1,					// Distance en y pour la partie haute
+					down: 12,				// Distance en y pour la partie basse
+				},
+				name: {					// Nom des deux parties
+					up: "DemiHautH",
+					down: "DemiHautB",
+				},
+			},
+			1: {			// Police coupable_haut en deux parties
+				offset: {				// Décalage y
+					up: -1,					// Distance en y pour la partie haute
+					down: 13,				// Distance en y pour la partie basse
+				},
+				name: {					// Nom des deux parties
+					up: "DemiBasH",
+					down: "DemiBasB",
+				},
+			},
+		},
+		recit: {
+			margin: {				// Marge...
+				up: 6,					// ... supérieure (size/2)
+				down: 6,				// ... inférieure
+			},
+			line: {				// Ligne
+				height: 36,			// Hauteur
+				nb: 1,				// Nombre de lignes
 			},
 		},
 	},
