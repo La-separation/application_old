@@ -5,9 +5,9 @@ function Cloud() {
 	this.words = new Array(); // Tableau des mots
 	this.possibilities = new Array(); // Tableau des mots possibles
 	this.nb = 0; // Nombre de mots
-	this.nb_max=10; //nombre maximum de mots
-	this.rayon = 0; //rayon du cercle
-	this.central_word = null; // objet Word
+	this.nb_max = 9; // Nombre maximum de mots
+	this.rayon = 0; // Rayon du cercle
+	this.central_word = null; // Objet Word
 	this.central_word_value = null;
 
 	CloudConstruct(this);
@@ -20,7 +20,7 @@ function CloudConstruct(cloud) {
 }
 
 /*
-	Ajoute un mot sur la ligne.
+	Ajoute un mot dans le nuage.
 	@param (word) : Objet Word
 */
 Cloud.prototype.add = function(word) {
@@ -37,7 +37,7 @@ Cloud.prototype.resetWords = function() {
 */
 Cloud.prototype.addCentralWord = function(word) {
 	this.central_word = word;
-	this.central_word_value = word.value;
+	this.central_word_value = word.getValue();
 }
 
 Cloud.prototype.getCentralWord = function() {
@@ -45,7 +45,7 @@ Cloud.prototype.getCentralWord = function() {
 }
 
 Cloud.prototype.setPossibilities = function(data) {
-	this.possibilities=data;
+	this.possibilities = data;
 }
 
 /*
@@ -57,21 +57,17 @@ Cloud.prototype.generate = function(page) {
 	for (var i = 0; i < this.nb_max; i++) {
 		var ind = i+(page-1)*this.nb_max;
 		if (this.possibilities.length > ind) {
-			this.add(new Word(this.possibilities[ind].getValue() , null , this.possibilities[ind].getPolice()));
+			this.add(new Word(this.possibilities[ind].getValue(), null, this.possibilities[ind].getPolice()));
 		}
 	}
 	
-	var center = [screenWidth/2 , screenHeight/2];
+	var center = [screenWidth/2, screenHeight/2];
 	var x;
 	var y;
-	var angle=Math.PI/this.nb;
+	var angle = Math.PI / this.nb;
 
-// a modifier ////////////////////////////////////////
-	this.central_word.font.group.setScaleX(2);		//
-	this.central_word.font.group.setScaleY(2);		//
-	this.central_word.scale=2;						//
+	this.central_word.setZoom(2);
 	this.central_word.setZoomOnActive(false);
-//////////////////////////////////////////////////////
 
 	for(var i = 0; i < this.nb; i++) {
 		x = Math.floor(center[0] + Math.cos(angle)*screenWidth*0.4);
@@ -79,13 +75,13 @@ Cloud.prototype.generate = function(page) {
 
 		this.words[i].setCenterX(x);
 		this.words[i].setCenterY(y);
-		angle = angle + 2*Math.PI/this.nb;
+		angle = angle + 2 * Math.PI / this.nb;
 		
 		var cloud = this;
 		//~ var word = this.words[i];
 		//~ this.words[i].next_value = '';
 		this.words[i].onTap(function(word) {
-			cloud.generateCentralWord(word.value, word.police);
+			cloud.generateCentralWord(word.getValue(), word.getPolice());
 		});
 	}
 
@@ -94,10 +90,10 @@ Cloud.prototype.generate = function(page) {
 }
 
 Cloud.prototype.generateCentralWord = function(next_value, police) {
-	this.central_word.value = this.central_word_value;
-	this.central_word.next_value = next_value;
-	this.central_word.police = police;
-	this.central_word.font.destroy();
+	this.central_word.setValue(this.central_word_value);
+	this.central_word.setNextValue(next_value);
+	this.central_word.setPolice(police);
+
 	this.central_word.generate();
 	this.central_word.display(mainLayer);
 	this.central_word.activate();

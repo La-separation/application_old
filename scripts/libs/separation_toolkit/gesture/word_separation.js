@@ -15,6 +15,9 @@ Separation.cut = function(params, type){
 			if (type != 'rTl') {detect.leftToRight(handler);}
 		});
 	}
+	this.off = function() {
+		detect.off();
+	}
 };
 
 Separation.tap = function(params, word){

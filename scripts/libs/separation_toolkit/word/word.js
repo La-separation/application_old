@@ -40,6 +40,10 @@ function WordConstruct(word) {
 }
 
 Word.prototype.generate = function() {
+	if(this.font != null) {
+		this.font.destroy();
+	}
+	
 	switch(this.police)
 	{
 		case 0:
@@ -91,8 +95,6 @@ Word.prototype.animationFinished = function() {
 	var temp = this.next_value;
 	this.next_value = this.value;
 	this.value = temp;
-	
-	this.font.destroy();
 	
 	this.generate();
 	this.display(mainLayer);
@@ -153,6 +155,18 @@ Word.prototype.addGesture = function() {
 			alert('Police inconnue : ' + this.police);
 		break;
 	}
+}
+
+Word.prototype.removeGesture = function() {
+	switch(this.police)
+	{
+		case 0:
+		case 1:
+			this.gesture[0].off();
+			this.gesture[1].off();
+		break;
+	}
+	this.gesture = new Array();
 }
 
 Word.prototype.onTap = function(handler) {
@@ -218,6 +232,7 @@ Word.prototype.disableDbltap = function() {
 Word.prototype.disable = function() {
 	this.active = false;
 	word_active = false;
+	this.removeGesture();
 	
 	var all_words = this.font.group.getParent().getChildren();
 	for(var i = 0; i < all_words.length ; i++)
@@ -233,10 +248,14 @@ Word.prototype.disable = function() {
 	this.disableDbltap();
 }
 
+Word.prototype.setZoom = function(data) {
+	this.setScale(data);
+	this.font.group.setScaleX(data);
+	this.font.group.setScaleY(data);
+}
+
 Word.prototype.zoom = function(scaleTo) {
 	this.setScale(scaleTo);
-	
-	var word = this;
 	
 	new Kinetic.Tween({
 		node: this.font.group,
@@ -249,7 +268,7 @@ Word.prototype.zoom = function(scaleTo) {
 }
 	
 Word.prototype.zoomOut = function() {
-	this.scale = 1;
+	this.setScale(1);
 	
 	new Kinetic.Tween({
 		node: this.font.group,
@@ -267,14 +286,21 @@ Word.prototype.getY = function() { if(!this.active) return this.y; else return t
 Word.prototype.getWidth = function() { return this.font.group.getWidth() * this.scale; }
 Word.prototype.getHeight = function() { return this.cst.car.height * this.scale; }
 Word.prototype.getScale = function(data) { return this.scale; }
+Word.prototype.getValue = function(data) { return this.value; }
+Word.prototype.getNextValue = function(data) { return this.next_value; }
+Word.prototype.getPolice = function(data) { return this.police; }
 // Set
 Word.prototype.setX = function(data) { this.x = data; }
 Word.prototype.setY = function(data) { this.y = data; }
+Word.prototype.setValue = function(data) { this.value = data; }
+Word.prototype.setNextValue = function(data) { this.next_value = data; }
+Word.prototype.setPolice = function(data) { this.police = data; }
 Word.prototype.setCenterX = function(data) { this.x = data - this.getWidth() / 2; }
 Word.prototype.setCenterY = function(data) { this.y = data - this.getHeight() / 2; }
 Word.prototype.setZoomOnActive = function(data) { this.zoomOnActive = data; }
 Word.prototype.setScale = function(data) {
 	this.scale = data;
+	
 	this.activeX = (screenWidth - this.getWidth()) / 2;
 	this.activeY = (screenHeight - this.getHeight()) / 2;
 }

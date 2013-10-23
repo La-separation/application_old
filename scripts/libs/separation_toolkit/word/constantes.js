@@ -16,10 +16,27 @@ var Word_cst = {
 }
 
 var Word_polices = {
-	0 : "coupable_haut",
-	1 : "coupable_bas",
-	2 : "centrale",
-	3 : "ombre",
+	0 : 'coupable_haut',
+	1 : 'coupable_bas',
+	2 : 'centrale',
+	3 : 'ombre',
+}
+
+function Word_getNormalizedPolice(police) {
+	switch (police) {
+		case 'coupable_min_haut' :
+		case 'coupable_maj_haut' :
+		case 'coupable_haut' :
+			return 0;
+		case 'coupable_min_bas' :
+		case 'coupable_maj_bas' :
+		case 'coupable_bas' :
+			return 1;
+		case 'centrale' :
+			return 2;
+		case 'ombre' :
+			return 3;
+	}
 }
 
 // Selon le choix (exemple : '24px'), deviendra la variable rct (RecitConsTantes)
@@ -27,7 +44,7 @@ var fontConst = {
 	'24px': {
 		car: {						// Caractère (lettre)
 			size: 24,					// Taille de la police
-			color: "white",				// Couleur
+			color: 'white',				// Couleur
 			height: 40,					// Hauteur réelle du caractère
 		},
 		police: {
@@ -38,8 +55,8 @@ var fontConst = {
 					down: 19,				// Distance en y pour la partie basse
 				},
 				name: {					// Nom des deux parties
-					up: "DemiHautH",
-					down: "DemiHautB",
+					up: 'DemiHautH',
+					down: 'DemiHautB',
 				},
 			},
 			1: {			// Police coupable_haut en deux parties
@@ -48,8 +65,8 @@ var fontConst = {
 					down: 21,				// Distance en y pour la partie basse
 				},
 				name: {					// Nom des deux parties
-					up: "DemiBasH",
-					down: "DemiBasB",
+					up: 'DemiBasH',
+					down: 'DemiBasB',
 				},
 			},
 		},
@@ -67,7 +84,7 @@ var fontConst = {
 	'14px': {
 		car: {						// Caractère (lettre)
 			size: 14,					// Taille de la police
-			color: "white",				// Couleur
+			color: 'white',				// Couleur
 			height: 24,					// Hauteur réelle du caractère
 		},
 		police: {
@@ -78,8 +95,8 @@ var fontConst = {
 					down: 12,				// Distance en y pour la partie basse
 				},
 				name: {					// Nom des deux parties
-					up: "DemiHautH",
-					down: "DemiHautB",
+					up: 'DemiHautH',
+					down: 'DemiHautB',
 				},
 			},
 			1: {			// Police coupable_haut en deux parties
@@ -88,8 +105,8 @@ var fontConst = {
 					down: 13,				// Distance en y pour la partie basse
 				},
 				name: {					// Nom des deux parties
-					up: "DemiBasH",
-					down: "DemiBasB",
+					up: 'DemiBasH',
+					down: 'DemiBasB',
 				},
 			},
 		},

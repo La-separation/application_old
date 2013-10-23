@@ -1,6 +1,6 @@
 function Possibility(value, police) {
-	this.value=value;
-	this.police=police;
+	this.value = value;
+	this.police = police;
 }
 
 Possibility.prototype.getValue = function() {
