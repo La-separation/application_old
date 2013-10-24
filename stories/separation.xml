@@ -5,14 +5,13 @@
 		<word>word</word>
 	</sentence>
 	<sentence>
-		<word>ABCDEFGHIJKLMNOPQRSTUVWXYZ</word>
-		<word>abcdefghijklmnopqrstuvwxyz</word>
 	</sentence>
 	<sentence>
 		<word next_value="noire" police="coupable_haut">neige</word>
+		<word police="centrale">centrale</word>
 	</sentence>
 	<sentence>
-		<word next_value="SOUTENU" police="centrale" >YM</word>
+		<word next_value="SOUTENU" police="centrale" >COUTEAU</word>
 	</sentence>
 </story>
 
