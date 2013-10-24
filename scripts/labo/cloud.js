@@ -30,6 +30,7 @@ Cloud.prototype.add = function(word) {
 
 Cloud.prototype.resetWords = function() {
 	this.words = new Array();
+	this.nb = 0;
 }
 
 /*
@@ -73,6 +74,7 @@ Cloud.prototype.generate = function(page) {
 		x = Math.floor(center[0] + Math.cos(angle)*screenWidth*0.4);
 		y = Math.floor(center[1] + Math.sin(angle)*screenHeight*0.4);
 
+
 		this.words[i].setCenterX(x);
 		this.words[i].setCenterY(y);
 		angle = angle + 2 * Math.PI / this.nb;
@@ -87,6 +89,7 @@ Cloud.prototype.generate = function(page) {
 
 	this.central_word.setCenterX(center[0]);
 	this.central_word.setCenterY(center[1]);
+	this.central_word.generate();
 }
 
 Cloud.prototype.generateCentralWord = function(next_value, police) {
