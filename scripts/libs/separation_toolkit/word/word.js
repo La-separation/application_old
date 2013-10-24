@@ -66,8 +66,18 @@ Word.prototype.generate = function() {
 				cst: this.cst,
 			});
 		break;
+		case 2:
+			this.font = new Word_Centrale({
+				value: this.value,
+				next_value: this.next_value,
+				fontSize: this.fontSize,
+				police: this.police,
+				color: this.color,
+				cst: this.cst,
+			});
+		break;
 		default:
-			alert('Police inconnue : ' + this.police);
+			alert('Police inconnue : ' + this.police + ' dans la fonction Word.generate()');
 		break;
 	}
 	this.font.group.setScaleX(this.scale);
@@ -116,8 +126,14 @@ Word.prototype.setAnimation = function(type) {
 			else
 				this.animation = Animation.upCutRight;
 		break;
+		case 2:
+			if(type == 'rTl')
+				this.animation = Animation.centraleCutLeft;
+			else
+				this.animation = Animation.centraleCutRight;
+		break;
 		default:
-			alert('Police inconnue : ' + this.police);
+			alert('Police inconnue : ' + this.police + ' dans la fonction Word.setAnimation()');
 		break;
 	}
 }
@@ -128,6 +144,7 @@ Word.prototype.addGesture = function() {
 	{
 		case 0:
 		case 1:
+		case 2:
 			var word = this;
 			this.gesture = new Array();
 			this.gesture[0] = new Separation.cut({
@@ -152,7 +169,7 @@ Word.prototype.addGesture = function() {
 			});
 		break;
 		default:
-			alert('Police inconnue : ' + this.police);
+			alert('Police inconnue : ' + this.police + ' dans la fonction Word.addGesture()');
 		break;
 	}
 }
@@ -162,6 +179,7 @@ Word.prototype.removeGesture = function() {
 	{
 		case 0:
 		case 1:
+		case 2:
 			this.gesture[0].off();
 			this.gesture[1].off();
 		break;

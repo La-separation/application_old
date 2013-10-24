@@ -8,7 +8,7 @@
 		
 		<script type="text/javascript">
 			var loaded_scripts = 1;
-			var n_scripts = 45;
+			var n_scripts = 47;
 			function scriptLoaded(script_path) {
 				document.getElementById("main").innerHTML += "<p class=\"center\" >"+loaded_scripts+"/"+n_scripts+" : "+script_path+"</p>";
 				document.getElementById("pourcentage").innerHTML = Math.floor((loaded_scripts/n_scripts)*100) + '%';
@@ -49,10 +49,13 @@
 		<!-- scripts/libs/separation_toolkit/word -->
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/word/constantes.js"></script>
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/word/word.js"></script>
+		<script type="text/javascript" src="scripts/libs/separation_toolkit/word/word_kinetic.js"></script>
 
 		<!-- scripts/libs/separation_toolkit/word_animation -->
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_animation/animation.js"></script>
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_animation/coupable_haut.js"></script>
+		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_animation/coupable_bas.js"></script>
+		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_animation/centrale.js"></script>
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_animation/effects.js"></script>
 
 		<!-- scripts/libs/separation_toolkit/gesture -->
@@ -101,9 +104,7 @@
 		<script type="text/javascript" src="scripts/labo/cloud.js"></script>
 		<script type="text/javascript" src="scripts/labo/possibility.js"></script>
 
-
 		<!-- scripts/recit -->
-		<script type="text/javascript" src="scripts/recit/word_kinetic.js"></script>
 		<script type="text/javascript" src="scripts/recit/recit.js"></script>
 		<script type="text/javascript" src="scripts/recit/story.js"></script>
 		<script type="text/javascript" src="scripts/recit/sentence.js"></script>

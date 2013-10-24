@@ -8,7 +8,7 @@ function Cloud() {
 	this.nb_max = 9; // Nombre maximum de mots
 	this.rayon = 0; // Rayon du cercle
 	this.central_word = null; // Objet Word
-	this.central_word_value = null;
+	this.central_word_value = null; // Objet Word
 
 	CloudConstruct(this);
 }

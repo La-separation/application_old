@@ -35,8 +35,9 @@ function Word_getNormalizedPolice(police) {
 		case 'centrale' :
 			return 2;
 		case 'ombre' :
-			return 3;
+			return 3;	
 	}
+	return 0;
 }
 
 // Selon le choix (exemple : '24px'), deviendra la variable rct (RecitConsTantes)
@@ -59,7 +60,7 @@ var fontConst = {
 					down: 'DemiHautB',
 				},
 			},
-			1: {			// Police coupable_haut en deux parties
+			1: {			// Police coupable_bas en deux parties
 				offset: {				// Décalage y
 					up: -2,					// Distance en y pour la partie haute
 					down: 21,				// Distance en y pour la partie basse
@@ -67,6 +68,18 @@ var fontConst = {
 				name: {					// Nom des deux parties
 					up: 'DemiBasH',
 					down: 'DemiBasB',
+				},
+			},
+			2: {			// Police centrale en trois parties
+				offset: {				// Décalage y
+					up: -8,					// Distance en y pour la partie haute
+					central: 6,
+					down: 16,				// Distance en y pour la partie basse
+				},
+				name: {					// Nom des trois parties
+					up: 'CentraleH',
+					central: 'CentraleC',
+					down: 'CentraleB',
 				},
 			},
 		},
@@ -81,6 +94,8 @@ var fontConst = {
 			},
 		},
 	},
+	// A ne pas utiliser car pas dispo pour la police centrale, attendre que toutes lesp olices soient faites
+	/*
 	'14px': {
 		car: {						// Caractère (lettre)
 			size: 14,					// Taille de la police
@@ -88,18 +103,18 @@ var fontConst = {
 			height: 24,					// Hauteur réelle du caractère
 		},
 		police: {
-			name: 0,	// Police (par défaut coupable_haut)
-			0: {			// Police coupable_haut en deux parties
-				offset: {				// Décalage y
-					up: -1,					// Distance en y pour la partie haute
-					down: 12,				// Distance en y pour la partie basse
+			name: 0,				// Police (par défaut coupable_haut)
+			0: {						// Police coupable_haut en deux parties
+				offset: {					// Décalage y
+					up: -1,						// Distance en y pour la partie haute
+					down: 12,					// Distance en y pour la partie basse
 				},
 				name: {					// Nom des deux parties
 					up: 'DemiHautH',
 					down: 'DemiHautB',
 				},
 			},
-			1: {			// Police coupable_haut en deux parties
+			1: {					// Police coupable_bas en deux parties
 				offset: {				// Décalage y
 					up: -1,					// Distance en y pour la partie haute
 					down: 13,				// Distance en y pour la partie basse
@@ -121,7 +136,7 @@ var fontConst = {
 			},
 		},
 	},
-	
+	*/
 };
 
 scriptLoaded('scripts/libs/separation_toolkit/word/constantes.js');

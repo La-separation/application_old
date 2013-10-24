@@ -64,7 +64,7 @@ Recit.start = function() {
 	line.display(mainLayer);
 	*/
 	
-	var story = Xml.importStory('stories/test.xml');
+	var story = Xml.importStory('stories/separation.xml');
 	story.generate(Recit.cst.margin.up);
 	story.display(mainLayer);
 
