@@ -115,6 +115,7 @@ function loadingImg() {
 		//~ }));
 		//~ mainLayer.draw();
 	//~ }
+	setHomeBtn();
 	var loading = new Word("Loading");
 	loading.setCenterX(screenWidth/2)
 	loading.setCenterY(screenHeight/2)
