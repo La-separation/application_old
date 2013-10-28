@@ -77,9 +77,9 @@ Labo.displayCloud = function() {
 }
 
 Labo.displayGui = function() {
-	var zoom = 8;
+	var zoom = 8; // Attention, pour l'instant ce n'est pas très au point, le "P" sera décalé et s'affichera mal
 	
-	var policeBtn = new Word("P",null,4); 	policeBtn.setZoom(zoom);
+	var policeBtn = new Word(" P ",null,4); policeBtn.setZoom(zoom);
 	var nextBtn = new Word(" > ",null,4); 	nextBtn.setZoom(zoom);
 	var lastBtn = new Word(" < ",null,4);	lastBtn.setZoom(zoom);
 

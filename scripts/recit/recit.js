@@ -1,115 +1,136 @@
 /**
-	Namespace recit
+        Namespace recit
 */
 var Recit = {};
 var DEBUG = false;
+var story_page = null;
+
+//////////////////////////////////////
+var xmlList = ["separation","test","test1","test2","test3","test4","test5","test6","test7","test8","test9","test10"];
+//////////////////////////////////////
 
 /*
-	Point d'entrée du récit
+        Point d'entrée du récit
 */
-Recit.start = function() {
-	clearStage();
-	setHomeBtn();
+        Recit.start = function() {
+        var nb_recit_max = screenHeight /90;
+        story_page = 1;
 
-	this.computeSizes();
-	if(DEBUG) this.addLines();
+        clearStage();
+        setHomeBtn();
+        Recit.displayStoriesGui();
+        
+        var words = new Array();
+        path = "";
+        
+        for (var i=0; i<xmlList.length ;i++){
+                var path = "stories/"+xmlList[i]+".xml";
+                var xml_file = Xml.load(path);
+                words.push(new Word(xml_file.getElementsByTagName("title")[0].textContent, null, 0));
+                
+                words[i].setCenterX(screenWidth/2);
+                words[i].setCenterY((((screenHeight)/(nb_recit_max+1))*(i+0.5)));
+                words[i].display(mainLayer);
+                words[i].onTap(function(path){
+                        return function(){Recit.openStory(path);}
+                }(path));
+        }
 
-	/*var sentence = new Sentence();
+        mainLayer.draw();
+        actionLayer.draw();
+}
 
-	var mot1 = new Word('Separation', 'Perception');
-	var mot2 = new Word('green', 'peace');
-	var mot3 = new Word('clef', 'ciel', 'coupable_bas');
-	var mot4 = new Word('cle', 'utc', 'coupable_bas');
+Recit.openStory = function(file) {
+        clearStage();
+        setHomeBtn();
+        Recit.displayStoryGui();
 
-	sentence.add(new Word('La '));
-	sentence.add(mot1);
-	sentence.newLine();
-	sentence.add(new Word('Projet '));
-	sentence.add(new Word('initie et '))
-	sentence.add(new Word('porte par '));
-	sentence.add(new Word('Pierre Fourny '));
-	sentence.add(new Word('de la compagnie '));
-	sentence.add(new Word('de spectacle ALIS '));
-	sentence.add(new Word('et Serge Bouchardon '));
-	sentence.add(new Word('de l\''));
-	sentence.add(mot4);
-	sentence.newLine();
-	sentence.add(mot3);
-	sentence.addTab();sentence.addTab();
-	sentence.add(mot2);
-	
-	var sentence2 = new Sentence();
-	var sentence3 = new Sentence();
-	
-	sentence3.add(new Word('YEEEEES'));
-	
-	var story = new Story();
-	story.add(sentence);
-	story.add(sentence2);
-	story.add(sentence3);
-	story.generate(12);
-	story.display(mainLayer);
-	
-	/*sentence.generate(12);
-	sentence.display(mainLayer);
-	*/
-	
-	
-	/*
-	var line = new Line();
-	line.add(new Word('LA'));
-	line.addSpace();
-	line.add(new Word('SEPARATION'));
-	line.generate(12);
-	line.display(mainLayer);
-	*/
-	
-	var story = Xml.importStory('stories/separation.xml');
-	story.generate(Recit.cst.margin.up);
-	story.display(mainLayer);
+        this.computeSizes();
+        if(DEBUG) this.addLines();
 
-	mainLayer.draw();
-	actionLayer.draw();
-	
-	/*mot4.activeOnTap();
-	mot3.zoom(2);
-	/*mot2.addGesture();
-	mot3.addGesture();
-	mot4.addGesture();
-	mot4.activate();*/
-	
-	//setTimeout(function(){test.animate()},4000);
-	//setTimeout(function(){test.activate()},1000);
-	//setTimeout(function(){test.disable()},7000);
+        var story = Xml.importStory(file);
+        story.generate(Recit.cst.margin.up);
+        story.display(mainLayer);
+
+        mainLayer.draw();
+        actionLayer.draw();
 }
 
 /*
-	Détermination de la taille de la police en fonction de la hauteur du canvas
+        Détermination de la taille de la police en fonction de la hauteur du canvas
 */
 Recit.computeSizes = function() {
-	Recit.cst = fontConst[fontSize].recit;
-	Recit.cst.line.nb = Math.floor(screenHeight / Recit.cst.line.height);
+        Recit.cst = fontConst[fontSize].recit;
+        Recit.cst.line.nb = Math.floor(screenHeight / Recit.cst.line.height);
+}
+
+Recit.displayStoryGui = function() {
+	var zoom = 8; // Attention, pour l'instant ce n'est pas très au point, le "R" sera décalé et s'affichera mal
+	
+	var storiesBtn = new Word(" R", null, 4);	storiesBtn.setZoom(zoom);
+	var nextBtn = new Word(" > ", null, 4);		nextBtn.setZoom(zoom);
+	var lastBtn = new Word(" < ", null, 4);		lastBtn.setZoom(zoom);
+	
+	storiesBtn.setX(screenWidth - storiesBtn.getWidth());
+	storiesBtn.setY(screenHeight - storiesBtn.getHeight() / 4);
+
+	nextBtn.setX(screenWidth - nextBtn.getWidth());
+	nextBtn.setY(0);
+	
+	lastBtn.setX(0);
+	lastBtn.setY(0);
+
+	storiesBtn.display(mainLayer);
+	nextBtn.display(mainLayer);
+	lastBtn.display(mainLayer);
+
+	storiesBtn.onTap(function(){Recit.start()});
+	nextBtn.onTap(function(){});
+	lastBtn.onTap(function(){});
+	
+	mainLayer.draw();
+	actionLayer.draw();
+}
+
+Recit.displayStoriesGui = function() {
+        var nextBtn = new Word(" > ", null, 4)
+        var lastBtn = new Word(" < ", null, 4)
+        
+        nextBtn.setX(screenWidth - nextBtn.getWidth());
+        nextBtn.setY(0);
+        
+        lastBtn.setX(0);
+        lastBtn.setY(0);
+
+        nextBtn.display(mainLayer);
+        lastBtn.display(mainLayer);
+
+        nextBtn.onTap(function(){});
+        lastBtn.onTap(function(){});
+        
+        mainLayer.draw();
+        actionLayer.draw();
+
 }
 
 /** DEBUG **/
 
 /*
-	Ajoute des marges inter-lignes en rouge pour visualiser les lignes
+        Ajoute des marges inter-lignes en rouge pour visualiser les lignes
 */
 Recit.addLines = function() {
 	for(var i = 0; i < Recit.cst.line.nb+1; i++)
 	{
-		var rect = new Kinetic.Rect({
-			x: 0,
-			y: Recit.cst.line.height * i - Recit.cst.margin.down,
-			width: screenWidth,
-			height: Recit.cst.margin.down + Recit.cst.margin.up,
-			fill: "red",
-			opacity: 0.3,
-		});
-		mainLayer.add(rect);
+			var rect = new Kinetic.Rect({
+					x: 0,
+					y: Recit.cst.line.height * i - Recit.cst.margin.down,
+					width: screenWidth,
+					height: Recit.cst.margin.down + Recit.cst.margin.up,
+					fill: "red",
+					opacity: 0.3,
+			});
+			mainLayer.add(rect);
 	}
 }
-
 
 scriptLoaded('scripts/recit/recit.js');
