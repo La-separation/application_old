@@ -93,24 +93,25 @@ Recit.displayStoryGui = function() {
 }
 
 Recit.displayStoriesGui = function() {
-        var nextBtn = new Word(" > ", null, 4)
-        var lastBtn = new Word(" < ", null, 4)
-        
-        nextBtn.setX(screenWidth - nextBtn.getWidth());
-        nextBtn.setY(0);
-        
-        lastBtn.setX(0);
-        lastBtn.setY(0);
+	var zoom = 8; // Attention, pour l'instant ce n'est pas très au point, le "R" sera décalé et s'affichera mal
+	
+	var nextBtn = new Word(" > ", null, 4);		nextBtn.setZoom(zoom);
+	var lastBtn = new Word(" < ", null, 4);		lastBtn.setZoom(zoom);
+	
+	nextBtn.setX(screenWidth - nextBtn.getWidth());
+	nextBtn.setY(0);
+	
+	lastBtn.setX(0);
+	lastBtn.setY(0);
 
-        nextBtn.display(mainLayer);
-        lastBtn.display(mainLayer);
+	nextBtn.display(mainLayer);
+	lastBtn.display(mainLayer);
 
-        nextBtn.onTap(function(){});
-        lastBtn.onTap(function(){});
-        
-        mainLayer.draw();
-        actionLayer.draw();
-
+	nextBtn.onTap(function(){});
+	lastBtn.onTap(function(){});
+	
+	mainLayer.draw();
+	actionLayer.draw();
 }
 
 /** DEBUG **/
