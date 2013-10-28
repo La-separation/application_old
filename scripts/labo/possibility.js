@@ -1,6 +1,7 @@
-function Possibility(value, police) {
+function Possibility(value, police, code) {
 	this.value = value;
 	this.police = police;
+	this.code = code;
 }
 
 Possibility.prototype.getValue = function() {
@@ -9,6 +10,10 @@ Possibility.prototype.getValue = function() {
 
 Possibility.prototype.getPolice = function() {
 	return this.police;
+}
+
+Possibility.prototype.getCode = function() {
+	return this.code;
 }
 
 scriptLoaded('scripts/labo/possibility.js');

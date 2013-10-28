@@ -58,7 +58,7 @@ Cloud.prototype.generate = function(page) {
 	for (var i = 0; i < this.nb_max; i++) {
 		var ind = i+(page-1)*this.nb_max;
 		if (this.possibilities.length > ind) {
-			this.add(new Word(this.possibilities[ind].getValue(), null, this.possibilities[ind].getPolice()));
+			this.add(new Word(this.possibilities[ind].getValue(), null, this.possibilities[ind].getPolice(), this.possibilities[ind].getCode()));
 		}
 	}
 	
@@ -83,7 +83,7 @@ Cloud.prototype.generate = function(page) {
 		//~ var word = this.words[i];
 		//~ this.words[i].next_value = '';
 		this.words[i].onTap(function(word) {
-			cloud.generateCentralWord(word.getValue(), word.getPolice());
+			cloud.generateCentralWord(word.getValue(), word.getPolice(), word.getCode(), center);
 		});
 	}
 
@@ -92,12 +92,15 @@ Cloud.prototype.generate = function(page) {
 	this.central_word.generate();
 }
 
-Cloud.prototype.generateCentralWord = function(next_value, police) {
+Cloud.prototype.generateCentralWord = function(next_value, police, code, center) {
 	this.central_word.setValue(this.central_word_value);
 	this.central_word.setNextValue(next_value);
 	this.central_word.setPolice(police);
+	this.central_word.setCode(code);
 
 	this.central_word.generate();
+	this.central_word.setCenterX(center[0]);
+	this.central_word.setCenterY(center[1]);
 	this.central_word.display(mainLayer);
 	this.central_word.activate();
 }

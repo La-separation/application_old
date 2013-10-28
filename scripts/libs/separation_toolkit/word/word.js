@@ -4,7 +4,7 @@ var fontSize = '24px';
 /**
 	Class Word
 */
-function Word(value, next_value, police) {
+function Word(value, next_value, police, code) {	
 	this.x = 0; // Position x en pixel
 	this.y = 0; // Position y en pixel
 	
@@ -17,6 +17,7 @@ function Word(value, next_value, police) {
 	
 	this.value = value; // Valeur du mot actuel
 	this.next_value = ((next_value == undefined) || (next_value == null)) ? value : next_value; // Valeur du mot après transformation
+	this.code = ((code == undefined) || (code == null)) ? value : code; // Code du mot
 	this.font = null; // Groupe Kinetic qui sera affiché
 	this.animation = null; // Fonction de callback pour l'animation ('Animation.x')
 	this.inAnimation = false;
@@ -44,12 +45,24 @@ Word.prototype.generate = function() {
 		this.font.destroy();
 	}
 	
+	if(this.getCode() != this.getValue()) {
+		var new_code = convertCode(this.getCode(), this.getPolice());
+		var new_value = convertValue(this.getValue(), new_code, this.getPolice());
+		var new_next_value = convertValue(this.getNextValue(), new_code, this.getPolice());
+	}
+	else {
+		var new_code = this.getCode();
+		var new_value = this.getValue();
+		var new_next_value = this.getNextValue();
+	}
+	
 	switch(this.police)
 	{
 		case 0:
 			this.font = new Word_DemiHaut({
-				value: this.value,
-				next_value: this.next_value,
+				value: new_value,
+				next_value: new_next_value,
+				code: new_code,
 				fontSize: this.fontSize,
 				police: this.police,
 				color: this.color,
@@ -58,8 +71,9 @@ Word.prototype.generate = function() {
 		break;
 		case 1:
 			this.font = new Word_DemiBas({
-				value: this.value,
-				next_value: this.next_value,
+				value: new_value,
+				next_value: new_next_value,
+				code: new_code,
 				fontSize: this.fontSize,
 				police: this.police,
 				color: this.color,
@@ -70,7 +84,17 @@ Word.prototype.generate = function() {
 			this.font = new Word_Centrale({
 				value: this.value,
 				next_value: this.next_value,
+				code: this.code,
 				fontSize: this.fontSize,
+				police: this.police,
+				color: this.color,
+				cst: this.cst,
+			});
+		break;
+		case 4:
+			this.font = new Word_DemiHautEntier({
+				value: new_value,
+				fontSize: this.fontSizes,
 				police: this.police,
 				color: this.color,
 				cst: this.cst,
@@ -307,11 +331,13 @@ Word.prototype.getScale = function(data) { return this.scale; }
 Word.prototype.getValue = function(data) { return this.value; }
 Word.prototype.getNextValue = function(data) { return this.next_value; }
 Word.prototype.getPolice = function(data) { return this.police; }
+Word.prototype.getCode = function(data) { return this.code; }
 // Set
 Word.prototype.setX = function(data) { this.x = data; }
 Word.prototype.setY = function(data) { this.y = data; }
 Word.prototype.setValue = function(data) { this.value = data; }
 Word.prototype.setNextValue = function(data) { this.next_value = data; }
+Word.prototype.setCode = function(data) { this.code = data; }
 Word.prototype.setPolice = function(data) { this.police = data; }
 Word.prototype.setCenterX = function(data) { this.x = data - this.getWidth() / 2; }
 Word.prototype.setCenterY = function(data) { this.y = data - this.getHeight() / 2; }

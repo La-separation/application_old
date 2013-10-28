@@ -8,7 +8,7 @@ var Word_cst = {
 		opacity: 1,
 		downCut: 2,
 		upCut: 2,
-	},
+		},
 	opacity: {
 		light: 1,
 		dark: 0.3,
@@ -20,6 +20,7 @@ var Word_polices = {
 	1 : 'coupable_bas',
 	2 : 'centrale',
 	3 : 'ombre',
+	4 : 'coupable_haut_entier',
 }
 
 function Word_getNormalizedPolice(police) {
@@ -35,7 +36,9 @@ function Word_getNormalizedPolice(police) {
 		case 'centrale' :
 			return 2;
 		case 'ombre' :
-			return 3;	
+			return 3;
+		case 'coupable_haut_entier' :
+			return 4;
 	}
 	return 0;
 }
@@ -81,6 +84,10 @@ var fontConst = {
 					central: 'CentraleC',
 					down: 'CentraleB',
 				},
+			},
+			4: {				// Police coupable haut entier en une partie
+				offset: 0,			// Décalage y
+				name: 'DemiHaut',	// Nom de la police
 			},
 		},
 		recit: {

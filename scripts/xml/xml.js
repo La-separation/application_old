@@ -31,8 +31,9 @@ Xml.importStory = function(xml_path) {
 			var value = xword.textContent;
 			var next_value = xword.getAttribute("next_value");
 			var police = Word_getNormalizedPolice(xword.getAttribute("police"));
+			var code = xword.getAttribute("code");
 
-			var word = new Word(value , next_value , police );
+			var word = new Word(value, next_value, police, code);
 			sentence.add(word);
 
 		}
@@ -56,13 +57,11 @@ Xml.importLabRequest = function(xml_link, word_requested) {
 	for(i=xwords.length-1 ; i >= 0 && i > xwords.length-Labo_max_possibilities ; i--) {
 		var xword = xwords[i];
 		if (xword.getAttribute("name") != word_requested.value) {
-			var value=xword.getAttribute("name");
-			
-			
+			var value = xword.getAttribute("name");
 			var police = Word_getNormalizedPolice(xword.getAttribute("font"));
+			var code = xword.getAttribute("code");
 			
-			
-			p.push(new Possibility(value, police));
+			p.push(new Possibility(value, police, code));
 		}
 	}
 	

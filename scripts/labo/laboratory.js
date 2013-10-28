@@ -55,10 +55,11 @@ Labo.generateCloud = function(police) {
 	loadingImg();
 	
 	cloud = new Cloud();
-	cloud.addCentralWord(new Word(word_searched));
+	cloud.addCentralWord(new Word(word_searched, null, Word_getNormalizedPolice(police)));
 
 	setTimeout(function(){
 		//cloud.setPossibilities(Xml.importLabRequest("XML/lab_request.xml", cloud.getCentralWord()));
+		// http://www.sgoo.fr/proxy.php?url=http%3A%2F%2F192.185.52.237%2F%7Elasepa%2Fbeta%2Fwords.php%3Fprocedes%3Dcoupable_min_bas%26word%3Dutc%26casse%3D1
 		cloud.setPossibilities(Xml.importLabRequest('http://www.sgoo.fr/proxy.php?url=http%3A%2F%2F192.185.52.237%2F%7Elasepa%2Fbeta%2Fwords.php%3Fprocedes%3D' + police + '%26word%3D' + word_searched + '%26casse%3D1', cloud.getCentralWord()));
 		Labo.displayCloud();
 	}, 1);
@@ -76,12 +77,14 @@ Labo.displayCloud = function() {
 }
 
 Labo.displayGui = function() {
-	var policeBtn = new Word("police",null,0);
-	var nextBtn = new Word("suivant",null,0);
-	var lastBtn = new Word("precedent",null,0)
+	var zoom = 8;
+	
+	var policeBtn = new Word("P",null,4); 	policeBtn.setZoom(zoom);
+	var nextBtn = new Word(" > ",null,4); 	nextBtn.setZoom(zoom);
+	var lastBtn = new Word(" < ",null,4);	lastBtn.setZoom(zoom);
 
 	policeBtn.setX(screenWidth - policeBtn.getWidth());
-	policeBtn.setY(screenHeight - policeBtn.getHeight());
+	policeBtn.setY(screenHeight - policeBtn.getHeight() / 4);
 	
 	nextBtn.setX(screenWidth - nextBtn.getWidth());
 	nextBtn.setY(0);
@@ -94,7 +97,7 @@ Labo.displayGui = function() {
 	lastBtn.display(mainLayer);
 	
 	policeBtn.onTap(function(){Labo.menu()});
-	nextBtn.onTap(function(){if(page < 10){page++;Labo.displayCloud();}});
+	nextBtn.onTap(function(){if(page < Math.ceil(cloud.possibilities.length/cloud.nb_max)){page++;Labo.displayCloud();}});
 	lastBtn.onTap(function(){if(page > 1){page--;Labo.displayCloud();}});
 
 	mainLayer.draw();

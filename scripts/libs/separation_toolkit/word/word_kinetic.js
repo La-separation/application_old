@@ -5,7 +5,7 @@
 function Word_DemiHaut(data) {
 	this.up = new Kinetic.Text({
 		y: data.cst.police[data.police].offset.up,
-		text: data.value,
+		text: data.code,
 		fontSize: data.fontSize,
 		fontFamily: data.cst.police[data.police].name.up,
 		fill: data.color,
@@ -88,7 +88,7 @@ function Word_DemiBas(data) {
 
 	this.down = new Kinetic.Text({
 		y: data.cst.police[data.police].offset.down,
-		text: data.value,
+		text: data.code,
 		fontSize: data.fontSize,
 		fontFamily: data.cst.police[data.police].name.down,
 		fill: data.color,
@@ -210,5 +210,28 @@ function Word_Centrale(data) {
 	}
 	// */
 }
+
+function Word_DemiHautEntier(data) {
+
+	this.text = new Kinetic.Text({
+		y: data.cst.police[data.police].offset,
+		text: data.value,
+		fontSize: data.fontSize,
+		fontFamily: data.cst.police[data.police].name,
+		fill: data.color,
+	});
+	
+	this.group = new Kinetic.Group({
+		width: this.text.getWidth(),
+	});
+	
+	this.group.add(this.text);
+	
+	this.destroy = function() {
+		this.text.destroy();
+		this.group.destroy();
+	}
+}
+
 
 scriptLoaded('scripts/libs/separation_toolkit/word/word_kinetic.js');
