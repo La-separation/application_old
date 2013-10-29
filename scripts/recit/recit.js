@@ -12,32 +12,45 @@ var xmlList = ["separation","test","test1","test2","test3","test4","test5","test
 /*
         Point d'entrée du récit
 */
-        Recit.start = function() {
-        var nb_recit_max = screenHeight /90;
-        story_page = 1;
+Recit.start = function() {
+	story_page = 1;
 
-        clearStage();
-        setHomeBtn();
-        Recit.displayStoriesGui();
+	Recit.displayStoriesMenu()
         
-        var words = new Array();
-        path = "";
-        
-        for (var i=0; i<xmlList.length ;i++){
-                var path = "stories/"+xmlList[i]+".xml";
-                var xml_file = Xml.load(path);
-                words.push(new Word(xml_file.getElementsByTagName("title")[0].textContent, null, 0));
-                
-                words[i].setCenterX(screenWidth/2);
-                words[i].setCenterY((((screenHeight)/(nb_recit_max+1))*(i+0.5)));
-                words[i].display(mainLayer);
-                words[i].onTap(function(path){
-                        return function(){Recit.openStory(path);}
-                }(path));
-        }
+	//~ var words = new Array();
+	//~ path = "";
+	//~ for (var i=0; i<xmlList.length ;i++){
+		//~ var path = "stories/"+xmlList[i]+".xml";
+		//~ var xml_file = Xml.load(path);
+		//~ words.push(new Word(xml_file.getElementsByTagName("title")[0].textContent, null, 0));
+}
 
-        mainLayer.draw();
-        actionLayer.draw();
+
+Recit.displayStoriesMenu = function() {
+	clearStage();
+	setHomeBtn();
+	Recit.displayStoriesGui();
+	nb_recit_max = Math.floor(screenHeight /90);
+
+	var titles = new Array();
+	var path="";
+	
+	for (var i=nb_recit_max*(story_page-1); i<xmlList.length && i<=(nb_recit_max*story_page); i++) {
+		path="stories/"+xmlList[i]+".xml";
+		var xml_file = Xml.load(path);
+
+		titles.push(new Word(xml_file.getElementsByTagName("title")[0].textContent, null, 0));
+	    titles[i-nb_recit_max*(story_page-1)].setCenterX(screenWidth/2);
+	    titles[i-nb_recit_max*(story_page-1)].setCenterY((((screenHeight)/(nb_recit_max+1))*(i-nb_recit_max*(story_page-1)+0.5)));
+	    titles[i-nb_recit_max*(story_page-1)].display(mainLayer);
+	    titles[i-nb_recit_max*(story_page-1)].onTap(function(path){
+	        return function(){Recit.openStory(path);}
+		}(path));
+	}
+
+	mainLayer.draw();
+	actionLayer.draw();
+
 }
 
 Recit.openStory = function(file) {
@@ -94,6 +107,7 @@ Recit.displayStoryGui = function() {
 
 Recit.displayStoriesGui = function() {
 	var zoom = 8; // Attention, pour l'instant ce n'est pas très au point, le "R" sera décalé et s'affichera mal
+	nb_recit_max = Math.floor(screenHeight /90);
 	
 	var nextBtn = new Word(" > ", null, 4);		nextBtn.setZoom(zoom);
 	var lastBtn = new Word(" < ", null, 4);		lastBtn.setZoom(zoom);
@@ -107,8 +121,19 @@ Recit.displayStoriesGui = function() {
 	nextBtn.display(mainLayer);
 	lastBtn.display(mainLayer);
 
-	nextBtn.onTap(function(){});
-	lastBtn.onTap(function(){});
+	nextBtn.onTap(function(){
+		if(story_page<(xmlList.length/nb_recit_max)) {
+			story_page++;
+			Recit.displayStoriesMenu();
+		}
+	});
+	
+	lastBtn.onTap(function(){
+		if(story_page>1) {
+			story_page--;
+			Recit.displayStoriesMenu();
+		}
+	});
 	
 	mainLayer.draw();
 	actionLayer.draw();

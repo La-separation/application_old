@@ -10,7 +10,9 @@ var cloud = null;
 
 Labo.start = function() {	
 	word_searched = prompt("Choisissez un mot :");
-	Labo.menu();
+	if (word_searched!="" && word_searched!=null) {
+		Labo.menu();
+	}
 }
 
 Labo.menu = function() {
@@ -18,32 +20,41 @@ Labo.menu = function() {
 	setHomeBtn();
 	page=1;
 	
-	var coupable_min_haut = new Word ("coupable haut minuscule",null,0);
-	var coupable_maj_haut = new Word ("COUPABLE HAUT MAJUSCULE",null,0);
-	var coupable_min_bas = new Word ("coupable bas minuscule",null,1);
-	var coupable_maj_bas = new Word ("COUPABLE BAS MAJUSUCLE",null,1);
+	var polices = new Array();
+	polices.push(new Array(new Word ("coupable haut minuscule",null,0) , "coupable_min_haut"));
+	polices.push(new Array(new Word ("COUPABLE HAUT MAJUSCULE",null,0) , "coupable_maj_haut"));
+	polices.push(new Array(new Word ("coupable bas minuscule",null,1) , "coupable_min_bas"));
+	polices.push(new Array(new Word ("COUPABLE BAS MAJUSUCLE",null,1) , "coupable_maj_bas"));
 	
-	coupable_min_haut.setCenterX(screenWidth/2);
-	coupable_min_haut.setCenterY(0.20*screenHeight);
-
-	coupable_maj_haut.setCenterX(screenWidth/2);
-	coupable_maj_haut.setCenterY(0.40*screenHeight);
+	for (var i=0; i<polices.length; i++) {
+		polices[i][0].setCenterX(screenWidth/2);
+		polices[i][0].setCenterY((screenHeight/(polices.length+1))*(i+0.5));
+		polices[i][0].display(mainLayer);
+		p=polices[i][1];
+		polices[i][0].onTap(function(){Labo.generateCloud(p)});
+	}
 	
-	coupable_min_bas.setCenterX(screenWidth/2);
-	coupable_min_bas.setCenterY(0.60*screenHeight);
-	
-	coupable_maj_bas.setCenterX(screenWidth/2);
-	coupable_maj_bas.setCenterY(0.80*screenHeight);
-	
-	coupable_min_haut.display(mainLayer);
-	coupable_maj_haut.display(mainLayer);
-	coupable_min_bas.display(mainLayer);
-	coupable_maj_bas.display(mainLayer);
-	
-	coupable_min_haut.onTap(function(){Labo.generateCloud('coupable_min_haut')});
-	coupable_maj_haut.onTap(function(){Labo.generateCloud('coupable_maj_haut')});
-	coupable_min_bas.onTap(function(){Labo.generateCloud('coupable_min_bas')});
-	coupable_maj_bas.onTap(function(){Labo.generateCloud('coupable_maj_bas')});
+	//~ coupable_min_haut.setCenterX(screenWidth/2);
+	//~ coupable_min_haut.setCenterY(0.20*screenHeight);
+//~ 
+	//~ coupable_maj_haut.setCenterX(screenWidth/2);
+	//~ coupable_maj_haut.setCenterY(0.40*screenHeight);
+	//~ 
+	//~ coupable_min_bas.setCenterX(screenWidth/2);
+	//~ coupable_min_bas.setCenterY(0.60*screenHeight);
+	//~ 
+	//~ coupable_maj_bas.setCenterX(screenWidth/2);
+	//~ coupable_maj_bas.setCenterY(0.80*screenHeight);
+	//~ 
+	//~ coupable_min_haut.display(mainLayer);
+	//~ coupable_maj_haut.display(mainLayer);
+	//~ coupable_min_bas.display(mainLayer);
+	//~ coupable_maj_bas.display(mainLayer);
+	//~ 
+	//~ coupable_min_haut.onTap(function(){Labo.generateCloud('coupable_min_haut')});
+	//~ coupable_maj_haut.onTap(function(){Labo.generateCloud('coupable_maj_haut')});
+	//~ coupable_min_bas.onTap(function(){Labo.generateCloud('coupable_min_bas')});
+	//~ coupable_maj_bas.onTap(function(){Labo.generateCloud('coupable_maj_bas')});
 
 	mainLayer.draw();
 	actionLayer.draw();
