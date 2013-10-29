@@ -47,8 +47,10 @@ Aide.ombre = function() {
 			scaleX: 0.25,
 			scaleY: 0.25,
 		});
-		mainLayer.add(OMBRE);
-		mainLayer.draw();
+		setTimeout(function() {
+			mainLayer.add(OMBRE);
+			mainLayer.draw();
+		}, 20);
 	}
 	imgs[1].onload = function() {
 		CYGNE = new Kinetic.Image({
@@ -64,8 +66,16 @@ Aide.ombre = function() {
 		mainLayer.draw();
 	}
 	
-	imgs[1].src = 'imgs/aide/CYGNE.jpg';
-	imgs[0].src = 'imgs/aide/OMBRE.jpg';
+	if(appOnDevice()) {
+		var path = location.pathname;
+		var tab = path.split("/");
+		imgs[0].src = path.replace(tab[tab.length-1], "imgs/aide/OMBRE.jpg");
+		imgs[1].src = path.replace(tab[tab.length-1], "imgs/aide/CYGNE.jpg");
+	}
+	else {
+		imgs[0].src = "imgs/aide/OMBRE.jpg";
+		imgs[1].src = "imgs/aide/CYGNE.jpg";
+	}
 	
 	function cut_fonction() {
 		var gesture = new Separation.cut({
