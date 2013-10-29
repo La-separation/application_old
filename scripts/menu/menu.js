@@ -194,7 +194,7 @@ function initMainMenu() {
 		if(activeLang == en) {
 			langue = "en";
 		}
-		getTutorielMenu(langue);
+		Aide.start();
 	} );
 	recit.on(events['tap'], function() {
 		var langue = "fr";

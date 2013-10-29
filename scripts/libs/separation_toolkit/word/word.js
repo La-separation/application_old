@@ -20,15 +20,17 @@ function Word(value, next_value, police, code) {
 	this.code = ((code == undefined) || (code == null)) ? value : code; // Code du mot
 	this.font = null; // Groupe Kinetic qui sera affiché
 	this.animation = null; // Fonction de callback pour l'animation ('Animation.x')
-	this.inAnimation = false;
+	this.inAnimation = false; // Boolen pour savoir si le mot est entrain d'être animer
 	
 	this.active = false; // Booléen pour savoir si il est mis en avant
-	this.zoomOnActive = true;
-	this.activeX = 0;
-	this.activeY = 0;
+	this.zoomOnActive = true; // Active ou désactive le zoom/dezoom lors de l'activation
+	this.activeX = 0; // Coordonnée X du mot quand il est activé
+	this.activeY = 0; // Coordonnée Y du mot quand il est activé
 	this.scale = 1; // Zoom de la police (100% = 1)
 	
 	this.gesture = null;
+	
+	this.list_done = new Array(); // Liste des fonctions à appeler quand une fonction est terminée
 	
 	WordConstruct(this);
 }
@@ -38,6 +40,11 @@ function Word(value, next_value, police, code) {
 */
 function WordConstruct(word) {
 	word.generate();
+}
+
+Word.prototype.done = function(fct_done) {
+	if(this.list_done[fct_done] != undefined)
+		this.list_done[fct_done]();
 }
 
 Word.prototype.generate = function() {
@@ -283,10 +290,11 @@ Word.prototype.disable = function() {
 			Effects.setLight(all_words[i]);
 		}
 	}
-	
+
 	if(this.zoomOnActive) {
 		this.zoomOut();
 	}
+
 	this.disableDbltap();
 }
 
@@ -312,6 +320,8 @@ Word.prototype.zoom = function(scaleTo) {
 Word.prototype.zoomOut = function() {
 	this.setScale(1);
 	
+	var word = this;
+	
 	new Kinetic.Tween({
 		node: this.font.group,
 		scaleX: 1,
@@ -319,6 +329,7 @@ Word.prototype.zoomOut = function() {
 		x: this.getX(),
 		y: this.getY(),
 		duration: Word_cst.duration.zoomout,
+		onFinish: function() { word.done('zoomOut') },
 	}).play();
 }
 
@@ -342,6 +353,7 @@ Word.prototype.setPolice = function(data) { this.police = data; }
 Word.prototype.setCenterX = function(data) { this.x = data - this.getWidth() / 2; }
 Word.prototype.setCenterY = function(data) { this.y = data - this.getHeight() / 2; }
 Word.prototype.setZoomOnActive = function(data) { this.zoomOnActive = data; }
+Word.prototype.setDone = function(fct_done, handler) { this.list_done[fct_done] = handler; }
 Word.prototype.setScale = function(data) {
 	this.scale = data;
 	
