@@ -8,7 +8,7 @@
 		
 		<script type="text/javascript">
 			var loaded_scripts = 1;
-			var n_scripts = 48;
+			var n_scripts = 49;
 			function scriptLoaded(script_path) {
 				document.getElementById("main").innerHTML += "<p class=\"center\" >"+loaded_scripts+"/"+n_scripts+" : "+script_path+"</p>";
 				document.getElementById("pourcentage").innerHTML = Math.floor((loaded_scripts/n_scripts)*100) + '%';
@@ -34,6 +34,8 @@
 			<audio id="cut1" src="sounds/cut1.ogg"></audio>
 			<audio id="cut2" src="sounds/cut2.ogg"></audio>
 			<audio id="login" src="sounds/login.ogg"></audio>
+			<audio id="inspiration" src="sounds/inspiration.ogg"></audio>
+			<audio id="expiration" src="sounds/expiration.ogg"></audio>
 		</div>
 	</body>
 		<!-- scripts -->
@@ -82,6 +84,12 @@
 
 		<!-- scripts/libs/separation_toolkit/sound -->
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/sound/sound_play.js"></script>
+		
+		<!-- scripts/libs/separation_toolkit/logo -->
+		<script type="text/javascript" src="scripts/libs/separation_toolkit/logo/logo.js"></script>
+		
+		<!-- scripts/libs/separation_toolkit/event -->
+		<script type="text/javascript" src="scripts/libs/separation_toolkit/event/event.js"></script>
 
 		<!-- scripts/libs/separation_toolkit -->
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/opacity.js"></script>

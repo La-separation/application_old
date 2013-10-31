@@ -28,8 +28,8 @@ function appStart() {
 	initSounds();
 
 	// setTimeout important, résolution d'un bug
-	//setTimeout(introductionStage, 1);
-	setTimeout(initMainMenu, 1);
+	setTimeout(Introduction.start, 1);
+	// setTimeout(initMainMenu, 1);
 
 	stage.add(mainLayer);
 	stage.add(actionLayer);

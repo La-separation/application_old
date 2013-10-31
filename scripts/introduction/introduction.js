@@ -1,4 +1,25 @@
-function introductionStage() {
+/*
+	Namespace Introduction
+*/
+var Introduction = {};
+
+Introduction.start = function() {
+	logo = new Logo();
+	logo.display(mainLayer);
+	mainLayer.draw();
+	
+	sound_play('ambiant');
+	
+	Effects.respire('logo', logo.getNode(), 0.2, 1);
+	Event.onTap('logo', logo.getNode(), function() {
+		Effects.stopRespire('logo');
+		logo.animateIntro();
+		setTimeout(initMainMenu, 2000);
+	});
+	actionLayer.draw();
+}
+
+/*function introductionStage() {
 	mainLayer.removeChildren();
 	actionLayer.removeChildren();
 	
@@ -192,5 +213,5 @@ separation_size_font = stage.getHeight() / 16;
 	actionLayer.draw();
 }
 
-
+*/
 scriptLoaded('scripts/introduction/introduction.js');

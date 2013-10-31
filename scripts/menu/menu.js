@@ -1,7 +1,7 @@
 //Creating the main menu interface
 function initMainMenu() {
-	//sounds['ambiant'].stop();
-	sound_play('ambiant');
+	sound_stop('ambiant');
+	//sound_play('ambiant');
 
 	mainLayer.draw();
 	actionLayer.draw();
