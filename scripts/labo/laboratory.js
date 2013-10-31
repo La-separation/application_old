@@ -31,7 +31,9 @@ Labo.menu = function() {
 		polices[i][0].setCenterY((screenHeight/(polices.length+1))*(i+0.5));
 		polices[i][0].display(mainLayer);
 		p=polices[i][1];
-		polices[i][0].onTap(function(){Labo.generateCloud(p)});
+		polices[i][0].onTap(function(p){
+			return function(){Labo.generateCloud(p);}
+		}(p));
 	}
 	
 	//~ coupable_min_haut.setCenterX(screenWidth/2);
