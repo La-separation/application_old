@@ -4,7 +4,7 @@
 var Event = {};
 Event.tap = new Array();
 
-Event.onTap = function(id, node, handler) {
+Event.onTap = function(id, node, handler, restart) {
 	Event.tap[id] = new Kinetic.Rect({
 		listening : true,
 		x: node.getX() - node.getOffsetX(),
@@ -15,6 +15,11 @@ Event.onTap = function(id, node, handler) {
 	});
 
 	Event.tap[id].on(events['tap'], function(){
+		if(!restart) {
+			Event.tap[id].setListening(false);
+			Event.tap[id].destroy();
+		}
+		sound_play('tap');
 		handler();
 	});
 	actionLayer.add(Event.tap[id]);

@@ -65,7 +65,7 @@ Logo.prototype.generate = function() {
 	this.group.add(this.arc_down);
 	this.group.add(this.central_line);
 	
-	this.destroy = function() {
+	this.groupDestroy = function() {
 		this.arc_up.destroy();
 		this.arc_down.destroy();
 		this.central_line.destroy();
@@ -80,16 +80,52 @@ Logo.prototype.display = function(layer) {
 	layer.add(this.group);
 }
 
-Logo.prototype.animateIntro = function() {
-	this.rotation90 = new Kinetic.Tween({
-		node: this.getNode(),
-		rotationDeg: 90,
-		easing: Kinetic.Easings.EaseInOut,
-		duration: 2,
-		// onFinish: effects_dark,
-	});
+Logo.prototype.animateIntro = function(handler) {
+
+	var logo = this;
+	var anim_duration = 2;
 	
-	this.rotation90.play();
+	rotation90();
+
+	function rotation90() {
+		new Kinetic.Tween({
+			node: logo.getNode(),
+			rotationDeg: 90,
+			easing: Kinetic.Easings.EaseInOut,
+			duration: anim_duration,
+			onFinish: openLogo,
+		}).play();
+	}
+	
+	function openLogo() {
+		new Kinetic.Tween({
+			node: logo.getArcDown(),
+			y: screenWidth / 2,
+			easing: Kinetic.Easings.EaseIn,
+			duration: anim_duration,
+		}).play();
+		new Kinetic.Tween({
+			node: logo.getArcUp(),
+			y: -screenWidth / 2,
+			easing: Kinetic.Easings.EaseIn,
+			duration: anim_duration,
+		}).play();
+		new Kinetic.Tween({
+			node: logo.getCentralLine(),
+			scaleX: 0,
+			scaleY: 0,
+			x: logo.getWidth() / 2,
+			y: logo.getHeight() / 2,
+			easing: Kinetic.Easings.EaseIn,
+			duration: anim_duration,
+			onFinish: finish,
+		}).play();
+	}
+	
+	function finish() {
+		logo.groupDestroy();
+		handler();
+	}
 }
 
 
@@ -104,5 +140,8 @@ Logo.prototype.getY = function() { return this.y; }
 Logo.prototype.getWidth = function() { return this.width; }
 Logo.prototype.getHeight = function() { return this.height; }
 Logo.prototype.getNode = function() { return this.group; }
+Logo.prototype.getArcUp = function() { return this.arc_up; }
+Logo.prototype.getArcDown = function() { return this.arc_down; }
+Logo.prototype.getCentralLine = function() { return this.central_line; }
 
 scriptLoaded('scripts/libs/separation_toolkit/logo/logo.js');

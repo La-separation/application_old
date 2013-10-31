@@ -66,6 +66,7 @@ Word.prototype.generate = function() {
 	switch(this.police)
 	{
 		case 0:
+		case 5:
 			this.font = new Word_DemiHaut({
 				value: new_value,
 				next_value: new_next_value,
@@ -129,6 +130,8 @@ Word.prototype.animate = function() {
 		this.animation(this);
 		this.disableDbltap();
 	}
+	
+	this.done('animate');
 }
 
 Word.prototype.animationFinished = function() {
@@ -141,11 +144,13 @@ Word.prototype.animationFinished = function() {
 	this.display(mainLayer);
 	
 	this.activeDbltap();
+	this.done('animationFinished');
 }
 
 Word.prototype.setAnimation = function(type) {
 	switch(this.police) {
 		case 0:
+		case 5:
 			if(type == 'rTl')
 				this.animation = Animation.downCutLeft;
 			else
@@ -176,6 +181,7 @@ Word.prototype.addGesture = function() {
 		case 0:
 		case 1:
 		case 2:
+		case 5:
 			var word = this;
 			this.gesture = new Array();
 			this.gesture[0] = new Separation.cut({
@@ -211,6 +217,7 @@ Word.prototype.removeGesture = function() {
 		case 0:
 		case 1:
 		case 2:
+		case 5:
 			this.gesture[0].off();
 			this.gesture[1].off();
 		break;
@@ -343,6 +350,9 @@ Word.prototype.getValue = function(data) { return this.value; }
 Word.prototype.getNextValue = function(data) { return this.next_value; }
 Word.prototype.getPolice = function(data) { return this.police; }
 Word.prototype.getCode = function(data) { return this.code; }
+Word.prototype.getNode = function(data) { return this.font.group; }
+Word.prototype.getNodeUp = function(data) { return this.font.up; } // Police coupable
+Word.prototype.getNodeDown = function(data) { return this.font.down; } // Police coupable
 // Set
 Word.prototype.setX = function(data) { this.x = data; }
 Word.prototype.setY = function(data) { this.y = data; }
@@ -352,6 +362,7 @@ Word.prototype.setCode = function(data) { this.code = data; }
 Word.prototype.setPolice = function(data) { this.police = data; }
 Word.prototype.setCenterX = function(data) { this.x = data - this.getWidth() / 2; }
 Word.prototype.setCenterY = function(data) { this.y = data - this.getHeight() / 2; }
+Word.prototype.setCenterXY = function(data, data2) { this.setCenterX(data); this.setCenterY(data2); }
 Word.prototype.setZoomOnActive = function(data) { this.zoomOnActive = data; }
 Word.prototype.setDone = function(fct_done, handler) { this.list_done[fct_done] = handler; }
 Word.prototype.setScale = function(data) {

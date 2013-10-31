@@ -63,6 +63,16 @@ var fontConst = {
 					down: 'DemiHautB',
 				},
 			},
+			5: {			// Police coupable_haut en deux parties avec écart
+				offset: {				// Décalage y
+					up: -3,					// Distance en y pour la partie haute
+					down: 20,				// Distance en y pour la partie basse
+				},
+				name: {					// Nom des deux parties
+					up: 'DemiHautH',
+					down: 'DemiHautB',
+				},
+			},
 			1: {			// Police coupable_bas en deux parties
 				offset: {				// Décalage y
 					up: -2,					// Distance en y pour la partie haute
