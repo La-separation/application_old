@@ -30,6 +30,7 @@ function Word_DemiHaut(data) {
 	
 	this.group = new Kinetic.Group({
 		width: this.up.getWidth(),
+		height: data.cst.car.height,
 	});
 	
 	this.group.add(this.up);

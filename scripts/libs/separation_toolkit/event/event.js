@@ -4,15 +4,17 @@
 var Event = {};
 Event.tap = new Array();
 
-Event.onTap = function(id, node, handler, restart) {
+Event.onTap = function(id, object, handler, restart) {
+	
 	Event.tap[id] = new Kinetic.Rect({
 		listening : true,
-		x: node.getX() - node.getOffsetX(),
-		y: node.getY() - node.getOffsetY(),
-		width: node.getWidth(),
-		height: node.getHeight(),
+		x: object.getX(),
+		y: object.getY(),
+		width: object.getWidth(),
+		height: object.getHeight(),
 		opacity: 0,
 	});
+	// alert(object.getX() + "x" + object.getY() + " ; " + object.getWidth() + "x" + object.getHeight());
 
 	Event.tap[id].on(events['tap'], function(){
 		if(!restart) {

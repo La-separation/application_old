@@ -74,8 +74,8 @@ Logo.prototype.generate = function() {
 }
 
 Logo.prototype.display = function(layer) {
-	this.group.setX(this.getX());
-	this.group.setY(this.getY());
+	this.group.setX(this.getRealX());
+	this.group.setY(this.getRealY());
 	
 	layer.add(this.group);
 }
@@ -130,13 +130,19 @@ Logo.prototype.animateIntro = function(handler) {
 
 
 // Set
+Logo.prototype.setX = function(data) { this.x = data + this.getOffsetX(); }
+Logo.prototype.setY = function(data) { this.y = data + this.getOffsetY(); }
 Logo.prototype.setCenterXY = function(x, y) {
-	this.x = x;// - this.getWidth() / 2;
-	this.y = y;// - this.getHeight() / 2;
+	this.setX(x - this.getWidth() / 2);
+	this.setY(y - this.getHeight() / 2);
 }
 // Get
-Logo.prototype.getX = function() { return this.x; }
-Logo.prototype.getY = function() { return this.y; }
+Logo.prototype.getX = function() { return this.x - this.getOffsetX(); }
+Logo.prototype.getY = function() { return this.y - this.getOffsetY(); }
+Logo.prototype.getRealX = function() { return this.x; }
+Logo.prototype.getRealY = function() { return this.y; }
+Logo.prototype.getOffsetX = function() { return this.group.getOffsetX(); }
+Logo.prototype.getOffsetY = function() { return this.group.getOffsetY(); }
 Logo.prototype.getWidth = function() { return this.width; }
 Logo.prototype.getHeight = function() { return this.height; }
 Logo.prototype.getNode = function() { return this.group; }

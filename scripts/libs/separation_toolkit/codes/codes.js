@@ -6,6 +6,14 @@ function convertCode(code, police) {
 	
 	for(var i = 0; i < code.length; i++) {
 		switch(police) {
+			case 0:
+				switch(code[i]) {
+					case 'A': new_code += 'O'; break;
+					case 'C': new_code += 'E'; break;
+					case 'I': new_code += 'L'; break;
+					default: new_code += code[i];
+				}
+			break;
 			case 1:
 				switch(code[i]) {
 					case 'a': new_code += 'o'; break;
@@ -32,6 +40,18 @@ function convertValue(value, code, police) {
 	var new_value = '';
 	for(var i = 0, i_code = 0; i < value.length; i++, i_code++) {
 		switch(police) {
+			case 0:
+				switch(value[i]) {
+					case 'N':
+						new_value += (code[i_code] == 'O') ? 'II' : value[i];
+					break;
+					case 'E':
+						new_value += (code[i_code] == 'O') ? '^' : value[i];
+					break;
+					default:
+						new_value += value[i];
+				}
+			break;
 			case 1:
 				switch(value[i]) {
 					case 'm': // Lettres de largeur 3

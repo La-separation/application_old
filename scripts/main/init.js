@@ -60,7 +60,7 @@ function initSounds() {
 
 btnFunctions['home'] = function () {
 	clearStage();
-	getMainMenu();
+	Menu.start();
 }
 btnFunctions['shuffle'] = function () {
 	clearStage();

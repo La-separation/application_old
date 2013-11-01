@@ -48,7 +48,10 @@ Word.prototype.done = function(fct_done) {
 }
 
 Word.prototype.generate = function() {
+	var opacity = 1;
+	
 	if(this.font != null) {
+		opacity = this.getOpacity();
 		this.font.destroy();
 	}
 	
@@ -114,6 +117,7 @@ Word.prototype.generate = function() {
 	}
 	this.font.group.setScaleX(this.scale);
 	this.font.group.setScaleY(this.scale);
+	this.font.group.setOpacity(opacity);
 }
 
 Word.prototype.display = function(layer) {
@@ -343,6 +347,10 @@ Word.prototype.zoomOut = function() {
 // Get
 Word.prototype.getX = function() { if(!this.active) return this.x; else return this.activeX; }
 Word.prototype.getY = function() { if(!this.active) return this.y; else return this.activeY; }
+Word.prototype.getCenterX = function() { return this.getX() - this.getWidth() / 2; }
+Word.prototype.getCenterY = function() { return this.getY() - this.getHeight() / 2; }
+Word.prototype.getOffsetX = function() { return this.font.group.getOffsetX(); }
+Word.prototype.getOffsetY = function() { return this.font.group.getOffsetY(); }
 Word.prototype.getWidth = function() { return this.font.group.getWidth() * this.scale; }
 Word.prototype.getHeight = function() { return this.cst.car.height * this.scale; }
 Word.prototype.getScale = function(data) { return this.scale; }
@@ -353,16 +361,18 @@ Word.prototype.getCode = function(data) { return this.code; }
 Word.prototype.getNode = function(data) { return this.font.group; }
 Word.prototype.getNodeUp = function(data) { return this.font.up; } // Police coupable
 Word.prototype.getNodeDown = function(data) { return this.font.down; } // Police coupable
+Word.prototype.getOpacity = function(data) { return this.font.up.getOpacity(); }
 // Set
 Word.prototype.setX = function(data) { this.x = data; }
 Word.prototype.setY = function(data) { this.y = data; }
+Word.prototype.setXY = function(data, data2) { this.setX(data); this.setY(data2); }
+Word.prototype.setCenterX = function(data) { this.setX(data - this.getWidth() / 2); }
+Word.prototype.setCenterY = function(data) { this.setY(data - this.getHeight() / 2); }
+Word.prototype.setCenterXY = function(data, data2) { this.setCenterX(data); this.setCenterY(data2); }
 Word.prototype.setValue = function(data) { this.value = data; }
 Word.prototype.setNextValue = function(data) { this.next_value = data; }
 Word.prototype.setCode = function(data) { this.code = data; }
 Word.prototype.setPolice = function(data) { this.police = data; }
-Word.prototype.setCenterX = function(data) { this.x = data - this.getWidth() / 2; }
-Word.prototype.setCenterY = function(data) { this.y = data - this.getHeight() / 2; }
-Word.prototype.setCenterXY = function(data, data2) { this.setCenterX(data); this.setCenterY(data2); }
 Word.prototype.setZoomOnActive = function(data) { this.zoomOnActive = data; }
 Word.prototype.setDone = function(fct_done, handler) { this.list_done[fct_done] = handler; }
 Word.prototype.setScale = function(data) {

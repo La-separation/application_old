@@ -14,7 +14,7 @@ Introduction.logo = function() {
 	logo.display(mainLayer);
 	
 	Effects.respire('logo', logo.getNode(), 0.2, 1);
-	Event.onTap('logo', logo.getNode(), function() {
+	Event.onTap('logo', logo, function() {
 		Effects.stopRespire('logo');
 		logo.animateIntro(function() { Introduction.laSeparation(); });
 	}, false);
@@ -36,13 +36,14 @@ Introduction.laSeparation = function() {
 	la_separation.getNode().setOpacity(0);
 	la_separation.display(mainLayer);
 	
-	new Kinetic.Tween({
-		node: la_separation.getNode(),
-		opacity: 1,
-		easing: Kinetic.Easings.EaseIn,
-		duration: anim_duration/2,
-		onFinish: cutLaSeparation,
-	}).play();
+	// new Kinetic.Tween({
+		// node: la_separation.getNode(),
+		// opacity: 1,
+		// easing: Kinetic.Easings.EaseIn,
+		// duration: anim_duration/2,
+		// onFinish: cutLaSeparation,
+	// }).play();
+	cutLaSeparation();
 	
 	function cutLaSeparation() {
 		la_separation.addGesture();
@@ -65,9 +66,9 @@ Introduction.laSeparation = function() {
 					opacity: 0,
 					easing: Kinetic.Easings.EaseIn,
 					duration: anim_duration,
-					onFinish: initMainMenu,
+					onFinish: function() { Menu.start(); },
 				}).play();
-			}, 1000);
+			}, 500);
 		});
 	}
 	
