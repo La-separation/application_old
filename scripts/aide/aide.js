@@ -164,7 +164,7 @@ Aide.centrale = function() {
 	word.setCenterY(center[1]);
 	word.display(mainLayer);
 	word.activeOnTap();
-	word.setDone('zoomOut', initMainMenu);
+	word.setDone('zoomOut', Menu.start);
 	
 	mainLayer.draw();
 	actionLayer.draw();
