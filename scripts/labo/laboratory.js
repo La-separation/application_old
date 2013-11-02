@@ -17,7 +17,7 @@ Labo.start = function() {
 
 Labo.menu = function() {
 	clearStage();
-	setHomeBtn();
+	Gui.homeBtn();
 	page=1;
 	
 	var polices = new Array();
@@ -35,28 +35,6 @@ Labo.menu = function() {
 			return function(){Labo.generateCloud(p);}
 		}(p));
 	}
-	
-	//~ coupable_min_haut.setCenterX(screenWidth/2);
-	//~ coupable_min_haut.setCenterY(0.20*screenHeight);
-//~ 
-	//~ coupable_maj_haut.setCenterX(screenWidth/2);
-	//~ coupable_maj_haut.setCenterY(0.40*screenHeight);
-	//~ 
-	//~ coupable_min_bas.setCenterX(screenWidth/2);
-	//~ coupable_min_bas.setCenterY(0.60*screenHeight);
-	//~ 
-	//~ coupable_maj_bas.setCenterX(screenWidth/2);
-	//~ coupable_maj_bas.setCenterY(0.80*screenHeight);
-	//~ 
-	//~ coupable_min_haut.display(mainLayer);
-	//~ coupable_maj_haut.display(mainLayer);
-	//~ coupable_min_bas.display(mainLayer);
-	//~ coupable_maj_bas.display(mainLayer);
-	//~ 
-	//~ coupable_min_haut.onTap(function(){Labo.generateCloud('coupable_min_haut')});
-	//~ coupable_maj_haut.onTap(function(){Labo.generateCloud('coupable_maj_haut')});
-	//~ coupable_min_bas.onTap(function(){Labo.generateCloud('coupable_min_bas')});
-	//~ coupable_maj_bas.onTap(function(){Labo.generateCloud('coupable_maj_bas')});
 
 	mainLayer.draw();
 	actionLayer.draw();
@@ -80,8 +58,9 @@ Labo.generateCloud = function(police) {
 
 Labo.displayCloud = function() {
 	clearStage();
-	setHomeBtn();
-	Labo.displayGui();
+	//~ Gui.homeBtn();
+	//~ Labo.displayGui();
+	Gui.laboDisplayAll();
 
 	cloud.generate(page);
 	cloud.display(mainLayer);
@@ -89,33 +68,33 @@ Labo.displayCloud = function() {
 	actionLayer.draw();
 }
 
-Labo.displayGui = function() {
-	var zoom = 8; // Attention, pour l'instant ce n'est pas très au point, le "P" sera décalé et s'affichera mal
-	
-	var policeBtn = new Word(" P ",null,4); policeBtn.setZoom(zoom);
-	var nextBtn = new Word(" > ",null,4); 	nextBtn.setZoom(zoom);
-	var lastBtn = new Word(" < ",null,4);	lastBtn.setZoom(zoom);
-
-	policeBtn.setX(screenWidth - policeBtn.getWidth());
-	policeBtn.setY(screenHeight - policeBtn.getHeight() / 4);
-	
-	nextBtn.setX(screenWidth - nextBtn.getWidth());
-	nextBtn.setY(0);
-	
-	lastBtn.setX(0);
-	lastBtn.setY(0);
-	
-	policeBtn.display(mainLayer);
-	nextBtn.display(mainLayer);
-	lastBtn.display(mainLayer);
-	
-	policeBtn.onTap(function(){Labo.menu()});
-	nextBtn.onTap(function(){if(page < Math.ceil(cloud.possibilities.length/cloud.nb_max)){page++;Labo.displayCloud();}});
-	lastBtn.onTap(function(){if(page > 1){page--;Labo.displayCloud();}});
-
-	mainLayer.draw();
-	actionLayer.draw();
-}
+//~ Labo.displayGui = function() {
+	//~ var zoom = 8; // Attention, pour l'instant ce n'est pas très au point, le "P" sera décalé et s'affichera mal
+	//~ 
+	//~ var policeBtn = new Word(" P ",null,4); policeBtn.setZoom(zoom);
+	//~ var nextBtn = new Word(" > ",null,4); 	nextBtn.setZoom(zoom);
+	//~ var lastBtn = new Word(" < ",null,4);	lastBtn.setZoom(zoom);
+//~ 
+	//~ policeBtn.setX(screenWidth - policeBtn.getWidth());
+	//~ policeBtn.setY(screenHeight - policeBtn.getHeight() / 4);
+	//~ 
+	//~ nextBtn.setX(screenWidth - nextBtn.getWidth());
+	//~ nextBtn.setY(0);
+	//~ 
+	//~ lastBtn.setX(0);
+	//~ lastBtn.setY(0);
+	//~ 
+	//~ policeBtn.display(mainLayer);
+	//~ nextBtn.display(mainLayer);
+	//~ lastBtn.display(mainLayer);
+	//~ 
+	//~ policeBtn.onTap(function(){Labo.menu()});
+	//~ nextBtn.onTap(function(){if(page < Math.ceil(cloud.possibilities.length/cloud.nb_max)){page++;Labo.displayCloud();}});
+	//~ lastBtn.onTap(function(){if(page > 1){page--;Labo.displayCloud();}});
+//~ 
+	//~ mainLayer.draw();
+	//~ actionLayer.draw();
+//~ }
 
 function loadingImg() {
 	//~ var loading = new Image();
@@ -130,7 +109,7 @@ function loadingImg() {
 		//~ }));
 		//~ mainLayer.draw();
 	//~ }
-	setHomeBtn();
+	Gui.homeBtn();
 	var loading = new Word("Loading");
 	loading.setCenterX(screenWidth/2)
 	loading.setCenterY(screenHeight/2)
