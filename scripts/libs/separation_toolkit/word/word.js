@@ -238,20 +238,15 @@ Word.prototype.removeGesture = function() {
 }
 
 Word.prototype.onTap = function(handler) {
-	this.tap = new Kinetic.Rect({
-		listening : true,
-		x: this.getX(),
-		y: this.getY(),
-		width: this.getWidth(),
-		height: this.getHeight(),
-		opacity: 0,
-	});
-	var word = this;	
-	this.tap.on(events['tap'], function(){
-		if(!word_active)
-			handler(word);
-	});
-	actionLayer.add(this.tap);
+	var id = this.getUniqId();
+	var word = this;
+	
+	Event.onTap(id, this, function(word){
+		return function() {
+			if(!word_active)
+				handler(word);
+		}
+	}(word), true);
 }
 
 Word.prototype.activeOnTap = function() {
@@ -362,14 +357,15 @@ Word.prototype.getOffsetX = function() { return this.font.group.getOffsetX(); }
 Word.prototype.getOffsetY = function() { return this.font.group.getOffsetY(); }
 Word.prototype.getWidth = function() { return this.font.group.getWidth() * this.scale; }
 Word.prototype.getHeight = function() { return this.cst.car.height * this.scale; }
-Word.prototype.getScale = function(data) { return this.scale; }
-Word.prototype.getValue = function(data) { return this.value; }
-Word.prototype.getNextValue = function(data) { return this.next_value; }
-Word.prototype.getPolice = function(data) { return this.police; }
-Word.prototype.getCode = function(data) { return this.code; }
-Word.prototype.getNode = function(data) { return this.font.group; }
-Word.prototype.getNodeUp = function(data) { return this.font.up; } // Police coupable
-Word.prototype.getNodeDown = function(data) { return this.font.down; } // Police coupable
+Word.prototype.getScale = function() { return this.scale; }
+Word.prototype.getValue = function() { return this.value; }
+Word.prototype.getNextValue = function() { return this.next_value; }
+Word.prototype.getPolice = function() { return this.police; }
+Word.prototype.getCode = function() { return this.code; }
+Word.prototype.getNode = function() { return this.font.group; }
+Word.prototype.getNodeUp = function() { return this.font.up; } // Police coupable
+Word.prototype.getNodeDown = function() { return this.font.down; } // Police coupable
+Word.prototype.getUniqId = function() { return 'word_' + this.getValue() + '_' + this.getX() + this.getY() + this.getWidth(); }
 // Set
 Word.prototype.setX = function(data) { this.x = data; }
 Word.prototype.setY = function(data) { this.y = data; }
