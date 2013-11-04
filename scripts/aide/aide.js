@@ -5,7 +5,7 @@ var Aide = {};
 
 Aide.start = function() {
 	clearStage();
-	setHomeBtn();
+	Gui.homeBtn();
 
 	Aide.coupable();
 }
@@ -26,7 +26,7 @@ Aide.coupable = function() {
 
 Aide.ombre = function() {
 	clearStage();
-	setHomeBtn();
+	Gui.homeBtn();
 	
 	var imgs = new Array();
 	var center = [screenWidth/2, screenHeight/2];
@@ -155,7 +155,7 @@ Aide.ombre = function() {
 
 Aide.centrale = function() {
 	clearStage();
-	setHomeBtn();
+	Gui.homeBtn();
 	
 	var word = new Word('SABRE', 'SACRE', 2);
 	var center = [screenWidth/2, screenHeight/2];
@@ -164,7 +164,7 @@ Aide.centrale = function() {
 	word.setCenterY(center[1]);
 	word.display(mainLayer);
 	word.activeOnTap();
-	word.setDone('zoomOut', initMainMenu);
+	word.setDone('zoomOut', Menu.start);
 	
 	mainLayer.draw();
 	actionLayer.draw();

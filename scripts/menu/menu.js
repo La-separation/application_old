@@ -7,6 +7,7 @@ Recit.anim_duration = 2;
 Recit.opacity = 0.5;
 
 Menu.start = function() {
+	clearStage();
 	mainLayer.clear();
 	actionLayer.clear();
 	
