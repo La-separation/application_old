@@ -21,26 +21,26 @@ Labo.menu = function() {
 	page=1;
 	
 	var polices = new Array();
-	polices.push(new Array(new Word ("coupable haut minuscule",null,0) , "coupable_min_haut"));
-	polices.push(new Array(new Word ("COUPABLE HAUT MAJUSCULE",null,0) , "coupable_maj_haut"));
-	polices.push(new Array(new Word ("coupable bas minuscule",null,1) , "coupable_min_bas"));
-	polices.push(new Array(new Word ("COUPABLE BAS MAJUSUCLE",null,1) , "coupable_maj_bas"));
+	polices.push(new Array(new Word ("coupable haut minuscule",null,0) , "coupable_min_haut", 1));
+	polices.push(new Array(new Word ("COUPABLE HAUT MAJUSCULE",null,0) , "coupable_maj_haut", 0));
+	polices.push(new Array(new Word ("coupable bas minuscule",null,1) , "coupable_min_bas", 1));
+	polices.push(new Array(new Word ("COUPABLE BAS MAJUSUCLE",null,1) , "coupable_maj_bas", 0));
 	
 	for (var i=0; i<polices.length; i++) {
 		polices[i][0].setCenterX(screenWidth/2);
 		polices[i][0].setCenterY((screenHeight/(polices.length+1))*(i+0.5));
 		polices[i][0].display(mainLayer);
-		p=polices[i][1];
-		polices[i][0].onTap(function(p){
-			return function(){Labo.generateCloud(p);}
-		}(p));
+		
+		polices[i][0].onTap(function(p, c){
+			return function(){Labo.generateCloud(p, c);}
+		}(polices[i][1], polices[i][2]));
 	}
 
 	mainLayer.draw();
 	actionLayer.draw();
 };
 
-Labo.generateCloud = function(police) {
+Labo.generateCloud = function(police, casse) {
 	clearStage();
 	
 	loadingImg();
@@ -50,8 +50,8 @@ Labo.generateCloud = function(police) {
 
 	setTimeout(function(){
 		//cloud.setPossibilities(Xml.importLabRequest("XML/lab_request.xml", cloud.getCentralWord()));
-		// http://www.sgoo.fr/proxy.php?url=http%3A%2F%2F192.185.52.237%2F%7Elasepa%2Fbeta%2Fwords.php%3Fprocedes%3Dcoupable_min_bas%26word%3Dutc%26casse%3D1
-		cloud.setPossibilities(Xml.importLabRequest('http://www.sgoo.fr/proxy.php?url=http%3A%2F%2F192.185.52.237%2F%7Elasepa%2Fbeta%2Fwords.php%3Fprocedes%3D' + police + '%26word%3D' + word_searched + '%26casse%3D1', cloud.getCentralWord()));
+		// http://192.185.52.237/~lasepa/beta/words.php?procedes=coupable_min_bas&word=utc&casse=1
+		cloud.setPossibilities(Xml.importLabRequest('http://192.185.52.237/~lasepa/beta/words.php?procedes=' + police + '&word=' + word_searched + '&casse=' + casse, cloud.getCentralWord()));
 		Labo.displayCloud();
 	}, 1);
 }
