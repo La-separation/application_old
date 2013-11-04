@@ -48,15 +48,13 @@ Word.prototype.done = function(fct_done) {
 }
 
 Word.prototype.generate = function() {
-	var opacity = 1;
 	
 	if(this.font != null) {
-		opacity = this.getOpacity();
 		this.font.destroy();
 	}
 	
 	if(this.getCode() != this.getValue()) {
-		var new_code = convertCode(this.getCode(), this.getPolice());
+		var new_code = convertCode(this.getValue(), this.getCode(), this.getPolice());
 		var new_value = convertValue(this.getValue(), new_code, this.getPolice());
 		var new_next_value = convertValue(this.getNextValue(), new_code, this.getPolice());
 	}
@@ -102,6 +100,12 @@ Word.prototype.generate = function() {
 				cst: this.cst,
 			});
 		break;
+		case 3:
+			this.font = new Word_Ombre({
+				police: this.police,
+				cst: this.cst,
+			});
+		break;
 		case 4:
 			this.font = new Word_DemiHautEntier({
 				value: new_value,
@@ -117,7 +121,6 @@ Word.prototype.generate = function() {
 	}
 	this.font.group.setScaleX(this.scale);
 	this.font.group.setScaleY(this.scale);
-	this.font.group.setOpacity(opacity);
 }
 
 Word.prototype.display = function(layer) {
@@ -172,6 +175,9 @@ Word.prototype.setAnimation = function(type) {
 			else
 				this.animation = Animation.centraleCutRight;
 		break;
+		case 3:
+			this.animation = Animation.ombre;
+		break;
 		default:
 			alert('Police inconnue : ' + this.police + ' dans la fonction Word.setAnimation()');
 		break;
@@ -185,6 +191,7 @@ Word.prototype.addGesture = function() {
 		case 0:
 		case 1:
 		case 2:
+		case 3:
 		case 5:
 			var word = this;
 			this.gesture = new Array();
@@ -221,6 +228,7 @@ Word.prototype.removeGesture = function() {
 		case 0:
 		case 1:
 		case 2:
+		case 3:
 		case 5:
 			this.gesture[0].off();
 			this.gesture[1].off();
@@ -251,6 +259,7 @@ Word.prototype.activeOnTap = function() {
 		this.onTap(function(word){
 			word.activate();
 		});
+		// this.addGesture();
 	}
 }
 	
@@ -361,7 +370,6 @@ Word.prototype.getCode = function(data) { return this.code; }
 Word.prototype.getNode = function(data) { return this.font.group; }
 Word.prototype.getNodeUp = function(data) { return this.font.up; } // Police coupable
 Word.prototype.getNodeDown = function(data) { return this.font.down; } // Police coupable
-Word.prototype.getOpacity = function(data) { return this.font.up.getOpacity(); }
 // Set
 Word.prototype.setX = function(data) { this.x = data; }
 Word.prototype.setY = function(data) { this.y = data; }

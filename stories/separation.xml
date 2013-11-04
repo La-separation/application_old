@@ -1,28 +1,21 @@
 <story>
-	<title>exemple</title>
+	<title>Cette separation</title>
+	<sentence></sentence>
 	<sentence>
-		<word next_value="PERCEPTION" police="coupable_haut" code="OROOROTION" >SEPARATION</word>
+		<word police="coupable_haut" >CETTE</word>
+		<word next_value="PERCEPTION" police="coupable_haut" code="AAAAAATIAII" >SEPARATION</word>
 	</sentence>
+	<sentence></sentence>
 	<sentence>
-		<word next_value="bus" police="coupable_bas" code="aaa" >utc</word>
+		<word next_value="CYGNE" police="ombre" >OMBRE</word>
+		<word police="coupable_haut" >QUI</word>
+		<word police="coupable_haut" >GLISSE</word>
 	</sentence>
+	<sentence></sentence>
 	<sentence>
-		<word next_value="utc" police="coupable_bas" code="aaa" >bot</word>
-		<word next_value="utc" police="coupable_bas" code="aaa" >ici</word>
-		<word next_value="utc" police="coupable_bas" code="aaa" >ide</word>
-		<word next_value="utc" police="coupable_bas" code="aaa" >sui</word>
-		<word next_value="utc" police="coupable_bas" code="aaa" >utc</word>
-		<word next_value="utc" police="coupable_bas" code="aaa" >bic</word>
-		<word next_value="utc" police="coupable_bas" code="aaa" >bit</word>
-		<word next_value="utc" police="coupable_bas" code="aaa" >bob</word>
-		<word next_value="utc" police="coupable_bas" code="aaa" >tee</word>
-		<word next_value="utc" police="coupable_bas" code="aaa" >tet</word>
-		<word next_value="utc" police="coupable_bas" code="aaa" >tub</word>
-		<word next_value="utc" police="coupable_bas" code="aaa" >ode</word>
-		<word next_value="utc" police="coupable_bas" code="aaa" >sic</word>
-	</sentence>
-	<sentence>
-		<word next_value="SOUTENU" police="centrale" >COUTEAU</word>
+		<word next_value="SACRE" police="centrale" >SABRE</word>
+		<word police="centrale" >NOTRE</word>
+		<word police="centrale" >UNION</word>
 	</sentence>
 </story>
 

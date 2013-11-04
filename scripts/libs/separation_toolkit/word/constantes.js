@@ -8,6 +8,7 @@ var Word_cst = {
 		opacity: 1,
 		downCut: 2,
 		upCut: 2,
+		ombre: 2,
 		},
 	opacity: {
 		light: 1,
@@ -94,6 +95,9 @@ var fontConst = {
 					central: 'CentraleC',
 					down: 'CentraleB',
 				},
+			},
+			3: {				// Police de l'ombre
+				offset: -5,
 			},
 			4: {				// Police coupable haut entier en une partie
 				offset: 0,			// Décalage y
