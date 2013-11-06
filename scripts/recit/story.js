@@ -39,4 +39,10 @@ Story.prototype.display = function(layer) {
 	}
 }
 
+Story.prototype.destroy = function() {
+	for(var i = 0; i < this.nb_sentences; i++) {
+		Destroy.objet(this.sentences[i]);
+	}
+}
+
 scriptLoaded('scripts/recit/story.js');

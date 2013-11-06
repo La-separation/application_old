@@ -115,5 +115,12 @@ Cloud.prototype.display = function(layer) {
 	this.central_word.display(layer);
 }
 
+Cloud.prototype.destroy = function() {
+	for(var i = 0; i < this.nb; i++) {
+		Destroy.objet(this.words[i]);
+	}
+	Destroy.objet(this.central_word);
+}
+
 
 scriptLoaded('scripts/labo/cloud.js');

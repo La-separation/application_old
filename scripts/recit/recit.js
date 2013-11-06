@@ -3,6 +3,7 @@
 */
 var Recit = {};
 var DEBUG = false;
+var story = null;
 var story_page = null;
 
 //////////////////////////////////////
@@ -14,15 +15,21 @@ var xmlList = ["separation","codes-min-bas","codes-maj-bas","codes-min-haut","co
 */
 Recit.start = function() {
 	story_page = 1;
-
+	Recit.computeSizes();
 	clearStage();
 	Gui.storiesDisplayAll();
 	Recit.displayStoriesMenu()
 }
 
+Recit.destroy = function() {
+	clearStage();
+	Destroy.objet(story);
+	word_active = false;
+}
+
 
 Recit.displayStoriesMenu = function() {
-	nb_recit_max = Math.floor(screenHeight /90);
+	nb_recit_max = Recit.cst.line.nb;
 
 	var titles = new Array();
 	var path="";
@@ -46,18 +53,18 @@ Recit.displayStoriesMenu = function() {
 }
 
 Recit.openStory = function(file) {
-        clearStage();
-        Gui.storyDisplayAll();
+	clearStage();
+	Gui.storyDisplayAll();
 
-        this.computeSizes();
-        if(DEBUG) this.addLines();
+	this.computeSizes();
+	if(DEBUG) this.addLines();
 
-        var story = Xml.importStory(file);
-        story.generate(Recit.cst.margin.up);
-        story.display(mainLayer);
+	story = Xml.importStory(file);
+	story.generate(Recit.cst.margin.up);
+	story.display(mainLayer);
 
-        mainLayer.draw();
-        actionLayer.draw();
+	mainLayer.draw();
+	actionLayer.draw();
 }
 
 /*

@@ -2,11 +2,18 @@
 	Namespace Introduction
 */
 var Introduction = {};
+var la_separation = null;
+var logo = null;
 
 Introduction.start = function() {
 	sound_play('ambiant');
 	
 	Introduction.logo();
+}
+
+Introduction.destroy = function() {
+	Destroy.objet(logo);
+	Destroy.objet(la_separation);
 }
 
 Introduction.logo = function() {
@@ -16,7 +23,10 @@ Introduction.logo = function() {
 	Effects.respire('logo', logo.getNode(), 0.2, 1);
 	Event.onTap('logo', logo, function() {
 		Effects.stopRespire('logo');
-		logo.animateIntro(function() { Introduction.laSeparation(); });
+		logo.animateIntro(function(logo) { return function() {
+			Destroy.objet(logo);
+			Introduction.laSeparation();
+		}(logo)});
 	}, false);
 	
 	mainLayer.draw();
@@ -66,7 +76,7 @@ Introduction.laSeparation = function() {
 					opacity: 0,
 					easing: Kinetic.Easings.EaseIn,
 					duration: anim_duration,
-					onFinish: function() { Menu.start(); },
+					onFinish: Menu.start,
 				}).play();
 			}, 500);
 		});

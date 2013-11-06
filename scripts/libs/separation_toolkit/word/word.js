@@ -4,7 +4,9 @@ var fontSize = '24px';
 /**
 	Class Word
 */
-function Word(value, next_value, police, code) {	
+function Word(value, next_value, police, code) {
+	this.id = ''; // Id unique
+	
 	this.x = 0; // Position x en pixel
 	this.y = 0; // Position y en pixel
 	
@@ -29,6 +31,7 @@ function Word(value, next_value, police, code) {
 	this.scale = 1; // Zoom de la police (100% = 1)
 	
 	this.gesture = null;
+	this.tween = new Array();
 	
 	this.list_done = new Array(); // Liste des fonctions à appeler quand une fonction est terminée
 	
@@ -40,6 +43,7 @@ function Word(value, next_value, police, code) {
 */
 function WordConstruct(word) {
 	word.generate();
+	word.setId(word.getUniqId());
 }
 
 Word.prototype.done = function(fct_done) {
@@ -128,6 +132,15 @@ Word.prototype.display = function(layer) {
 	this.font.group.setY(this.getY());
 
 	layer.add(this.font.group);
+}
+
+Word.prototype.destroy = function() {
+	// this.font.destroy();
+	Event.destroy('tap', this.getId());
+	for(var i = 0; i < this.tween.length; i++) {
+		this.tween[i].pause();
+		// this.tween[i].destroy();
+	}
 }
 
 Word.prototype.animate = function() {
@@ -238,15 +251,12 @@ Word.prototype.removeGesture = function() {
 }
 
 Word.prototype.onTap = function(handler) {
-	var id = this.getUniqId();
-	var word = this;
+	var id = this.getId();
 	
-	Event.onTap(id, this, function(word){
-		return function() {
-			if(!word_active)
-				handler(word);
-		}
-	}(word), true);
+	Event.onTap(id, this, function(word){ return function() {
+		if(!word_active)
+			handler(word);
+	}}(this), true);
 }
 
 Word.prototype.activeOnTap = function() {
@@ -365,6 +375,7 @@ Word.prototype.getCode = function() { return this.code; }
 Word.prototype.getNode = function() { return this.font.group; }
 Word.prototype.getNodeUp = function() { return this.font.up; } // Police coupable
 Word.prototype.getNodeDown = function() { return this.font.down; } // Police coupable
+Word.prototype.getId = function() { return this.id; }
 Word.prototype.getUniqId = function() { return 'word_' + this.getValue() + '_' + this.getX() + this.getY() + this.getWidth(); }
 // Set
 Word.prototype.setX = function(data) { this.x = data; }
@@ -373,6 +384,7 @@ Word.prototype.setXY = function(data, data2) { this.setX(data); this.setY(data2)
 Word.prototype.setCenterX = function(data) { this.setX(data - this.getWidth() / 2); }
 Word.prototype.setCenterY = function(data) { this.setY(data - this.getHeight() / 2); }
 Word.prototype.setCenterXY = function(data, data2) { this.setCenterX(data); this.setCenterY(data2); }
+Word.prototype.setId = function(data) { this.id = data; }
 Word.prototype.setValue = function(data) { this.value = data; }
 Word.prototype.setNextValue = function(data) { this.next_value = data; }
 Word.prototype.setCode = function(data) { this.code = data; }

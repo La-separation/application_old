@@ -10,37 +10,42 @@ Animation.ombre = function(word) {
 	// word.font.next_central.setX(x_central_next);
 	//word.font.next_down.setOpacity(1);
 	var opacity = OMBRE.getOpacity();
+	var tween = new Array();
+	alert('test');
 
 	if(opacity > 0) {
-		new Kinetic.Tween({
+		tween[0] = new Kinetic.Tween({
 			node: OMBRE,
 			duration: Word_cst.duration.ombre,
 			easing: Kinetic.Easings.EaseIn,
 			opacity: 0,
-		}).play();
+		});
 
-		new Kinetic.Tween({
+		tween[1] = new Kinetic.Tween({
 			node: CYGNE,
 			duration: Word_cst.duration.ombre,
 			easing: Kinetic.Easings.EaseOut,
 			opacity: 1,
-		}).play();
+		});
 	}
 	else {
-		new Kinetic.Tween({
+		tween[0] = new Kinetic.Tween({
 			node: CYGNE,
 			duration: Word_cst.duration.ombre,
 			easing: Kinetic.Easings.EaseIn,
 			opacity: 0,
-		}).play();
+		});
 
-		new Kinetic.Tween({
+		tween[1] = new Kinetic.Tween({
 			node: OMBRE,
 			duration: Word_cst.duration.ombre,
 			easing: Kinetic.Easings.EaseOut,
 			opacity: 1,
-		}).play();
+		});
 	}
+	
+	tween[0].play();
+	tween[1].play();
 }
 
 scriptLoaded('scripts/libs/separation_toolkit/word_animation/ombre.js');

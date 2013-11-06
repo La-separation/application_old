@@ -3,6 +3,9 @@
 */
 var Aide = {};
 
+var word_centrale = null;
+var word_coupable = null;
+
 Aide.start = function() {
 	clearStage();
 	Gui.homeBtn();
@@ -11,17 +14,22 @@ Aide.start = function() {
 }
 
 Aide.coupable = function() {
-	var word = new Word('Separation', 'Perception', 0);
+	word_coupable = new Word('Separation', 'Perception', 0);
 	var center = [screenWidth/2, screenHeight/2];
 	
-	word.setCenterX(center[0]);
-	word.setCenterY(center[1]);
-	word.display(mainLayer);
-	word.activeOnTap();
-	word.setDone('zoomOut', Aide.ombre);
+	word_coupable.setCenterX(center[0]);
+	word_coupable.setCenterY(center[1]);
+	word_coupable.display(mainLayer);
+	word_coupable.activeOnTap();
+	word_coupable.setDone('zoomOut', Aide.ombre);
 	
 	mainLayer.draw();
 	actionLayer.draw();
+}
+
+Aide.destroy = function() {
+	Destroy.objet(word_centrale);
+	Destroy.objet(word_coupable);
 }
 
 Aide.ombre = function() {
@@ -117,8 +125,10 @@ Aide.ombre = function() {
 				scaleX: 0.25,
 				scaleY: 0.25,
 				duration: Word_cst.duration.zoom,
-				onFinish: Aide.centrale,
-			}).play();
+				onFinish: function() {
+					stage.off(events['dbltap']);
+					Aide.centrale();
+				}}).play();
 		});
 	}
 	
@@ -157,14 +167,14 @@ Aide.centrale = function() {
 	clearStage();
 	Gui.homeBtn();
 	
-	var word = new Word('SABRE', 'SACRE', 2);
+	word_centrale = new Word('SABRE', 'SACRE', 2);
 	var center = [screenWidth/2, screenHeight/2];
 	
-	word.setCenterX(center[0]);
-	word.setCenterY(center[1]);
-	word.display(mainLayer);
-	word.activeOnTap();
-	word.setDone('zoomOut', Menu.start);
+	word_centrale.setCenterX(center[0]);
+	word_centrale.setCenterY(center[1]);
+	word_centrale.display(mainLayer);
+	word_centrale.activeOnTap();
+	word_centrale.setDone('zoomOut', Menu.start);
 	
 	mainLayer.draw();
 	actionLayer.draw();

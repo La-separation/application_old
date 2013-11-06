@@ -80,6 +80,10 @@ Logo.prototype.display = function(layer) {
 	layer.add(this.group);
 }
 
+Logo.prototype.destroy = function() {
+	this.groupDestroy();
+}
+
 Logo.prototype.animateIntro = function(handler) {
 
 	var logo = this;

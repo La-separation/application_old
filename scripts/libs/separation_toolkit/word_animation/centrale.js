@@ -10,16 +10,16 @@ Animation.centraleCut = function(word, x_central, x_central_next) {
 	word.font.next_central.setX(x_central_next);
 	//word.font.next_down.setOpacity(1);
 	
-	word.tween1 = new Kinetic.Tween({
+	word.tween[0] = new Kinetic.Tween({
 		node: word.font.central,
 		x: x_central_next,
 		duration: Word_cst.duration.downCut,
 		easing: Kinetic.Easings.EaseIn,
-		onFinish: function(){word.tween2.play()},
+		onFinish: function(){word.tween[1].play()},
 		opacity: 0,
 	});
 	
-	word.tween2 = new Kinetic.Tween({
+	word.tween[1] = new Kinetic.Tween({
 		node: word.font.next_central,
 		x: x_central,
 		duration: Word_cst.duration.downCut,
@@ -28,7 +28,7 @@ Animation.centraleCut = function(word, x_central, x_central_next) {
 		opacity: 1,
 	});
 	
-	word.tween1.play();
+	word.tween[0].play();
 }
 
 Animation.centraleCutLeft = function(word) {

@@ -16,15 +16,25 @@ Event.onTap = function(id, object, handler, restart) {
 	});
 	// alert(object.getX() + "x" + object.getY() + " ; " + object.getWidth() + "x" + object.getHeight());
 
-	Event.tap[id].on(events['tap'], function(){
+	Event.tap[id].on(events['tap'], function(id){ return function() {
 		if(!restart) {
-			Event.tap[id].setListening(false);
-			Event.tap[id].destroy();
+			Event.destroy('tap', id);
 		}
 		sound_play('tap');
 		handler();
-	});
+	}(id)});
 	actionLayer.add(Event.tap[id]);
+}
+
+Event.destroy = function(type, id) {
+	switch(type) {
+		case 'tap':
+			if(Event.tap[id] != undefined) {
+				Event.tap[id].setListening(false);
+				Event.tap[id].destroy();
+			}
+		break;
+	}
 }
 
 scriptLoaded('scripts/libs/separation_toolkit/event/event.js');

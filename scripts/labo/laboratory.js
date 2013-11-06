@@ -7,6 +7,7 @@ var Labo_max_possibilities = 100;
 var word_searched = "";
 var page = null;
 var cloud = null;
+var polices = new Array();
 
 Labo.start = function() {	
 	word_searched = prompt("Choisissez un mot :");
@@ -19,8 +20,7 @@ Labo.menu = function() {
 	clearStage();
 	Gui.homeBtn();
 	page=1;
-	
-	var polices = new Array();
+
 	polices.push(new Array(new Word ("coupable haut minuscule",null,0) , "coupable_min_haut", 1));
 	polices.push(new Array(new Word ("COUPABLE HAUT MAJUSCULE",null,0) , "coupable_maj_haut", 0));
 	polices.push(new Array(new Word ("coupable bas minuscule",null,1) , "coupable_min_bas", 1));
@@ -32,7 +32,14 @@ Labo.menu = function() {
 		polices[i][0].display(mainLayer);
 		
 		polices[i][0].onTap(function(p, c){
-			return function(){Labo.generateCloud(p, c);}
+		return function() { setTimeout(function(){
+				for (var j=0; j < polices.length; j++) {
+					Destroy.objet(polices[j][0]);
+					polices = new Array();
+				}
+				Labo.generateCloud(p, c);
+			}, 100)
+		}
 		}(polices[i][1], polices[i][2]));
 	}
 
@@ -68,47 +75,17 @@ Labo.displayCloud = function() {
 	actionLayer.draw();
 }
 
-//~ Labo.displayGui = function() {
-	//~ var zoom = 8; // Attention, pour l'instant ce n'est pas très au point, le "P" sera décalé et s'affichera mal
-	//~ 
-	//~ var policeBtn = new Word(" P ",null,4); policeBtn.setZoom(zoom);
-	//~ var nextBtn = new Word(" > ",null,4); 	nextBtn.setZoom(zoom);
-	//~ var lastBtn = new Word(" < ",null,4);	lastBtn.setZoom(zoom);
-//~ 
-	//~ policeBtn.setX(screenWidth - policeBtn.getWidth());
-	//~ policeBtn.setY(screenHeight - policeBtn.getHeight() / 4);
-	//~ 
-	//~ nextBtn.setX(screenWidth - nextBtn.getWidth());
-	//~ nextBtn.setY(0);
-	//~ 
-	//~ lastBtn.setX(0);
-	//~ lastBtn.setY(0);
-	//~ 
-	//~ policeBtn.display(mainLayer);
-	//~ nextBtn.display(mainLayer);
-	//~ lastBtn.display(mainLayer);
-	//~ 
-	//~ policeBtn.onTap(function(){Labo.menu()});
-	//~ nextBtn.onTap(function(){if(page < Math.ceil(cloud.possibilities.length/cloud.nb_max)){page++;Labo.displayCloud();}});
-	//~ lastBtn.onTap(function(){if(page > 1){page--;Labo.displayCloud();}});
-//~ 
-	//~ mainLayer.draw();
-	//~ actionLayer.draw();
-//~ }
+Labo.destroy = function() {
+	clearStage();
+	Destroy.objet(cloud);
+	
+	for (var j=0; j < polices.length; j++) {
+		Destroy.objet(polices[j][0]);
+	}
+	polices = new Array();
+}
 
 function loadingImg() {
-	//~ var loading = new Image();
-	//~ loading.src='imgs/loading.gif';
-	//~ loading.onload = function(){
-		//~ mainLayer.add(new Kinetic.Image({
-			//~ x: screenWidth/2 - 100,
-			//~ y: screenHeight/2 - 100,
-			//~ image: loading,
-			//~ width: 200,
-			//~ height: 200
-		//~ }));
-		//~ mainLayer.draw();
-	//~ }
 	Gui.homeBtn();
 	var loading = new Word("Loading");
 	loading.setCenterX(screenWidth/2)

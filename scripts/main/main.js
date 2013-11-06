@@ -12,14 +12,14 @@ function computeSizes() {
 function appStart() {
 	computeSizes();
 
-	//Creation of stage with the same size of the device's screen
+	// Creation of stage with the same size of the device's screen
 	stage = new Kinetic.Stage( {
 		container : 'main',
 		width : screenWidth,
 		height : screenHeight
 	} );
 
-	//Need to force style in block to not resize the div content of stage
+	// Need to force style in block to not resize the div content of stage
 	stage.getContent().style.display = 'block';
 
 	loadButtons();
@@ -28,8 +28,8 @@ function appStart() {
 	initSounds();
 
 	// setTimeout important, résolution d'un bug
-	// setTimeout(Introduction.start, 1);
-	setTimeout(Menu.start, 1);
+	setTimeout(Introduction.start, 1);
+	// setTimeout(Menu.start, 1);
 
 	stage.add(mainLayer);
 	stage.add(actionLayer);

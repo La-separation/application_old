@@ -10,16 +10,16 @@ Animation.upCut = function(word, x_up, x_up_next) {
 	word.font.next_up.setX(x_up_next);
 	//word.font.next_up.setOpacity(1);
 	
-	word.tween1 = new Kinetic.Tween({
+	word.tween[0] = new Kinetic.Tween({
 		node: word.font.up,
 		x: x_up_next,
 		duration: Word_cst.duration.upCut,
 		easing: Kinetic.Easings.EaseIn,
-		onFinish: function(){word.tween2.play()},
+		onFinish: function(){word.tween[1].play()},
 		opacity: 0,
 	});
 	
-	word.tween2 = new Kinetic.Tween({
+	word.tween[1] = new Kinetic.Tween({
 		node: word.font.next_up,
 		x: x_up,
 		duration: Word_cst.duration.upCut,
@@ -28,7 +28,7 @@ Animation.upCut = function(word, x_up, x_up_next) {
 		opacity: 1,
 	});
 	
-	word.tween1.play();
+	word.tween[0].play();
 }
 
 Animation.upCutLeft = function(word) {
