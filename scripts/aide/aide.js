@@ -7,13 +7,14 @@ var word_centrale = null;
 var word_coupable = null;
 
 Aide.start = function() {
-	clearStage();
+	Destroy.all();
 	Gui.homeBtn();
 
 	Aide.coupable();
 }
 
 Aide.coupable = function() {
+	Destroy.all();
 	word_coupable = new Word('Separation', 'Perception', 0);
 	var center = [screenWidth/2, screenHeight/2];
 	
@@ -33,7 +34,7 @@ Aide.destroy = function() {
 }
 
 Aide.ombre = function() {
-	clearStage();
+	Destroy.all();
 	Gui.homeBtn();
 	
 	var imgs = new Array();
@@ -164,7 +165,7 @@ Aide.ombre = function() {
 }
 
 Aide.centrale = function() {
-	clearStage();
+	Destroy.all();
 	Gui.homeBtn();
 	
 	word_centrale = new Word('SABRE', 'SACRE', 2);

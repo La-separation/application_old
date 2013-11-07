@@ -10,6 +10,7 @@ var cloud = null;
 var polices = new Array();
 
 Labo.start = function() {	
+	Destroy.all();
 	word_searched = prompt("Choisissez un mot :");
 	if (word_searched!="" && word_searched!=null) {
 		Labo.menu();
@@ -17,7 +18,7 @@ Labo.start = function() {
 }
 
 Labo.menu = function() {
-	clearStage();
+	Destroy.all();
 	Gui.homeBtn();
 	page=1;
 
@@ -48,8 +49,7 @@ Labo.menu = function() {
 };
 
 Labo.generateCloud = function(police, casse) {
-	clearStage();
-	
+	Destroy.all();
 	loadingImg();
 	
 	cloud = new Cloud();
@@ -64,9 +64,7 @@ Labo.generateCloud = function(police, casse) {
 }
 
 Labo.displayCloud = function() {
-	clearStage();
-	//~ Gui.homeBtn();
-	//~ Labo.displayGui();
+	Destroy.all();
 	Gui.laboDisplayAll();
 
 	cloud.generate(page);
@@ -76,13 +74,8 @@ Labo.displayCloud = function() {
 }
 
 Labo.destroy = function() {
-	clearStage();
 	Destroy.objet(cloud);
-	
-	for (var j=0; j < polices.length; j++) {
-		Destroy.objet(polices[j][0]);
-	}
-	polices = new Array();
+	Destroy.tab(polices);
 }
 
 function loadingImg() {

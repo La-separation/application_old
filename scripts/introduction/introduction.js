@@ -17,6 +17,7 @@ Introduction.destroy = function() {
 }
 
 Introduction.logo = function() {
+	Destroy.all();
 	logo = new Logo();
 	logo.display(mainLayer);
 	
@@ -24,7 +25,6 @@ Introduction.logo = function() {
 	Event.onTap('logo', logo, function() {
 		Effects.stopRespire('logo');
 		logo.animateIntro(function(logo) { return function() {
-			Destroy.objet(logo);
 			Introduction.laSeparation();
 		}(logo)});
 	}, false);
@@ -34,8 +34,7 @@ Introduction.logo = function() {
 }
 
 Introduction.laSeparation = function() {
-	mainLayer.clear();
-	actionLayer.clear();
+	Destroy.all();
 	
 	var anim_duration = 2;
 	

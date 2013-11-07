@@ -29,6 +29,9 @@ Destroy.list = function(list) {
 }
 
 Destroy.all = function() {
+	mainLayer.clear();
+	actionLayer.clear();
+	
 	Introduction.destroy();
 	Menu.destroy();
 	Aide.destroy();
