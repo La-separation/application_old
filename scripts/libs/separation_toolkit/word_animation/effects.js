@@ -25,11 +25,11 @@ Effects.respire = function(id, node, min, max) {
 	function effects_light() {
 		//if(!Effects.respire_stop[id])
 		//{
-			sound_play('inspiration');
+			// sound_play('inspiration');
 			new Kinetic.Tween({
 				node: node,
 				opacity: max,
-				duration: 0.621,
+				duration: 1.2,
 				easing: Kinetic.Easings.EaseInOut,
 				onFinish: effects_dark,
 			}).play();
@@ -38,11 +38,11 @@ Effects.respire = function(id, node, min, max) {
 	function effects_dark() {
 		if(!Effects.respire_stop[id])
 		{
-			sound_play('expiration');
+			// sound_play('expiration');
 			new Kinetic.Tween({
 				node: node,
 				opacity: min,
-				duration: 0.621,
+				duration: 1.2,
 				easing: Kinetic.Easings.EaseOut,
 				onFinish: effects_light,
 			}).play();

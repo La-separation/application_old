@@ -115,6 +115,75 @@ var fontConst = {
 			},
 		},
 	},
+	'2px': {
+		car: {						// Caractère (lettre)
+			size: 14,					// Taille de la police
+			color: 'white',				// Couleur
+			height: 24,					// Hauteur réelle du caractère
+		},
+		police: {
+			name: 0,	// Police (par défaut coupable_haut)
+			0: {			// Police coupable_haut en deux parties
+				offset: {					// Décalage y
+					up: -1,						// Distance en y pour la partie haute
+					down: 12,					// Distance en y pour la partie basse
+				},
+				name: {					// Nom des deux parties
+					up: 'DemiHautH',
+					down: 'DemiHautB',
+				},
+			},
+			5: {			// Police coupable_haut en deux parties avec écart
+				offset: {					// Décalage y
+					up: -1,						// Distance en y pour la partie haute
+					down: 12,					// Distance en y pour la partie basse
+				},
+				name: {					// Nom des deux parties
+					up: 'DemiHautH',
+					down: 'DemiHautB',
+				},
+			},
+			1: {			// Police coupable_bas en deux parties
+				offset: {				// Décalage y
+					up: -1,					// Distance en y pour la partie haute
+					down: 13,				// Distance en y pour la partie basse
+				},
+				name: {					// Nom des deux parties
+					up: 'DemiBasH',
+					down: 'DemiBasB',
+				},
+			},
+			2: {			// Police centrale en trois parties
+				offset: {				// Décalage y
+					up: -4,					// Distance en y pour la partie haute
+					central: 3,
+					down: 8,				// Distance en y pour la partie basse
+				},
+				name: {					// Nom des trois parties
+					up: 'CentraleH',
+					central: 'CentraleC',
+					down: 'CentraleB',
+				},
+			},
+			3: {				// Police de l'ombre
+				offset: -2,
+			},
+			4: {				// Police coupable haut entier en une partie
+				offset: 0,			// Décalage y
+				name: 'DemiHaut',	// Nom de la police
+			},
+		},
+		recit: {
+			margin: {				// Marge...
+				up: 6,					// ... supérieure (size/2)
+				down: 6,				// ... inférieure
+			},
+			line: {				// Ligne
+				height: 36,			// Hauteur
+				nb: 1,				// Nombre de lignes
+			},
+		},
+	},
 	// A ne pas utiliser car pas dispo pour la police centrale, attendre que toutes lesp olices soient faites
 	/*
 	'14px': {

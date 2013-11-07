@@ -16,7 +16,8 @@ function appStart() {
 	stage = new Kinetic.Stage( {
 		container : 'main',
 		width : screenWidth,
-		height : screenHeight
+		height : screenHeight,
+		// background: #040,
 	} );
 
 	// Need to force style in block to not resize the div content of stage

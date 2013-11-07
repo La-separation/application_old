@@ -2,20 +2,16 @@
 	Namespace Menu
 */
 var Menu = {};
-Recit.words = new Array();
-Recit.anim_duration = 2;
-Recit.opacity = 0.5;
+Menu.words = new Array();
+Menu.anim_duration = 2;
+Menu.opacity = 0.5;
 
 Menu.start = function() {
 	mainLayer.clear();
 	actionLayer.clear();
 	clearStage();
-	
-	// Introduction.destroy();
-	Introduction.destroy();
-	Aide.destroy();
-	Recit.destroy();
-	Labo.destroy();
+
+	Destroy.all();
 	
 	Menu.recit();
 	Menu.labo();
@@ -27,25 +23,33 @@ Menu.start = function() {
 	actionLayer.draw();
 }
 
+Menu.destroy = function() {
+	for(var w in Menu.words) {
+		// alert(w);
+		Destroy.objet(Menu.words[w]);
+	}
+	Menu.words = new Array();
+}
+
 Menu.recit = function() {
 	var zoom = 3;
 
-	Recit.words['recit'] = new Word('Recit', null, 5);
-	Recit.words['recit'].setZoom(zoom);
-	Recit.words['recit'].setX(-Recit.words['recit'].getWidth());
-	Recit.words['recit'].setCenterY(screenHeight * 1/2);
-	Recit.words['recit'].display(mainLayer);
+	Menu.words['recit'] = new Word('poemes', null, 5);
+	Menu.words['recit'].setZoom(zoom);
+	Menu.words['recit'].setX(-Menu.words['recit'].getWidth());
+	Menu.words['recit'].setCenterY(screenHeight * 1/2);
+	Menu.words['recit'].display(mainLayer);
 	
-	Recit.words['recit'].setCenterX(screenWidth * 1/5);
+	Menu.words['recit'].setCenterX(screenWidth * 1/5);
 	
 	new Kinetic.Tween({
-		node: Recit.words['recit'].getNode(),
-		x: Recit.words['recit'].getX(),
+		node: Menu.words['recit'].getNode(),
+		x: Menu.words['recit'].getX(),
 		easing: Kinetic.Easings.EaseOut,
-		duration: Recit.anim_duration,
+		duration: Menu.anim_duration,
 	}).play();
 	
-	Event.onTap('Menu.recit', Recit.words['recit'], function() {
+	Event.onTap('Menu.recit', Menu.words['recit'], function() {
 		Recit.start();
 	}, true);
 }
@@ -53,95 +57,96 @@ Menu.recit = function() {
 Menu.labo = function() {
 	var zoom = 3;
 
-	Recit.words['labo'] = new Word('Labo', null, 5);
-	Recit.words['labo'].setZoom(zoom);
-	Recit.words['labo'].setX(screenWidth);
-	Recit.words['labo'].setCenterY(screenHeight * 1/2);
-	Recit.words['labo'].display(mainLayer);
+	Menu.words['labo'] = new Word('labo', null, 5);
+	Menu.words['labo'].setZoom(zoom);
+	Menu.words['labo'].setX(screenWidth);
+	Menu.words['labo'].setCenterY(screenHeight * 1/2);
+	Menu.words['labo'].display(mainLayer);
 
-	Recit.words['labo'].setCenterX(screenWidth * 4/5);
+	Menu.words['labo'].setCenterX(screenWidth * 4/5);
 	
 	new Kinetic.Tween({
-		node: Recit.words['labo'].getNode(),
-		x: Recit.words['labo'].getX(),
+		node: Menu.words['labo'].getNode(),
+		x: Menu.words['labo'].getX(),
 		easing: Kinetic.Easings.EaseOut,
-		duration: Recit.anim_duration,
+		duration: Menu.anim_duration,
 	}).play();
 	
-	Event.onTap('Menu.labo', Recit.words['labo'], function() {
+	Event.onTap('Menu.labo', Menu.words['labo'], function() {
 		Labo.start();
 	}, true);
 }
 
 Menu.aide = function() {
-	Recit.words['aide'] = new Word('aide', null, 0);
-	Recit.words['aide'].setCenterXY(screenWidth / 2, screenHeight * 8/12);
-	Recit.words['aide'].getNode().setOpacity(0);
-	Recit.words['aide'].display(mainLayer);
+	Menu.words['aide'] = new Word('aide', null, 0);
+	Menu.words['aide'].setCenterXY(screenWidth / 2, screenHeight * 8/12);
+	Menu.words['aide'].getNode().setOpacity(0);
+	Menu.words['aide'].display(mainLayer);
 	
 	new Kinetic.Tween({
-		node: Recit.words['aide'].getNode(),
-		opacity: Recit.opacity,
+		node: Menu.words['aide'].getNode(),
+		opacity: Menu.opacity,
 		easing: Kinetic.Easings.EaseIn,
-		duration: Recit.anim_duration,
+		duration: Menu.anim_duration,
 	}).play();
 	
-	Event.onTap('Menu.aide', Recit.words['aide'], function() {
+	Event.onTap('Menu.aide', Menu.words['aide'], function() {
 		Aide.start();
 	}, true);
 }
 
 Menu.aPropos = function() {
-	Recit.words['a_propos'] = new Word('a propos', null, 0);
-	Recit.words['a_propos'].setCenterXY(screenWidth / 2, screenHeight * 10/12);
-	Recit.words['a_propos'].getNode().setOpacity(0);
-	Recit.words['a_propos'].display(mainLayer);
+	Menu.words['a_propos'] = new Word('a propos', null, 0);
+	Menu.words['a_propos'].setCenterXY(screenWidth / 2, screenHeight * 10/12);
+	Menu.words['a_propos'].getNode().setOpacity(0);
+	Menu.words['a_propos'].display(mainLayer);
 	
 	new Kinetic.Tween({
-		node: Recit.words['a_propos'].getNode(),
-		opacity: Recit.opacity,
+		node: Menu.words['a_propos'].getNode(),
+		opacity: Menu.opacity,
 		easing: Kinetic.Easings.EaseIn,
-		duration: Recit.anim_duration,
+		duration: Menu.anim_duration,
 	}).play();
 	
-	Event.onTap('Menu.a_propos', Recit.words['a_propos'], function() {
+	Event.onTap('Menu.a_propos', Menu.words['a_propos'], function() {
 		alert('A venir \n Soon');
 	}, true);
 }
 
 Menu.lang = function() {
-	Recit.words['lang_EN'] = new Word('ENGLISH', null, 0, 'EOOLLOLL');
-	Recit.words['lang_EN'].setCenterXY(screenWidth / 2, screenHeight * 2/12);
-	Recit.words['lang_EN'].getNode().setOpacity(0);
-	Recit.words['lang_EN'].display(mainLayer);
+	Menu.words['lang_EN'] = new Word('Fr | En', 'En | Fr', 0);
+	Menu.words['lang_EN'].setCenterXY(screenWidth / 2, screenHeight * 2/12);
+	Menu.words['lang_EN'].getNode().setOpacity(0);
+	Menu.words['lang_EN'].addGesture();
+	Menu.words['lang_EN'].display(mainLayer);
 
 	new Kinetic.Tween({
-		node: Recit.words['lang_EN'].getNode(),
-		opacity: Recit.opacity,
+		node: Menu.words['lang_EN'].getNode(),
+		opacity: Menu.opacity,
 		easing: Kinetic.Easings.EaseIn,
-		duration: Recit.anim_duration,
+		duration: Menu.anim_duration,
 	}).play();
 	
-	Event.onTap('Menu.lang_EN', Recit.words['lang_EN'], function() {
+	Event.onTap('Menu.lang_EN', Menu.words['lang_EN'], function(word) {
 		alert('A venir \n Soon');
 	}, true);
 	
-	Recit.words['lang_FR'] = new Word('FRENCH', null, 0, 'EOOLLOLL');
-	Recit.words['lang_FR'].setZoom(0.5);
-	Recit.words['lang_FR'].setCenterXY(screenWidth / 2, screenHeight * 1/12);
-	Recit.words['lang_FR'].getNode().setOpacity(0);
-	Recit.words['lang_FR'].display(mainLayer);
+	// Menu.words['lang_FR'] = new Word('FRENCH', null, 0, 'EOOLLOLL');
+	// Menu.words['lang_FR'].setZoom(0.5);
+	// Menu.words['lang_FR'].setCenterXY(screenWidth / 2, screenHeight * 1/12);
+	// Menu.words['lang_FR'].getNode().setOpacity(0);
+	// Menu.words['lang_FR'].display(mainLayer);
 	
-	new Kinetic.Tween({
-		node: Recit.words['lang_FR'].getNode(),
-		opacity: Recit.opacity / 2,
-		easing: Kinetic.Easings.EaseIn,
-		duration: Recit.anim_duration,
-	}).play();
+	// new Kinetic.Tween({
+		// node: Menu.words['lang_FR'].getNode(),
+		// opacity: Menu.opacity / 2,
+		// easing: Kinetic.Easings.EaseIn,
+		// duration: Menu.anim_duration,
+	// }).play();
 	
-	Event.onTap('Menu.lang_FR', Recit.words['lang_FR'], function() {
-		alert('A venir \n Soon');
-	}, true);
+	// Event.onTap('Menu.lang_FR', Menu.words['lang_FR'], function() {
+		// alert('A venir \n Soon');
+	// }, true);
 }
 
 scriptLoaded('scripts/menu/menu.js');

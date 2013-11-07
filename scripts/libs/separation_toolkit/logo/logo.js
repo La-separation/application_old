@@ -3,7 +3,7 @@
  */
 function Logo() {
 	this.group = null; // Groupe Kinetic
-	this.border = Math.floor(screenHeight / 40); // Largeur des lignes du logo (~20)
+	this.border = Math.floor(screenHeight / 20); // Largeur des lignes du logo (~20)
 	
 	this.width = 12 * this.border; // Largeur du logo
 	this.height = 12 * this.border; // Hauteur du logo
@@ -21,16 +21,18 @@ LogoConstruct = function(logo) {
 
 Logo.prototype.generate = function() {
 	var border = this.border;
-	var radius = 6 * border;
+	var radius = 4 * border;
 	var x = 6 * border;
 	var y = 6 * border;
-	var line_width = 9 * border;
+	var line_width = 3.5 * border;
 	
 	this.arc_up = new Kinetic.Shape({
 		drawFunc: function(canvas) {
 			var ctx = canvas.getContext();
 			ctx.beginPath();
-			ctx.arc(x, y - border / 2, radius, Math.PI, 0);
+			// ctx.arc(x, y - border / 2, radius, Math.PI, 0);
+			ctx.moveTo(x - line_width + border/2, y - border/2);
+			ctx.bezierCurveTo(x - line_width + border/2, y - radius, x + line_width - border/2, y - radius, x + line_width - border/2, y - border/2);
 			canvas.stroke(this);
 		},
 		stroke: '#FFF',
@@ -41,7 +43,9 @@ Logo.prototype.generate = function() {
 		drawFunc: function(canvas) {
 			var ctx = canvas.getContext();
 			ctx.beginPath();
-			ctx.arc(x, y + border / 2, radius, 0, Math.PI);
+			// ctx.arc(x, y + border / 2, radius, 0, Math.PI);
+			ctx.moveTo(x + line_width - border/2, y + border/2);
+			ctx.bezierCurveTo(x + line_width - border/2, y + radius, x - line_width + border/2, y + radius, x - line_width + border/2, y + border/2);
 			canvas.stroke(this);
 		},
 		stroke: '#FFF',
@@ -55,10 +59,10 @@ Logo.prototype.generate = function() {
     });
 	
 	this.group = this.group = new Kinetic.Group({
-		width: border * 12,
-		height: border * 12,
-		offsetX: border * 6,
-		offsetY: border * 6,
+		width: border * 6,
+		height: border * 6,
+		offsetX: x,
+		offsetY: y,
 	});
 	
 	this.group.add(this.arc_up);

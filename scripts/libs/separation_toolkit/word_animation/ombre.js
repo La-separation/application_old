@@ -11,7 +11,7 @@ Animation.ombre = function(word) {
 	//word.font.next_down.setOpacity(1);
 	var opacity = OMBRE.getOpacity();
 	var tween = new Array();
-	alert('test');
+	// alert('test');
 
 	if(opacity > 0) {
 		tween[0] = new Kinetic.Tween({

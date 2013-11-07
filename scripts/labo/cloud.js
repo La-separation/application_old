@@ -71,13 +71,15 @@ Cloud.prototype.generate = function(page) {
 	this.central_word.setZoomOnActive(false);
 
 	for(var i = 0; i < this.nb; i++) {
-		x = Math.floor(center[0] + Math.cos(angle)*screenWidth*0.4);
-		y = Math.floor(center[1] + Math.sin(angle)*screenHeight*0.4);
+		x = Math.floor(center[0] + Math.cos(angle)*screenWidth*0.4*Math.random());
+		y = Math.floor(center[1] + Math.sin(angle)*screenHeight*0.4*Math.random());
 
 
 		this.words[i].setCenterX(x);
 		this.words[i].setCenterY(y);
+		this.words[i].setZoom((Math.random() + 0.1)*2);
 		angle = angle + 2 * Math.PI / this.nb;
+		
 		
 		var cloud = this;
 		//~ var word = this.words[i];

@@ -261,10 +261,10 @@ Word.prototype.onTap = function(handler) {
 
 Word.prototype.activeOnTap = function() {
 	if(this.value != this.next_value) {
-		this.onTap(function(word){
-			word.activate();
-		});
-		// this.addGesture();
+		// this.onTap(function(word){
+			// word.activate();
+		// });
+		this.addGesture();
 	}
 }
 	
@@ -376,7 +376,7 @@ Word.prototype.getNode = function() { return this.font.group; }
 Word.prototype.getNodeUp = function() { return this.font.up; } // Police coupable
 Word.prototype.getNodeDown = function() { return this.font.down; } // Police coupable
 Word.prototype.getId = function() { return this.id; }
-Word.prototype.getUniqId = function() { return 'word_' + this.getValue() + '_' + this.getX() + this.getY() + this.getWidth(); }
+Word.prototype.getUniqId = function() { return 'word_"' + this.getValue() + '"_' + Math.random(); }
 // Set
 Word.prototype.setX = function(data) { this.x = data; }
 Word.prototype.setY = function(data) { this.y = data; }

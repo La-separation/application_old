@@ -14,4 +14,28 @@ Destroy.objet = function(obj) {
 	}
 }
 
+Destroy.tab = function(tab) {
+	for(var i in tab) {
+		delete(tab[i]);
+	}
+	list = new Array();
+}
+
+Destroy.list = function(list) {
+	for(var i in list) {
+		delete(list[i]);
+	}
+	list = {};
+}
+
+Destroy.all = function() {
+	Introduction.destroy();
+	Menu.destroy();
+	Aide.destroy();
+	Recit.destroy();
+	Labo.destroy();
+	
+	Event.destroyAll();
+}
+
 scriptLoaded('scripts/libs/separation_toolkit/destroy/destroy.js');

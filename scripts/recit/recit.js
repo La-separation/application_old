@@ -5,6 +5,7 @@ var Recit = {};
 var DEBUG = false;
 var story = null;
 var story_page = null;
+var titles = new Array();
 
 //////////////////////////////////////
 var xmlList = ["separation","codes-min-bas","codes-maj-bas","codes-min-haut","codes-maj-haut","test1","test2","test3","test4","test5","test6","test7","test8","test9","test10"];
@@ -16,44 +17,46 @@ var xmlList = ["separation","codes-min-bas","codes-maj-bas","codes-min-haut","co
 Recit.start = function() {
 	story_page = 1;
 	Recit.computeSizes();
-	clearStage();
-	Gui.storiesDisplayAll();
-	Recit.displayStoriesMenu()
+
+	Recit.displayStoriesMenu();
 }
 
 Recit.destroy = function() {
 	clearStage();
+
+	Destroy.tab(titles);
 	Destroy.objet(story);
+	
 	word_active = false;
 }
 
-
 Recit.displayStoriesMenu = function() {
+	Destroy.all();
+	Gui.storyDisplayAll();
+	
 	nb_recit_max = Recit.cst.line.nb;
 
-	var titles = new Array();
-	var path="";
+	var path= "";
 	
 	for (var i=nb_recit_max*(story_page-1); i<xmlList.length && i<=(nb_recit_max*story_page); i++) {
 		path="stories/"+xmlList[i]+".xml";
 		var xml_file = Xml.load(path);
 
-		titles.push(new Word(xml_file.getElementsByTagName("title")[0].textContent, null, 0));
-	    titles[i-nb_recit_max*(story_page-1)].setCenterX(screenWidth/2);
-	    titles[i-nb_recit_max*(story_page-1)].setCenterY((((screenHeight)/(nb_recit_max+1))*(i-nb_recit_max*(story_page-1)+0.5)));
-	    titles[i-nb_recit_max*(story_page-1)].display(mainLayer);
-	    titles[i-nb_recit_max*(story_page-1)].onTap(function(path){
+		titles[i] = new Word(xml_file.getElementsByTagName("title")[0].textContent, null, 0);
+	    titles[i].setCenterX(screenWidth/2);
+	    titles[i].setCenterY((((screenHeight)/(nb_recit_max+1))*(i-nb_recit_max*(story_page-1)+0.5)));
+	    titles[i].display(mainLayer);
+	    titles[i].onTap(function(path){
 	        return function(){Recit.openStory(path);}
 		}(path));
 	}
 
 	mainLayer.draw();
 	actionLayer.draw();
-
 }
 
 Recit.openStory = function(file) {
-	clearStage();
+	Destroy.all();
 	Gui.storyDisplayAll();
 
 	this.computeSizes();
@@ -71,8 +74,8 @@ Recit.openStory = function(file) {
         Détermination de la taille de la police en fonction de la hauteur du canvas
 */
 Recit.computeSizes = function() {
-        Recit.cst = fontConst[fontSize].recit;
-        Recit.cst.line.nb = Math.floor(screenHeight / Recit.cst.line.height);
+	Recit.cst = fontConst[fontSize].recit;
+	Recit.cst.line.nb = Math.floor(screenHeight / Recit.cst.line.height);
 }
 
 
