@@ -6,9 +6,13 @@
 		<link rel="stylesheet" href="style/style.css" />
 		<title>La Séparation</title>
 		
+		<meta http-equiv="Cache-Control" content="no-cache"> 
+		<meta http-equiv="Pragma" content="no-cache"> 
+		<meta http-equiv="Expires" content="0"> 
+		
 		<script type="text/javascript">
 			var loaded_scripts = 1;
-			var n_scripts = 53;
+			var n_scripts = 54;
 			function scriptLoaded(script_path) {
 				document.getElementById("main").innerHTML += "<p class=\"center\" >"+loaded_scripts+"/"+n_scripts+" : "+script_path+"</p>";
 				document.getElementById("pourcentage").innerHTML = Math.floor((loaded_scripts/n_scripts)*100) + '%';
@@ -41,6 +45,7 @@
 	</body>
 		<!-- scripts -->
 		<script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="appOnDevice.js"></script>
 
 		<!-- scripts/libs -->
 		<script type="text/javascript" src="scripts/libs/jquery-2.0.2.min.js"></script>

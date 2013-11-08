@@ -46,7 +46,7 @@ Separation.tap = function(params, word){
 			}
 		};
 
-			window.addEventListener(events['tap'], detect_tap, false);
+			// window.addEventListener(events['tap'], detect_tap, false);
 		}
 	}
 

@@ -22,6 +22,8 @@ function appStart() {
 
 	// Need to force style in block to not resize the div content of stage
 	stage.getContent().style.display = 'block';
+	
+	stage.on(events['tap'], function(event) { Event.tap(event); });
 
 	loadButtons();
 
@@ -35,6 +37,5 @@ function appStart() {
 	stage.add(mainLayer);
 	stage.add(actionLayer);
 }
-
 
 scriptLoaded('scripts/main/main.js');

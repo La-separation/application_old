@@ -5,14 +5,12 @@ var Event = {};
 Event.tap_callback = {};
 
 var events = {
-	tap : (appOnDevice() ? 'tap' : 'click'),
-	touchmove : (appOnDevice() ? 'touchmove' : 'mousemove'),
-	dbltap : (appOnDevice() ? 'dbltap' : 'dblclick'),
+	tap : (appOnDevice_real() ? 'tap' : 'click'),
+	touchmove : (appOnDevice_real() ? 'touchmove' : 'mousemove'),
+	dbltap : (appOnDevice_real() ? 'dbltap' : 'dblclick'),
 };
 
 var touchPos = {x:0,y:0};
-
-window.addEventListener(events['tap'], function() { Event.tap(event); }, false);
 
 Event.onTap = function(id, object, handler, restart) {
 	
@@ -31,6 +29,7 @@ Event.onTap = function(id, object, handler, restart) {
 Event.tap = function(event) {
 	event.preventDefault;
 	var coord = getTouchPos(event);
+	// alert(coord.x);
 	// On regarde si les coordonées du 'tap' se situent dans un rectangle actif
 	for(var i in Event.tap_callback) {
 		if(Event.tap_callback[i] == undefined) alert(i); else
@@ -42,35 +41,12 @@ Event.tap = function(event) {
 }
 
 function getTouchPos(event) {
-	var touchPos2 = {x:0,y:0};
-	
-	if(appOnDevice())
-	{
-		touchPos2.x = event.touches[0].pageX;
-		touchPos2.y = event.touches[0].pageY;
-	}
-	else
-	{
-		touchPos2.x = event.pageX;
-		touchPos2.y = event.pageY;
-	}
-	
-	return touchPos2;
+	// alert(event);
+	return stage.getPointerPosition();
 }
 
 function myEvent(event) {
-	if(appOnDevice())
-	{
-		touchPos.x = event.touches[0].pageX;
-		touchPos.y = event.touches[0].pageY;
-	}
-	else
-	{
-		touchPos.x = event.pageX;
-		touchPos.y = event.pageY;
-	}
-	
-	return touchPos;
+
 }
 
 Event.destroy = function(type, id) {

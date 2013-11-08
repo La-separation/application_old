@@ -103,7 +103,7 @@ Separation.horizontal_move = function(params){
 			{
 				event.preventDefault;
 
-				myEvent(event);
+				touchPos = getTouchPos(event);
 
 				x = touchPos.x;
 
@@ -119,7 +119,7 @@ Separation.horizontal_move = function(params){
 			}
 		};
 
-		window.addEventListener(events['touchmove'], detect_touch, false);
+		stage.on(events['touchmove'], detect_touch);
 	}
   
 	this.off = function() {
