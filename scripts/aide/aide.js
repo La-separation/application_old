@@ -15,6 +15,8 @@ Aide.start = function() {
 
 Aide.coupable = function() {
 	Destroy.all();
+	Gui.homeBtn();
+	
 	word_coupable = new Word('Separation', 'Perception', 0);
 	var center = [screenWidth/2, screenHeight/2];
 	
