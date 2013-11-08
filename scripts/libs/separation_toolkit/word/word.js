@@ -261,10 +261,10 @@ Word.prototype.onTap = function(handler) {
 
 Word.prototype.activeOnTap = function() {
 	if(this.value != this.next_value) {
-		// this.onTap(function(word){
-			// word.activate();
-		// });
-		this.addGesture();
+		this.onTap(function(word){
+			word.activate();
+		});
+		// this.addGesture();
 	}
 }
 	
