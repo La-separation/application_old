@@ -77,9 +77,7 @@ Line.prototype.display = function(layer) {
 }
 
 Line.prototype.destroy = function() {
-	for(var i = 0; i < this.nb; i++) {
-		Destroy.objet(this.words[i]);
-	}
+	Destroy.arrayObjet(this.words);
 }
 
 scriptLoaded('scripts/recit/line.js');

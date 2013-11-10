@@ -24,7 +24,7 @@ Recit.start = function() {
 Recit.destroy = function() {
 	clearStage();
 
-	Destroy.tab(titles);
+	Destroy.arrayObjet(titles);
 	Destroy.objet(story);
 	
 	word_active = false;

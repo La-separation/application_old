@@ -136,7 +136,7 @@ Word.prototype.display = function(layer) {
 
 Word.prototype.destroy = function() {
 	// this.font.destroy();
-	Event.destroy('tap', this.getId());
+	Event.destroy(this.getId());
 	for(var i = 0; i < this.tween.length; i++) {
 		this.tween[i].pause();
 		// this.tween[i].destroy();
@@ -236,24 +236,26 @@ Word.prototype.addGesture = function() {
 }
 
 Word.prototype.removeGesture = function() {
-	switch(this.police)
-	{
-		case 0:
-		case 1:
-		case 2:
-		case 3:
-		case 5:
-			this.gesture[0].off();
-			this.gesture[1].off();
-		break;
+	if(this.gesture[0] != undefined) {
+		switch(this.police)
+		{
+			case 0:
+			case 1:
+			case 2:
+			case 3:
+			case 5:
+				this.gesture[0].off();
+				this.gesture[1].off();
+			break;
+		}
+		Destroy.array(this.gesture);
 	}
-	this.gesture = new Array();
 }
 
 Word.prototype.onTap = function(handler) {
 	var id = this.getId();
 	
-	Event.onTap(id, this, function(word){ return function() {
+	Event.onTap(id, this, function(word) { return function() {
 		if(!word_active)
 			handler(word);
 	}}(this), true);
@@ -293,14 +295,13 @@ Word.prototype.activate = function() {
 }
 
 Word.prototype.activeDbltap = function() {
-	var word = this;
-	stage.on(events['dbltap'], function() {
+	Event.onDblTap(this.getId(), stage, function(word) { return function() {
 		word.disable();
-	});
+	}}(this), false);
 }
 
 Word.prototype.disableDbltap = function() {
-	stage.off(events['dbltap']);
+	Event.destroyDbltap(this.getId());
 }
 
 Word.prototype.disable = function() {
@@ -320,7 +321,7 @@ Word.prototype.disable = function() {
 		this.zoomOut();
 	}
 
-	this.disableDbltap();
+	// this.disableDbltap();
 }
 
 Word.prototype.setZoom = function(data) {

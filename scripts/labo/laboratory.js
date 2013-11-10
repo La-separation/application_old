@@ -75,7 +75,7 @@ Labo.displayCloud = function() {
 
 Labo.destroy = function() {
 	Destroy.objet(cloud);
-	Destroy.tab(polices);
+	Destroy.array(polices);
 }
 
 function loadingImg() {

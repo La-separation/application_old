@@ -24,6 +24,7 @@ function appStart() {
 	stage.getContent().style.display = 'block';
 	
 	stage.on(events['tap'], function(event) { Event.tap(event); });
+	// stage.on(events['touchmove'], function(event) { Event.touchmove(event); });
 
 	loadButtons();
 
@@ -31,8 +32,8 @@ function appStart() {
 	initSounds();
 
 	// setTimeout important, résolution d'un bug
-	setTimeout(Introduction.start, 1);
-	// setTimeout(Menu.start, 1);
+	// setTimeout(Introduction.start, 1);
+	setTimeout(Menu.start, 1);
 
 	stage.add(mainLayer);
 	stage.add(actionLayer);

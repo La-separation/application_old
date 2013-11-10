@@ -31,7 +31,7 @@ Cloud.prototype.add = function(word) {
 Cloud.prototype.resetWords = function() {
 	this.words = new Array();
 	this.nb = 0;
-}
+	}
 
 /*
 	Ajoute un mot central au cloud
@@ -117,9 +117,7 @@ Cloud.prototype.display = function(layer) {
 }
 
 Cloud.prototype.destroy = function() {
-	for(var i = 0; i < this.nb; i++) {
-		Destroy.objet(this.words[i]);
-	}
+	Destroy.arrayObjet(this.words);
 	Destroy.objet(this.central_word);
 }
 

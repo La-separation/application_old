@@ -14,11 +14,18 @@ Destroy.objet = function(obj) {
 	}
 }
 
-Destroy.tab = function(tab) {
-	for(var i in tab) {
-		delete(tab[i]);
+Destroy.array = function(array) {
+	for(var i in array) {
+		delete(array[i]);
 	}
-	list = new Array();
+	array = new Array();
+}
+
+Destroy.arrayObjet = function(array) {
+	for(var i in array) {
+		Destroy.objet(array[i]);
+	}
+	array = new Array();
 }
 
 Destroy.list = function(list) {
@@ -26,6 +33,19 @@ Destroy.list = function(list) {
 		delete(list[i]);
 	}
 	list = {};
+}
+
+Destroy.listObjet = function(list) {
+	for(var i in list) {
+		Destroy.objet(list[i]);
+	}
+	list = {};
+}
+
+Destroy.listItem = function(list, i) {
+	if(list[i] != undefined) {
+		delete(list[i]);
+	}
 }
 
 Destroy.all = function() {

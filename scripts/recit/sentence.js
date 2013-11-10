@@ -71,9 +71,7 @@ Sentence.prototype.display = function(layer) {
 }
 
 Sentence.prototype.destroy = function() {
-	for(var i = 0; i <= this.actLine; i++) {
-		Destroy.objet(this.lines[i]);
-	}
+	Destroy.arrayObjet(this.lines);
 }
 
 scriptLoaded('scripts/recit/sentence.js');
