@@ -65,7 +65,7 @@ Labo.generateCloud = function(police, casse) {
 
 Labo.displayCloud = function() {
 	Destroy.all();
-	Gui.laboDisplayAll();
+	Gui.Labo.displayAll();
 
 	cloud.generate(page);
 	cloud.display(mainLayer);

@@ -32,7 +32,7 @@ Recit.destroy = function() {
 
 Recit.displayStoriesMenu = function() {
 	Destroy.all();
-	Gui.storyDisplayAll();
+	Gui.Recit.menuDisplayAll();
 	
 	nb_recit_max = Recit.cst.line.nb;
 
@@ -57,7 +57,7 @@ Recit.displayStoriesMenu = function() {
 
 Recit.openStory = function(file) {
 	Destroy.all();
-	Gui.storyDisplayAll();
+	Gui.Recit.displayAll();
 
 	this.computeSizes();
 	if(DEBUG) this.addLines();

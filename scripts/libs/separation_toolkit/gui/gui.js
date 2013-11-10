@@ -1,15 +1,18 @@
 /*
 	Namespace Gui
 */
-var Gui= {};
+var Gui = {};
+Gui.Labo = {};
+Gui.Recit = {};
 var zoomCoef = 4; // Attention, pour l'instant ce n'est pas très au point, le "P" sera décalé et s'affichera mal
 
 Gui.homeBtn = function() {
 	setHomeBtn();
 }
 
-// lab gui
-Gui.laboNextBtn = function() {
+// labo GUI
+
+Gui.Labo.nextBtn = function() {
 	var zoom = zoomCoef; 
 	var nextBtn = new Word(" > ",null,4); 	nextBtn.setZoom(zoom);
 	nextBtn.setX(screenWidth - nextBtn.getWidth());
@@ -21,7 +24,7 @@ Gui.laboNextBtn = function() {
 	actionLayer.draw();
 }
 
-Gui.laboLastBtn = function() {
+Gui.Labo.lastBtn = function() {
 	var zoom = zoomCoef;
 	
 	var lastBtn = new Word(" < ",null,4);	lastBtn.setZoom(zoom);
@@ -34,7 +37,7 @@ Gui.laboLastBtn = function() {
 	actionLayer.draw();
 }
 
-Gui.laboPoliceBtn = function() {
+Gui.Labo.policeBtn = function() {
 	var zoom = zoomCoef;
 	
 	var policeBtn = new Word(" P ",null,4); policeBtn.setZoom(zoom);
@@ -47,15 +50,16 @@ Gui.laboPoliceBtn = function() {
 	actionLayer.draw();
 }
 
-Gui.laboDisplayAll = function() {
+Gui.Labo.displayAll = function() {
 	Gui.homeBtn();
-	Gui.laboPoliceBtn();
-	Gui.laboNextBtn();
-	Gui.laboLastBtn();
+	Gui.Labo.policeBtn();
+	Gui.Labo.nextBtn();
+	Gui.Labo.lastBtn();
 }
 
-// stories gui
-Gui.storiesNextBtn = function() {
+// Recit GUI
+
+Gui.Recit.menuNextBtn = function() {
 	var zoom = zoomCoef;
 	
 	var nextBtn = new Word(" > ", null, 4);		nextBtn.setZoom(zoom);
@@ -64,9 +68,6 @@ Gui.storiesNextBtn = function() {
 	nextBtn.display(mainLayer);
 	nextBtn.onTap(function(){
 		if(story_page<(xmlList.length/nb_recit_max)) {
-			story_page++;
-			clearStage();
-			Gui.storiesDisplayAll();
 			Recit.displayStoriesMenu();
 		}
 	});
@@ -75,7 +76,7 @@ Gui.storiesNextBtn = function() {
 	actionLayer.draw();
 }
 
-Gui.storiesLastBtn = function() {
+Gui.Recit.menuLastBtn = function() {
 	var zoom = zoomCoef;
 
 	var lastBtn = new Word(" < ", null, 4);		lastBtn.setZoom(zoom);
@@ -85,8 +86,6 @@ Gui.storiesLastBtn = function() {
 	lastBtn.onTap(function(){
 		if(story_page>1) {
 			story_page--;
-			clearStage();
-			Gui.storiesDisplayAll();
 			Recit.displayStoriesMenu();
 		}
 	});
@@ -96,14 +95,13 @@ Gui.storiesLastBtn = function() {
 
 }
 
-Gui.storiesDisplayAll = function() {
+Gui.Recit.menuDisplayAll = function() {
 	Gui.homeBtn();
-	Gui.storiesNextBtn();
-	Gui.storiesLastBtn();
+	Gui.Recit.menuNextBtn();
+	Gui.Recit.menuLastBtn();
 }
 
-// story gui
-Gui.storyStoriesBtn = function () {
+Gui.Recit.storiesBtn = function () {
 	var zoom = zoomCoef;
 	
 	var storiesBtn = new Word(" R", null, 4);	storiesBtn.setZoom(zoom);
@@ -116,7 +114,7 @@ Gui.storyStoriesBtn = function () {
 	actionLayer.draw();
 }
 
-Gui.storyNextBtn = function() {
+Gui.Recit.nextBtn = function() {
 	var zoom = zoomCoef;
 	
 	var nextBtn = new Word(" > ", null, 4);		nextBtn.setZoom(zoom);
@@ -129,7 +127,7 @@ Gui.storyNextBtn = function() {
 	actionLayer.draw();
 }
 
-Gui.storyLastBtn = function() {
+Gui.Recit.lastBtn = function() {
 	var zoom = zoomCoef;
 	
 	var lastBtn = new Word(" < ", null, 4);		lastBtn.setZoom(zoom);
@@ -142,12 +140,12 @@ Gui.storyLastBtn = function() {
 	actionLayer.draw();
 }
 
-Gui.storyDisplayAll = function() {
+Gui.Recit.displayAll = function() {
 	Gui.homeBtn();
-	Gui.storyStoriesBtn();
-	Gui.storyLastBtn();
-	Gui.storyNextBtn();
+	Gui.Recit.storiesBtn();
+	Gui.Recit.nextBtn();
+	Gui.Recit.lastBtn();
 }
 
 
-scriptLoaded('scripts/gui.js');
+scriptLoaded('scripts/libs/separation_toolkit/gui.js');
