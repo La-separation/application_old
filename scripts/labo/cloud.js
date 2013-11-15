@@ -56,9 +56,10 @@ Cloud.prototype.generate = function(page) {
 	this.resetWords();
 	
 	for (var i = 0; i < this.nb_max; i++) {
-		var ind = i+(page-1)*this.nb_max;
+		var ind = i + (page-1) * this.nb_max;
 		if (this.possibilities.length > ind) {
-			this.add(new Word(this.possibilities[ind].getValue(), null, this.possibilities[ind].getPolice(), this.possibilities[ind].getCode()));
+			var p = this.possibilities[ind];
+			this.add(new Word(p.getValue(), null, p.getPolice(), p.getCode()));
 		}
 	}
 	
@@ -71,18 +72,14 @@ Cloud.prototype.generate = function(page) {
 	this.central_word.setZoomOnActive(false);
 
 	for(var i = 0; i < this.nb; i++) {
-		x = Math.floor(center[0] + Math.cos(angle)*screenWidth*0.4);
-		y = Math.floor(center[1] + Math.sin(angle)*screenHeight*0.4);
-
+		x = Math.floor(center[0] + Math.cos(angle) * screenWidth * 0.4);
+		y = Math.floor(center[1] + Math.sin(angle) * screenHeight * 0.4);
 
 		this.words[i].setCenterX(x);
 		this.words[i].setCenterY(y);
 		angle = angle + 2 * Math.PI / this.nb;
 		
-		
 		var cloud = this;
-		//~ var word = this.words[i];
-		//~ this.words[i].next_value = '';
 		this.words[i].onTap(function(word) {
 			cloud.generateCentralWord(word.getValue(), word.getPolice(), word.getCode(), center);
 		});

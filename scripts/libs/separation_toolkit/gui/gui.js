@@ -52,7 +52,7 @@ Gui.Labo.policeBtn = function() {
 
 Gui.Labo.displayAll = function() {
 	Gui.homeBtn();
-	Gui.Labo.policeBtn();
+	// Gui.Labo.policeBtn();
 	Gui.Labo.nextBtn();
 	Gui.Labo.lastBtn();
 }

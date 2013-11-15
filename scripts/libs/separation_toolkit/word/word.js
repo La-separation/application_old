@@ -22,6 +22,7 @@ function Word(value, next_value, police, code) {
 	this.code = ((code == undefined) || (code == null)) ? value : code; // Code du mot
 	this.font = null; // Groupe Kinetic qui sera affiché
 	this.animation = null; // Fonction de callback pour l'animation ('Animation.x')
+	// this.animationOnChange = null; // Fonction de callback pour l'animation onChange ('Animation.xOnChange')
 	this.inAnimation = false; // Boolen pour savoir si le mot est entrain d'être animer
 	
 	this.active = false; // Booléen pour savoir si il est mis en avant
@@ -66,7 +67,7 @@ Word.prototype.generate = function() {
 		var new_code = this.getCode();
 		var new_value = this.getValue();
 		var new_next_value = this.getNextValue();
-	}
+		}
 	
 	switch(this.police)
 	{
@@ -167,26 +168,29 @@ Word.prototype.animationFinished = function() {
 	this.done('animationFinished');
 }
 
-Word.prototype.setAnimation = function(type) {
+Word.prototype.setAnimation = function(dir) {
 	switch(this.police) {
 		case 0:
 		case 5:
-			if(type == 'rTl')
+			if(dir == -1) {
 				this.animation = Animation.downCutLeft;
-			else
+			} else if (dir == 1) {
 				this.animation = Animation.downCutRight;
+			}
 		break;
 		case 1:
-			if(type == 'rTl')
+			if(dir == -1) {
 				this.animation = Animation.upCutLeft;
-			else
+			} else if (dir == 1) {
 				this.animation = Animation.upCutRight;
+			}
 		break;
 		case 2:
-			if(type == 'rTl')
+			if(dir == -1) {
 				this.animation = Animation.centraleCutLeft;
-			else
+			} else if (dir == 1) {
 				this.animation = Animation.centraleCutRight;
+			}
 		break;
 		case 3:
 			this.animation = Animation.ombre;
@@ -207,27 +211,18 @@ Word.prototype.addGesture = function() {
 		case 3:
 		case 5:
 			var word = this;
-			this.gesture = new Array();
-			this.gesture[0] = new Separation.cut({
-				x: this.getX() - this.getWidth() / 4,
-				y:	this.getY() - this.getHeight() / 2,
-				width: this.getWidth() * 1.5,
-				height: this.getHeight() * 2,
-			}, 'lTr');
-			this.gesture[0].on(function(){
-				word.setAnimation('lTr');
+			function onCut(dir) {
+				word.setAnimation(dir);
 				word.animate();
-			});
-			this.gesture[1] = new Separation.cut({
-				x: this.getX() - this.getWidth() / 4,
-				y:	this.getY() - this.getHeight() / 2,
-				width: this.getWidth() * 1.5,
-				height: this.getHeight() * 2,
-			}, 'rTl');
-			this.gesture[1].on(function(){
-				word.setAnimation('rTl');
-				word.animate();
-			});
+			}
+			
+			function onChange(dir, value) {
+				// word.font.group.setX(word.getX() + value * dir * word.getWidth() * 0.8*2);
+				// mainLayer.draw();
+				// word.display(mainLayer);
+				// alert(value);
+			}
+			Event.onCut(this.getId(), this, onCut, onChange, true);
 		break;
 		default:
 			alert('Police inconnue : ' + this.police + ' dans la fonction Word.addGesture()');
@@ -236,19 +231,18 @@ Word.prototype.addGesture = function() {
 }
 
 Word.prototype.removeGesture = function() {
-	if(this.gesture[0] != undefined) {
-		switch(this.police)
-		{
-			case 0:
-			case 1:
-			case 2:
-			case 3:
-			case 5:
-				this.gesture[0].off();
-				this.gesture[1].off();
-			break;
-		}
-		Destroy.array(this.gesture);
+	switch(this.police)
+	{
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 5:
+			Event.destroy(this.getId(), 'cut');
+		break;
+		default:
+			alert('Police inconnue : ' + this.police + ' dans la fonction Word.removeGesture()');
+		break;
 	}
 }
 
@@ -290,7 +284,6 @@ Word.prototype.activate = function() {
 		this.setScale(this.scale);
 	
 	this.addGesture();
-	
 	this.activeDbltap();
 }
 

@@ -28,10 +28,14 @@ function Word_getNormalizedPolice(police) {
 	switch (police) {
 		case 'coupable_min_haut' :
 		case 'coupable_maj_haut' :
+		case 'coupable_haut_maj' :
+		case 'coupable_haut_min' :
 		case 'coupable_haut' :
 			return 0;
 		case 'coupable_min_bas' :
 		case 'coupable_maj_bas' :
+		case 'coupable_bas_maj' :
+		case 'coupable_bas_min' :
 		case 'coupable_bas' :
 			return 1;
 		case 'centrale' :
@@ -40,8 +44,10 @@ function Word_getNormalizedPolice(police) {
 			return 3;
 		case 'coupable_haut_entier' :
 			return 4;
+		default:
+			alert('Police inconnue : ' . police);
+			return 0;
 	}
-	return 0;
 }
 
 // Selon le choix (exemple : '24px'), deviendra la variable rct (RecitConsTantes)

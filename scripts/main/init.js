@@ -53,8 +53,6 @@ function initSounds() {
 		sounds["cut1"] = new Media(path.replace(tab[tab.length-1], "sounds/cut1.ogg"));
 		sounds["cut2"] = new Media(path.replace(tab[tab.length-1], "sounds/cut2.ogg"));
 		sounds["login"] = new Media(path.replace(tab[tab.length-1], "sounds/login.ogg"));
-		sounds["inspiration"] = new Media(path.replace(tab[tab.length-1], "sounds/inspiration.ogg"));
-		sounds["expiration"] = new Media(path.replace(tab[tab.length-1], "sounds/expiration.ogg"));
 	}
 }
 

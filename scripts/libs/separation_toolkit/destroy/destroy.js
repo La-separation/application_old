@@ -5,11 +5,7 @@ var Destroy = {};
 
 Destroy.objet = function(obj) {
 	if(obj != null) {
-		// alert(obj);
 		obj.destroy();
-		// for (attr in obj) {
-			// obj[attr] = null;
-		// }
 		obj = null;
 	}
 }

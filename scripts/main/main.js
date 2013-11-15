@@ -24,7 +24,7 @@ function appStart() {
 	stage.getContent().style.display = 'block';
 	
 	stage.on(events['tap'], function(event) { Event.tap(event); });
-	// stage.on(events['touchmove'], function(event) { Event.touchmove(event); });
+	stage.on(events['touchmove'], function(event) { Event.touchmove(event); });
 
 	loadButtons();
 

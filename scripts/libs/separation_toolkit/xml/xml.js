@@ -46,26 +46,36 @@ Xml.importStory = function(xml_path) {
 
 }
 
-Xml.importLabRequest = function(xml_link, word_requested) {
-	var xml_file = Xml.load(xml_link);
+Xml.importLabRequest = function(word_requested) {
+	var xml_file = Xml.load('http://192.185.52.237/~lasepa/beta/API/getWordPossibilities.php?word=' + word_requested);
 	
 	var p = new Array();
 	
-	var xroot = xml_file.getElementsByTagName("words")[0];
-	var xwords = xroot.getElementsByTagName("word");
+	var xroot = xml_file.getElementsByTagName("root")[0];
+	var xpolices = xroot.getElementsByTagName("police");
 	
-	for(i=xwords.length-1 ; i >= 0 && i > xwords.length-Labo_max_possibilities ; i--) {
-		var xword = xwords[i];
-		if (xword.getAttribute("name") != word_requested.value) {
-			var value = xword.getAttribute("name");
-			var police = Word_getNormalizedPolice(xword.getAttribute("font"));
-			var code = xword.getAttribute("code");
+	for (var i = 0; i < xpolices.length; i++) {
+		var xpolice = xpolices[i];
+		var police = Word_getNormalizedPolice(xpolice.getAttribute("value"));
+		alert(police);
+		var xcodes = xpolice.getElementsByTagName("code");
+		for (var j = 0; j < xcodes.length; j++) {
+			var xcode = xcodes[j];
+			var code = xcode.getAttribute("value");
 			
-			p.push(new Possibility(value, police, code));
+			var xwords = xcode.getElementsByTagName("word");
+			for(var k = 0; k < xwords.length; k++) {
+				var xword = xwords[k];
+				var value = xword.getAttribute("value");
+				
+				if(value != word_requested) {
+					p.push(new Possibility(value, police, code));
+				}
+			}
 		}
 	}
 	
 	return p;
 }
 
-scriptLoaded('scripts/xml/xml.js');
+scriptLoaded('scripts/libs/separation_toolkit/xml/xml.js');

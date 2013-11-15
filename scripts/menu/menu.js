@@ -7,10 +7,6 @@ Menu.anim_duration = 2;
 Menu.opacity = 0.5;
 
 Menu.start = function() {
-	mainLayer.clear();
-	actionLayer.clear();
-	clearStage();
-
 	Destroy.all();
 	
 	Menu.recit();
@@ -34,13 +30,14 @@ Menu.destroy = function() {
 Menu.recit = function() {
 	var zoom = 3;
 
-	Menu.words['recit'] = new Word('poemes', null, 5);
+	Menu.words['recit'] = new Word('carnet', null, 5);
 	Menu.words['recit'].setZoom(zoom);
 	Menu.words['recit'].setX(-Menu.words['recit'].getWidth());
 	Menu.words['recit'].setCenterY(screenHeight * 1/2);
 	Menu.words['recit'].display(mainLayer);
 	
 	Menu.words['recit'].setCenterX(screenWidth * 1/5);
+	Menu.words['recit'].addGesture();
 	
 	new Kinetic.Tween({
 		node: Menu.words['recit'].getNode(),
@@ -114,7 +111,7 @@ Menu.aPropos = function() {
 }
 
 Menu.lang = function() {
-	Menu.words['lang_EN'] = new Word('Fr | En', 'En | Fr', 0);
+	Menu.words['lang_EN'] = new Word('fr | en', null, 0);
 	Menu.words['lang_EN'].setCenterXY(screenWidth / 2, screenHeight * 2/12);
 	Menu.words['lang_EN'].getNode().setOpacity(0);
 	Menu.words['lang_EN'].addGesture();
@@ -127,7 +124,7 @@ Menu.lang = function() {
 		duration: Menu.anim_duration,
 	}).play();
 	
-	Event.onTap('Menu.lang_EN', Menu.words['lang_EN'], function(word) {
+	Event.onTap('Menu.lang_EN', Menu.words['lang_EN'], function() {
 		alert('A venir \n Soon');
 	}, true);
 	

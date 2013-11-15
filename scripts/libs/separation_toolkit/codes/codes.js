@@ -96,6 +96,18 @@ function convertValue(value, code, police) {
 		}
 	}
 	
+	// TODO : Refaire le switch pour prendre en compte le code
+	// temp :
+	
+	// Si le code est en maj, on met le mot en maj
+	if(code == code.toUpperCase()) {
+		new_value = new_value.toUpperCase();
+	}
+	// Si le code est en min, on met le mot en min (dans le cas où l'utilisateur rentre un mot en majuscules)
+	else if(code == code.toLowerCase()) {
+		new_value = new_value.toLowerCase();
+	}
+	
 	return new_value;
 }
 
