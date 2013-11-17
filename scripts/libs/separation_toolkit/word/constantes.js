@@ -12,7 +12,7 @@ var Word_cst = {
 		},
 	opacity: {
 		light: 1,
-		dark: 0.3,
+		dark: 0,
 	}
 }
 

@@ -53,7 +53,6 @@ Word.prototype.done = function(fct_done) {
 }
 
 Word.prototype.generate = function() {
-	
 	if(this.font != null) {
 		this.font.destroy();
 	}
@@ -124,13 +123,14 @@ Word.prototype.animate = function() {
 
 Word.prototype.animationFinished = function() {
 	this.inAnimation = false;
-	var temp = this.next_value;
-	this.next_value = this.value;
-	this.value = temp;
-	
-	this.generate();
-	this.display(mainLayer);
-	
+	if(this.police != 3) {
+		var temp = this.next_value;
+		this.next_value = this.value;
+		this.value = temp;
+		
+		this.generate();
+		this.display(mainLayer);
+	}
 	this.activeDbltap();
 	this.done('animationFinished');
 }
@@ -280,8 +280,6 @@ Word.prototype.disable = function() {
 	if(this.zoomOnActive) {
 		this.zoomOut();
 	}
-
-	// this.disableDbltap();
 }
 
 Word.prototype.setZoom = function(data) {

@@ -63,8 +63,10 @@ Labo.destroy = function() {
 function loadingImg() {
 	Gui.homeBtn();
 	var loading = new Word("Chargement");
-	loading.setCenterX(screenWidth/2)
-	loading.setCenterY(screenHeight/2)
+	
+	loading.setCenterX(screenWidth/2);
+	loading.setCenterY(screenHeight/2);
+	
 	loading.display(mainLayer);
 	mainLayer.draw();
 }

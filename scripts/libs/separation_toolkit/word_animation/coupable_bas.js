@@ -15,7 +15,7 @@ Animation.upCut = function(word, x_up, x_up_next) {
 		x: x_up_next,
 		duration: Word_cst.duration.upCut,
 		easing: Kinetic.Easings.EaseIn,
-		onFinish: function(){word.tween[1].play()},
+		onFinish: function(){word.tween[1].play();},
 		opacity: 0,
 	});
 	

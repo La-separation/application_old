@@ -30,8 +30,8 @@ if(appOnDevice()) {
 	imgs[1].src = path.replace(tab[tab.length-1], "imgs/aide/CYGNE.jpg");
 }
 else {
-	imgs[0].src = "imgs/aide/OMBRE.jpg";
-	imgs[1].src = "imgs/aide/CYGNE.jpg";
+	imgs[0].src = "imgs/aide/OMBRE.png";
+	imgs[1].src = "imgs/aide/CYGNE.png";
 }
 
 this.group = new Kinetic.Group({

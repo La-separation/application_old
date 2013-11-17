@@ -17,10 +17,9 @@ Gui.Labo.nextBtn = function() {
 	var nextBtn = new Word(" > ",null,4); 	nextBtn.setZoom(zoom);
 	nextBtn.setX(screenWidth - nextBtn.getWidth());
 	nextBtn.setY(0);
-	nextBtn.display(mainLayer);
+	nextBtn.display(actionLayer);
 	nextBtn.onTap(function(){if(page < Math.ceil(cloud.possibilities.length/cloud.nb_max)){page++;Labo.displayCloud();}});
 
-	mainLayer.draw();
 	actionLayer.draw();
 }
 
@@ -30,10 +29,9 @@ Gui.Labo.lastBtn = function() {
 	var lastBtn = new Word(" < ",null,4);	lastBtn.setZoom(zoom);
 	lastBtn.setX(0);
 	lastBtn.setY(0);
-	lastBtn.display(mainLayer);
+	lastBtn.display(actionLayer);
 	lastBtn.onTap(function(){if(page > 1){page--;Labo.displayCloud();}});
 
-	mainLayer.draw();
 	actionLayer.draw();
 }
 
@@ -43,10 +41,9 @@ Gui.Labo.policeBtn = function() {
 	var policeBtn = new Word(" P ",null,4); policeBtn.setZoom(zoom);
 	policeBtn.setX(screenWidth - policeBtn.getWidth());
 	policeBtn.setY(screenHeight - policeBtn.getHeight() / 4);
-	policeBtn.display(mainLayer);
+	policeBtn.display(actionLayer);
 	policeBtn.onTap(function(){Labo.menu()});
 
-	mainLayer.draw();
 	actionLayer.draw();
 }
 
@@ -65,14 +62,13 @@ Gui.Recit.menuNextBtn = function() {
 	var nextBtn = new Word(" > ", null, 4);		nextBtn.setZoom(zoom);
 	nextBtn.setX(screenWidth - nextBtn.getWidth());
 	nextBtn.setY(0);
-	nextBtn.display(mainLayer);
+	nextBtn.display(actionLayer);
 	nextBtn.onTap(function(){
 		if(story_page<(xmlList.length/nb_recit_max)) {
 			Recit.displayStoriesMenu();
 		}
 	});
 
-	mainLayer.draw();
 	actionLayer.draw();
 }
 
@@ -82,7 +78,7 @@ Gui.Recit.menuLastBtn = function() {
 	var lastBtn = new Word(" < ", null, 4);		lastBtn.setZoom(zoom);
 	lastBtn.setX(0);
 	lastBtn.setY(0);
-	lastBtn.display(mainLayer);
+	lastBtn.display(actionLayer);
 	lastBtn.onTap(function(){
 		if(story_page>1) {
 			story_page--;
@@ -90,9 +86,7 @@ Gui.Recit.menuLastBtn = function() {
 		}
 	});
 	
-	mainLayer.draw();
 	actionLayer.draw();
-
 }
 
 Gui.Recit.menuDisplayAll = function() {
@@ -107,10 +101,9 @@ Gui.Recit.storiesBtn = function () {
 	var storiesBtn = new Word(" R", null, 4);	storiesBtn.setZoom(zoom);
 	storiesBtn.setX(screenWidth - storiesBtn.getWidth());
 	storiesBtn.setY(screenHeight - storiesBtn.getHeight() / 2);
-	storiesBtn.display(mainLayer);
-	storiesBtn.onTap(function(){Recit.start()});
+	storiesBtn.display(actionLayer);
+	storiesBtn.onTap(function(){Recit.start();});
 
-	mainLayer.draw();
 	actionLayer.draw();
 }
 
@@ -120,10 +113,9 @@ Gui.Recit.nextBtn = function() {
 	var nextBtn = new Word(" > ", null, 4);		nextBtn.setZoom(zoom);
 	nextBtn.setX(screenWidth - nextBtn.getWidth());
 	nextBtn.setY(0);
-	nextBtn.display(mainLayer);
+	nextBtn.display(actionLayer);
 	nextBtn.onTap(function(){}); // A COMPLETER !!!
 
-	mainLayer.draw();
 	actionLayer.draw();
 }
 
@@ -133,18 +125,17 @@ Gui.Recit.lastBtn = function() {
 	var lastBtn = new Word(" < ", null, 4);		lastBtn.setZoom(zoom);
 	lastBtn.setX(0);
 	lastBtn.setY(0);
-	lastBtn.display(mainLayer);
+	lastBtn.display(actionLayer);
 	lastBtn.onTap(function(){}); // A COMPLETER !!!
 
-	mainLayer.draw();
 	actionLayer.draw();
 }
 
 Gui.Recit.displayAll = function() {
 	Gui.homeBtn();
 	Gui.Recit.storiesBtn();
-	Gui.Recit.nextBtn();
-	Gui.Recit.lastBtn();
+	// Gui.Recit.nextBtn();
+	// Gui.Recit.lastBtn();
 }
 
 

@@ -7,6 +7,7 @@ Effects.setLight = function(word_node) {
 		node: word_node,
 		opacity: Word_cst.opacity.light,
 		duration: Word_cst.duration.opacity,
+		Easing: Kinetic.EaseIn,
 	}).play();
 }
 
