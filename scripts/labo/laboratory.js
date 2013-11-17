@@ -9,6 +9,8 @@ var page = 1;
 
 Labo.start = function() {	
 	Destroy.all();
+	page = 1;
+	
 	word_searched = prompt("Choisissez un mot :");
 	if (word_searched != "" && word_searched != null) {
 		Labo.menu();
@@ -46,9 +48,10 @@ Labo.generateCloud = function() {
 Labo.displayCloud = function() {
 	Destroy.all();
 	Gui.Labo.displayAll();
-
+	
 	cloud.generate(page);
 	cloud.display(mainLayer);
+	
 	mainLayer.draw();
 	actionLayer.draw();
 }

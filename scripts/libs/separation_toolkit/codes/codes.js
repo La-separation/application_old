@@ -27,9 +27,19 @@ function convertCode(value, code, police) {
 		}
 	}
 	
-	// alert('"' + new_code + '"');
-	
 	return new_code;
+}
+
+function setCase(str, i, code) {	
+	if(i > str.length - 1) {
+		return str.toString();
+	} else {
+		if(code == code.toLowerCase()) {
+			return str.substr(0, i) + str[i].toLowerCase() + str.substr(i + 1);
+		} else {
+			return str.substr(0, i) + str[i].toUpperCase() + str.substr(i + 1);
+		}
+	}
 }
 
 /*
@@ -37,18 +47,23 @@ function convertCode(value, code, police) {
 */
 function convertValue(value, code, police) {
 	var new_value = '';
+	
 	for(var i = 0, i_code = 0; i < value.length; i++, i_code++) {
+	
+	
+		value = setCase(value, i, code[i_code]);
+	
 		switch(police) {
 			case 0:
 				switch(value[i]) {
 					case 'w': case 'W': // Lettres de largeur 3
 						new_value += value[i];
-						if(code[i_code] == 'i' || code[i_code] == 'I') i_code += 2;
+						if(code[i_code].toLowerCase() == 'i') i_code += 2;
 					break;
 					case 'k': case 'u': case 'v': case 'x': case 'y': // Lettres de largeur 2
 					case 'H': case 'K': case 'U': case 'V': case 'X': case 'Y': 
 						new_value += value[i];
-						if(code[i_code] == 'i' || code[i_code] == 'I') i_code++;
+						if(code[i_code].toLowerCase() == 'i') i_code++;
 					break;
 					case 'C': // Le C peut être rond ('C') ou carré ('[')
 						new_value += (code[i_code] == 'O') ? 'C' : '[';
@@ -94,18 +109,6 @@ function convertValue(value, code, police) {
 			default:
 				new_value += value[i];
 		}
-	}
-	
-	// TODO : Refaire le switch pour prendre en compte le code
-	// temp :
-	
-	// Si le code est en maj, on met le mot en maj
-	if(code == code.toUpperCase()) {
-		new_value = new_value.toUpperCase();
-	}
-	// Si le code est en min, on met le mot en min (dans le cas où l'utilisateur rentre un mot en majuscules)
-	else if(code == code.toLowerCase()) {
-		new_value = new_value.toLowerCase();
 	}
 	
 	return new_value;

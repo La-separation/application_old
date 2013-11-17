@@ -57,7 +57,7 @@ Xml.importLabRequest = function(word_requested) {
 	for (var i = 0; i < xpolices.length; i++) {
 		var xpolice = xpolices[i];
 		var police = Word_getNormalizedPolice(xpolice.getAttribute("value"));
-		alert(police);
+
 		var xcodes = xpolice.getElementsByTagName("code");
 		for (var j = 0; j < xcodes.length; j++) {
 			var xcode = xcodes[j];
@@ -68,7 +68,7 @@ Xml.importLabRequest = function(word_requested) {
 				var xword = xwords[k];
 				var value = xword.getAttribute("value");
 				
-				if(value != word_requested) {
+				if(value.toLowerCase() != word_requested.toLowerCase()) {
 					p.push(new Possibility(value, police, code));
 				}
 			}

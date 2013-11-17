@@ -67,7 +67,7 @@ Word.prototype.generate = function() {
 		var new_code = this.getCode();
 		var new_value = this.getValue();
 		var new_next_value = this.getNextValue();
-		}
+	}
 	
 	switch(this.police)
 	{
