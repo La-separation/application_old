@@ -20,11 +20,7 @@ Menu.start = function() {
 }
 
 Menu.destroy = function() {
-	for(var w in Menu.words) {
-		// alert(w);
-		Destroy.objet(Menu.words[w]);
-	}
-	Menu.words = new Array();
+	Destroy.arrayObjet(Menu.words);
 }
 
 Menu.recit = function() {
@@ -37,7 +33,6 @@ Menu.recit = function() {
 	Menu.words['recit'].display(mainLayer);
 	
 	Menu.words['recit'].setCenterX(screenWidth * 1/5);
-	Menu.words['recit'].addGesture();
 	
 	new Kinetic.Tween({
 		node: Menu.words['recit'].getNode(),
@@ -114,7 +109,6 @@ Menu.lang = function() {
 	Menu.words['lang_EN'] = new Word('fr | en', null, 0);
 	Menu.words['lang_EN'].setCenterXY(screenWidth / 2, screenHeight * 2/12);
 	Menu.words['lang_EN'].getNode().setOpacity(0);
-	Menu.words['lang_EN'].addGesture();
 	Menu.words['lang_EN'].display(mainLayer);
 
 	new Kinetic.Tween({

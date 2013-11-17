@@ -3,12 +3,19 @@ var Xml = {};
 Xml.load = function(xml_path) {
 	var loadedFile;
 
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("GET", xml_path, false);
-	xmlhttp.setRequestHeader('Content-Type', 'text/xml');
-	xmlhttp.send();
-	loadedFile = xmlhttp.responseXML;
-
+	if(navigator.appname == 'Microsoft Internet Explorer') {
+		loadedFile = new ActiveXObject("Microsoft.XMLDOM");
+		loadedFile.async = false;
+		while(loadedFile.readyState != 4) {};
+		loadedFile.load(xml_path);
+	}
+	else {
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET", xml_path, false);
+		xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+		xmlhttp.send();
+		loadedFile = xmlhttp.responseXML;
+	}
 	return loadedFile;
 }
 

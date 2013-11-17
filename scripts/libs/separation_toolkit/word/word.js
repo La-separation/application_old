@@ -72,49 +72,16 @@ Word.prototype.generate = function() {
 	switch(this.police)
 	{
 		case 0:
-		case 5:
-			this.font = new Word_DemiHaut({
-				value: new_value,
-				next_value: new_next_value,
-				code: new_code,
-				fontSize: this.fontSize,
-				police: this.police,
-				color: this.color,
-				cst: this.cst,
-			});
-		break;
 		case 1:
-			this.font = new Word_DemiBas({
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+			this.font = new window['Word_' + Word_polices[this.police]]({
 				value: new_value,
 				next_value: new_next_value,
 				code: new_code,
 				fontSize: this.fontSize,
-				police: this.police,
-				color: this.color,
-				cst: this.cst,
-			});
-		break;
-		case 2:
-			this.font = new Word_Centrale({
-				value: this.value,
-				next_value: this.next_value,
-				code: this.code,
-				fontSize: this.fontSize,
-				police: this.police,
-				color: this.color,
-				cst: this.cst,
-			});
-		break;
-		case 3:
-			this.font = new Word_Ombre({
-				police: this.police,
-				cst: this.cst,
-			});
-		break;
-		case 4:
-			this.font = new Word_DemiHautEntier({
-				value: new_value,
-				fontSize: this.fontSizes,
 				police: this.police,
 				color: this.color,
 				cst: this.cst,

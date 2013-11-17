@@ -97,8 +97,8 @@ Gui.Recit.menuLastBtn = function() {
 
 Gui.Recit.menuDisplayAll = function() {
 	Gui.homeBtn();
-	Gui.Recit.menuNextBtn();
-	Gui.Recit.menuLastBtn();
+	// Gui.Recit.menuNextBtn();
+	// Gui.Recit.menuLastBtn();
 }
 
 Gui.Recit.storiesBtn = function () {
@@ -106,7 +106,7 @@ Gui.Recit.storiesBtn = function () {
 	
 	var storiesBtn = new Word(" R", null, 4);	storiesBtn.setZoom(zoom);
 	storiesBtn.setX(screenWidth - storiesBtn.getWidth());
-	storiesBtn.setY(screenHeight - storiesBtn.getHeight() / 4);
+	storiesBtn.setY(screenHeight - storiesBtn.getHeight() / 2);
 	storiesBtn.display(mainLayer);
 	storiesBtn.onTap(function(){Recit.start()});
 

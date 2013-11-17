@@ -3,7 +3,7 @@
 	uniquement si le mode débug est activé
 */
 function log(str) {
-	alert(str);
+	// TO DO écriture dans une fichier
 }
 
 scriptLoaded('scripts/functions.js');

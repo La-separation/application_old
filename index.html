@@ -12,9 +12,9 @@
 		
 		<script type="text/javascript">
 			var loaded_scripts = 1;
-			var n_scripts = 57;
+			var n_scripts = 49;
 			function scriptLoaded(script_path) {
-				document.getElementById("main").innerHTML += "<p class=\"center\" >"+loaded_scripts+"/"+n_scripts+" : "+script_path+"</p>";
+				// document.getElementById("main").innerHTML += "<p class=\"center\" >"+loaded_scripts+"/"+n_scripts+" : "+script_path+"</p>";
 				document.getElementById("pourcentage").innerHTML = Math.floor((loaded_scripts/n_scripts)*100) + '%';
 				loaded_scripts++;
 			}
@@ -39,8 +39,6 @@
 			<audio id="cut1" src="sounds/cut1.ogg"></audio>
 			<audio id="cut2" src="sounds/cut2.ogg"></audio>
 			<audio id="login" src="sounds/login.ogg"></audio>
-			<audio id="inspiration" src="sounds/inspiration.ogg"></audio>
-			<audio id="expiration" src="sounds/expiration.ogg"></audio>
 		</div>
 	</body>
 		<!-- scripts -->
@@ -57,8 +55,7 @@
 		<!-- scripts/libs/separation_toolkit/word -->
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/word/constantes.js"></script>
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/word/word.js"></script>
-		<script type="text/javascript" src="scripts/libs/separation_toolkit/word/word_kinetic.js"></script>
-		
+	
 		<!-- scripts/libs/separation_toolkit/codes -->
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/codes/codes.js"></script>
 		
@@ -82,17 +79,14 @@
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/gesture/word_rip.js"></script>
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/gesture/word_separation.js"></script>
 
-		<!-- scripts/libs/separation_toolkit/word_constructor -->
-		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_constructor/central.js"></script>
-		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_constructor/demihaut.js"></script>
-		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_constructor/ombre.js"></script>
+		<!-- scripts/libs/separation_toolkit/word_kinetic -->
+		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_kinetic/centrale.js"></script>
+		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_kinetic/coupable_haut.js"></script>
+		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_kinetic/coupable_bas.js"></script>
+		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_kinetic/coupable_entier.js"></script>
+		<script type="text/javascript" src="scripts/libs/separation_toolkit/word_kinetic/ombre.js"></script>
 
-		<!-- scripts/libs/separation_toolkit/animation -->
-		<script type="text/javascript" src="scripts/libs/separation_toolkit/animation/friction.js"></script>
-		<script type="text/javascript" src="scripts/libs/separation_toolkit/animation/rip.js"></script>
-		<script type="text/javascript" src="scripts/libs/separation_toolkit/animation/separation.js"></script>
-		
-				<!-- scripts/libs/separation_toolkit/gui -->
+		<!-- scripts/libs/separation_toolkit/gui -->
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/gui/gui.js"></script>
 
 		<!-- scripts/libs/separation_toolkit/sound -->
@@ -110,18 +104,8 @@
 		<!-- scripts/libs/separation_toolkit/xml -->
 		<script type="text/javascript" src="scripts/libs/separation_toolkit/xml/xml.js"></script>
 
-		<!-- scripts/libs/separation_toolkit -->
-		<script type="text/javascript" src="scripts/libs/separation_toolkit/opacity.js"></script>
-		<script type="text/javascript" src="scripts/libs/separation_toolkit/zoom.js"></script>
-
 		<!-- scripts -->
 		<script type="text/javascript" src="scripts/variables.js"></script>
-		<script type="text/javascript" src="scripts/classes.js"></script>
-
-		<!-- scripts/a_propos -->
-		<script type="text/javascript" src="scripts/a_propos/alisDescription.js"></script>
-		<script type="text/javascript" src="scripts/a_propos/concept.js"></script>
-		<script type="text/javascript" src="scripts/a_propos/credits.js"></script>
 
 		<!-- scripts/labo -->
 		<script type="text/javascript" src="scripts/labo/laboratory.js"></script>

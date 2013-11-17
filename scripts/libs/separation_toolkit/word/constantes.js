@@ -21,7 +21,8 @@ var Word_polices = {
 	1 : 'coupable_bas',
 	2 : 'centrale',
 	3 : 'ombre',
-	4 : 'coupable_haut_entier',
+	4 : 'coupable_entier',
+	5 : 'coupable_haut',
 }
 
 function Word_getNormalizedPolice(police) {

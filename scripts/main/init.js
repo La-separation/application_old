@@ -40,22 +40,6 @@ function initImages() {
 	};
 }
 
-function initSounds() {
-	if (appOnDevice()) {
-		var path = location.pathname;
-		var tab = path.split("/")
-		sounds["cut"] = new Media(path.replace(tab[tab.length-1], "sounds/cut.ogg"));
-		sounds["rub"] = new Media(path.replace(tab[tab.length-1], "sounds/rub.ogg"));
-		sounds["tear"] = new Media(path.replace(tab[tab.length-1], "sounds/tear.ogg"));
-		sounds["ambiant"] = new Media(path.replace(tab[tab.length-1], "sounds/ambiant.ogg"));
-		sounds["error"] = new Media(path.replace(tab[tab.length-1], "sounds/error.ogg"));
-		sounds["tap"] = new Media(path.replace(tab[tab.length-1], "sounds/tap.ogg"));
-		sounds["cut1"] = new Media(path.replace(tab[tab.length-1], "sounds/cut1.ogg"));
-		sounds["cut2"] = new Media(path.replace(tab[tab.length-1], "sounds/cut2.ogg"));
-		sounds["login"] = new Media(path.replace(tab[tab.length-1], "sounds/login.ogg"));
-	}
-}
-
 btnFunctions['home'] = function () {
 	clearStage();
 	Menu.start();
