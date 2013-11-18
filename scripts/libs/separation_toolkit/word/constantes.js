@@ -8,7 +8,7 @@ var Word_cst = {
 		opacity: 1,
 		downCut: 2,
 		upCut: 2,
-		ombre: 2,
+		ombre: 0.5,
 		},
 	opacity: {
 		light: 1,

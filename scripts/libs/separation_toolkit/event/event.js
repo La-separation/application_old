@@ -28,7 +28,11 @@ function getTouchMove(event) {
 
 Event.touchmove = function(event) {
 	event.preventDefault;
-	Event.cut(event);
+	var coords = getTouchMove(event);
+	
+	Event.cut(coords);
+	Event.erase(coords);
+	Event.open(coords);
 }
 
 Event.destroy = function(id, type) {
@@ -37,6 +41,8 @@ Event.destroy = function(id, type) {
 			case 'tap' : Event.destroyTap(id); break;
 			case 'dbltap' : Event.destroyDbltap(id); break;
 			case 'cut' : Event.destroyCut(id); break;
+			case 'erase' : Event.destroyErase(id); break;
+			case 'open' : Event.destroyOpen(id); break;
 			default: alert('"' + type + '" inconnu dans Event.destroy()');
 		}
 	}
@@ -44,6 +50,8 @@ Event.destroy = function(id, type) {
 		Event.destroyTap(id);
 		Event.destroyDbltap(id);
 		Event.destroyCut(id);
+		Event.destroyErase(id);
+		Event.destroyOpen(id);
 	}
 }
 
@@ -51,6 +59,8 @@ Event.destroyAll = function() {
 	Destroy.list(Event.tap_obj);
 	Destroy.list(Event.dbltap_obj);
 	Destroy.list(Event.cut_obj);
+	Destroy.list(Event.erase_obj);
+	Destroy.list(Event.open_obj);
 }
 
 scriptLoaded('scripts/libs/separation_toolkit/event/event.js');

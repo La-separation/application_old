@@ -54,7 +54,6 @@ imgs[1].onload = function() {
 		width: 771/4,
 		height: 267/4,
 		y: -12,
-		opacity: 0,
 	});
 }
 

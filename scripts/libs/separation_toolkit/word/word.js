@@ -22,7 +22,7 @@ function Word(value, next_value, police, code) {
 	this.code = ((code == undefined) || (code == null)) ? value : code; // Code du mot
 	this.font = null; // Groupe Kinetic qui sera affiché
 	this.animation = null; // Fonction de callback pour l'animation ('Animation.x')
-	// this.animationOnChange = null; // Fonction de callback pour l'animation onChange ('Animation.xOnChange')
+	this.animationOnChange = null; // Fonction de callback pour l'animation onChange ('Animation.xOnChange')
 	this.inAnimation = false; // Boolen pour savoir si le mot est entrain d'être animer
 	
 	this.active = false; // Booléen pour savoir si il est mis en avant
@@ -85,6 +85,8 @@ Word.prototype.generate = function() {
 				color: this.color,
 				cst: this.cst,
 			});
+			this.is_open_up = false;
+			this.is_open_down = false;
 		break;
 		default:
 			alert('Police inconnue : ' + this.police + ' dans la fonction Word.generate()');
@@ -110,127 +112,6 @@ Word.prototype.destroy = function() {
 	}
 }
 
-Word.prototype.animate = function() {
-	if(!this.inAnimation && (!word_active || this.active))
-	{
-		this.inAnimation = true;
-		this.animation(this);
-		this.disableDbltap();
-	}
-	
-	this.done('animate');
-}
-
-Word.prototype.animationFinished = function() {
-	this.inAnimation = false;
-	if(this.police != 3) {
-		var temp = this.next_value;
-		this.next_value = this.value;
-		this.value = temp;
-		
-		this.generate();
-		this.display(mainLayer);
-	}
-	this.activeDbltap();
-	this.done('animationFinished');
-}
-
-Word.prototype.setAnimation = function(dir) {
-	switch(this.police) {
-		case 0:
-		case 5:
-			if(dir == -1) {
-				this.animation = Animation.downCutLeft;
-			} else if (dir == 1) {
-				this.animation = Animation.downCutRight;
-			}
-		break;
-		case 1:
-			if(dir == -1) {
-				this.animation = Animation.upCutLeft;
-			} else if (dir == 1) {
-				this.animation = Animation.upCutRight;
-			}
-		break;
-		case 2:
-			if(dir == -1) {
-				this.animation = Animation.centraleCutLeft;
-			} else if (dir == 1) {
-				this.animation = Animation.centraleCutRight;
-			}
-		break;
-		case 3:
-			this.animation = Animation.ombre;
-		break;
-		default:
-			alert('Police inconnue : ' + this.police + ' dans la fonction Word.setAnimation()');
-		break;
-	}
-}
-
-// Fonctions pour la gestuelle
-Word.prototype.addGesture = function() {
-	switch(this.police)
-	{
-		case 0:
-		case 1:
-		case 2:
-		case 3:
-		case 5:
-			var word = this;
-			function onCut(dir) {
-				word.setAnimation(dir);
-				word.animate();
-			}
-			
-			function onChange(dir, value) {
-				// word.font.group.setX(word.getX() + value * dir * word.getWidth() * 0.8*2);
-				// mainLayer.draw();
-				// word.display(mainLayer);
-				// alert(value);
-			}
-			Event.onCut(this.getId(), this, onCut, onChange, true);
-		break;
-		default:
-			alert('Police inconnue : ' + this.police + ' dans la fonction Word.addGesture()');
-		break;
-	}
-}
-
-Word.prototype.removeGesture = function() {
-	switch(this.police)
-	{
-		case 0:
-		case 1:
-		case 2:
-		case 3:
-		case 5:
-			Event.destroy(this.getId(), 'cut');
-		break;
-		default:
-			alert('Police inconnue : ' + this.police + ' dans la fonction Word.removeGesture()');
-		break;
-	}
-}
-
-Word.prototype.onTap = function(handler) {
-	var id = this.getId();
-	
-	Event.onTap(id, this, function(word) { return function() {
-		if(!word_active)
-			handler(word);
-	}}(this), true);
-}
-
-Word.prototype.activeOnTap = function() {
-	if(this.value != this.next_value) {
-		this.onTap(function(word){
-			word.activate();
-		});
-		// this.addGesture();
-	}
-}
-	
 // Fonctions de mise en avant
 Word.prototype.activate = function() {
 	this.active = true;
@@ -254,16 +135,6 @@ Word.prototype.activate = function() {
 	this.activeDbltap();
 }
 
-Word.prototype.activeDbltap = function() {
-	Event.onDblTap(this.getId(), stage, function(word) { return function() {
-		word.disable();
-	}}(this), false);
-}
-
-Word.prototype.disableDbltap = function() {
-	Event.destroyDbltap(this.getId());
-}
-
 Word.prototype.disable = function() {
 	this.active = false;
 	word_active = false;
@@ -280,6 +151,8 @@ Word.prototype.disable = function() {
 	if(this.zoomOnActive) {
 		this.zoomOut();
 	}
+	
+	this.disableDbltap();
 }
 
 Word.prototype.setZoom = function(data) {
@@ -350,6 +223,7 @@ Word.prototype.setCode = function(data) { this.code = data; }
 Word.prototype.setPolice = function(data) { this.police = data; }
 Word.prototype.setZoomOnActive = function(data) { this.zoomOnActive = data; }
 Word.prototype.setDone = function(fct_done, handler) { this.list_done[fct_done] = handler; }
+Word.prototype.removeDone = function(fct_done) { this.list_done[fct_done] = function(){}; }
 Word.prototype.setScale = function(data) {
 	this.scale = data;
 	

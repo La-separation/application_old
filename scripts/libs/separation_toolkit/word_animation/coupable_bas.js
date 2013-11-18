@@ -24,25 +24,33 @@ Animation.upCut = function(word, x_up, x_up_next) {
 		x: x_up,
 		duration: Word_cst.duration.upCut,
 		easing: Kinetic.Easings.EaseOut,
-		onFinish: function(){word.animationFinished();},
+		onFinish: function(){word.animationFinished(true);},
 		opacity: 1,
 	});
 	
 	word.tween[0].play();
 }
 
-Animation.upCutLeft = function(word) {
+Animation.upCutLeft = function(word, dir) {
 	var x_up = word.font.down.getX() / word.getScale();
 	var x_up_next = -(word.getWidth() + word.getX()) / word.getScale();
 	
 	Animation.upCut(word, x_up, x_up_next);
 }
 
-Animation.upCutRight = function(word) {
+Animation.upCutRight = function(word, dir) {
 	var x_up = word.font.down.getX() / word.getScale();
 	var x_up_next = (screenWidth - word.getX()) / word.getScale();
 	
 	Animation.upCut(word, x_up, x_up_next);
+}
+
+Animation.onChange.upCutLeft = function(word, val) {
+	
+}
+
+Animation.onChange.upCutRight = function(word, val) {
+	
 }
 
 scriptLoaded('scripts/libs/separation_toolkit/word_animation/coupable_bas.js');

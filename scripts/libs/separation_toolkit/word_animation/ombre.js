@@ -1,44 +1,25 @@
 /*
 	Animation mbre statique
 */
-var active_OMBRE = true;
-Animation.ombre = function(word) {
-	
-	var tween = new Array();
-	
-	if(active_OMBRE) {
-		active_OMBRE = false;
-		tween[0] = new Kinetic.Tween({
-			node: OMBRE,
-			duration: Word_cst.duration.ombre,
-			opacity: 0,
-		});
+var opacity_OMBRE = 1;
+var step = 0.1;
 
-		tween[1] = new Kinetic.Tween({
-			node: CYGNE,
-			duration: Word_cst.duration.ombre,
-			opacity: 1,
-			onFinish: function(){word.animationFinished();},
-		});
+Animation.ombre = function(word, dir) {
+	opacity_OMBRE -= step;
+	if(opacity_OMBRE <= 0) {
+		opacity_OMBRE = 0;
+		word.animationFinished(true);
+	} else {
+		word.animationFinished(false);
 	}
-	else {
-		active_OMBRE = true;
-		tween[0] = new Kinetic.Tween({
-			node: CYGNE,
-			duration: Word_cst.duration.ombre,
-			opacity: 0,
-		});
+}
 
-		tween[1] = new Kinetic.Tween({
-			node: OMBRE,
-			duration: Word_cst.duration.ombre,
-			opacity: 1,
-			onFinish: function(){word.animationFinished();},
-		});
-	}
-	
-	tween[0].play();
-	tween[1].play();
+Animation.onChange.ombre = function(word, val) {
+	var opacity2 = opacity_OMBRE - step * val;
+	if(opacity2 < 0) opacity2 = 0;
+
+	OMBRE.setOpacity(opacity2);
+	mainLayer.draw();
 }
 
 scriptLoaded('scripts/libs/separation_toolkit/word_animation/ombre.js');
