@@ -26,7 +26,7 @@ Menu.destroy = function() {
 Menu.recit = function() {
 	var zoom = 3;
 
-	Menu.words['recit'] = new Word('carnet', null, 5);
+	Menu.words['recit'] = new Word('salon', null, 5);
 	Menu.words['recit'].setZoom(zoom);
 	Menu.words['recit'].setX(-Menu.words['recit'].getWidth());
 	Menu.words['recit'].setCenterY(screenHeight * 1/2);
