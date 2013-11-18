@@ -46,11 +46,11 @@ Animation.downCutRight = function(word, dir) {
 }
 
 Animation.onChange.downCutLeft = function(word, val) {
-	// word.font.down.setOffsetX(word.font.down.getWidth() * val * 0.8);
+	word.font.down.setOffsetX(word.font.down.getWidth() * val * 0.8);
 }
 
 Animation.onChange.downCutRight = function(word, val) {
-	// word.font.down.setOffsetX(-word.font.down.getWidth() * val * 0.8);
+	word.font.down.setOffsetX(-word.font.down.getWidth() * val * 0.8);
 }
 
 scriptLoaded('scripts/libs/separation_toolkit/word_animation/coupable_haut.js');
