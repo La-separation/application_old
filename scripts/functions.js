@@ -25,6 +25,7 @@ function randArray(array) {
 }
 
 function getWordCodes(word, police) {
+	var word = word.toLowerCase();
 	var word_codes = [""];
 	var i=0;
 	while (i < word.length) {
