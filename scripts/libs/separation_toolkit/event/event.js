@@ -9,12 +9,12 @@ var events = {
 	dbltap : (appOnDevice_real() ? 'dbltap' : 'dblclick'),
 };
 
-function getTouchPos(event) {
+Event.getTouchPos = function(event) {
 	return stage.getPointerPosition();
 }
 
 var old_touch_move = {x:0, y:0};
-function getTouchMove(event) {
+Event.getTouchMove = function(event) {
 	var new_touch_move = stage.getPointerPosition();
 	var coords = {
 		x1: old_touch_move.x,
@@ -26,13 +26,24 @@ function getTouchMove(event) {
 	return coords;
 }
 
+Event.invertTouchmoveXY = function(coords) {
+	var temp1 = coords.x1;
+	var temp2 = coords.x2;
+	coords.x1 = coords.y1;
+	coords.x2 = coords.y2;
+	coords.y1 = temp1;
+	coords.y2 = temp2;
+	
+	return coords;
+}
+
 Event.touchmove = function(event) {
 	event.preventDefault;
-	var coords = getTouchMove(event);
+	var coords = Event.getTouchMove(event);
 	
 	Event.cut(coords);
 	Event.erase(coords);
-	Event.open(coords);
+	Event.open(Event.invertTouchmoveXY(coords));
 }
 
 Event.destroy = function(id, type) {

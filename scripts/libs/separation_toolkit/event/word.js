@@ -12,19 +12,25 @@ Word.prototype.addGesture = function() {
 		word.setAnimationOnChange(dir);
 		word.animateOnChange(value);
 	}
+	function onBegin(dir) {
+		
+	}
+	function onAbort(dir) {
+		
+	}
 	
 	switch(this.police)
 	{
 		case 0:
 		case 1:
 		case 5:
-			Event.onCut(this.getId(), this, onEvent, onChange, true);
+			Event.onCut(this.getId(), this, true, onEvent, onChange, onBegin, onAbort, true);
 		break;
 		case 2:
-			Event.onOpen(this.getId(), this, onEvent, onChange, true);
+			Event.onOpen(this.getId(), this, true, onEvent, onChange, onBegin, onAbort, true);
 		break;
 		case 3:
-			Event.onErase(this.getId(), this, onEvent, onChange, true);
+			Event.onErase(this.getId(), this, true, onEvent, onChange, onBegin, onAbort, true);
 		break;
 		default:
 			alert('Police inconnue : ' + this.police + ' dans la fonction Word.addGesture()');

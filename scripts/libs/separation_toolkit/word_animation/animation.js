@@ -5,8 +5,7 @@ var Animation = {};
 Animation.onChange = {};
 
 Word.prototype.animate = function(dir) {
-	if(!this.inAnimation && (!word_active || this.active))
-	{
+	if(!this.inAnimation) {
 		this.inAnimation = true;
 		this.animation(this, dir);
 		this.disableDbltap();
@@ -16,15 +15,17 @@ Word.prototype.animate = function(dir) {
 }
 	
 Word.prototype.animateOnChange = function(value) {
-	this.animationOnChange(this, value);
-	mainLayer.draw();
+	if(!this.inAnimation) {
+		this.animationOnChange(this, value);
+		mainLayer.draw();
+	}
 	
 	this.done('animateOnChange');
 }
 
 Word.prototype.animationFinished = function(event_finish) {
 	this.inAnimation = false;
-	this.activeDbltap();
+	// this.activeDbltap();
 	
 	if(event_finish) {
 		if(this.police != 3) { // temp police OMBRE images

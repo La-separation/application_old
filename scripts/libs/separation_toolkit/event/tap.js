@@ -18,7 +18,7 @@ Event.onTap = function(id, object, callback, restart) {
 
 Event.tap = function(event) {
 	event.preventDefault();
-	var coord = getTouchPos(event);
+	var coord = Event.getTouchPos(event);
 	// On regarde si les coordonées du 'tap' se situent dans un rectangle actif
 	for(var i in Event.tap_obj) {
 		var obj = Event.tap_obj[i];
