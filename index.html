@@ -143,12 +143,12 @@
 				active: function() {
 					function active() {
 						if(loaded_scripts == n_scripts) {
-							if(appOnDevice()) {
-								document.addEventListener("deviceready", appStart, false);
-							}
-							else {
+							//if(appOnDevice()) {
+							//	document.addEventListener("deviceready", appStart, false);
+							//}
+							//else {
 								appStart();
-							}
+							//}
 						} else { setTimeout(active, 100); }
 					}
 					active();
