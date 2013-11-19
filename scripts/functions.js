@@ -24,26 +24,44 @@ function randArray(array) {
 	return array;
 }
 
-function getWordCodes(word, police) {
-	var word = word.toLowerCase();
-	var word_codes = [""];
-	var i=0;
-	while (i < word.length) {
-		var ilist = code[police][word[i].charCodeAt(0) - "a".charCodeAt(0)];
-		var j=1;
-		var k=0;
-		while (j <= ilist.length) {
-			if (j != 1) {
-				word_codes=word_codes.concat(word_codes);
+function getWordCodes(word, police)
+{
+	// Initialisation
+	var word_codes = [];
+	word = word.toLowerCase();
+	
+	// On parcourt toutes les lettres du mot
+	for (var i = 0; i < word.length; i++)
+	{
+		var c = word[i];
+		// On récupère la liste des codes de la lettre
+		var n = c.charCodeAt(0) - 'a'.charCodeAt(0);
+		var codes = code_polices[police][n];
+		
+		var new_word_codes = [];
+		
+		// On parcourt tous les codes possibles
+		for(var j in codes)
+		{
+			var code = codes[j];
+			// Si word_codes est vide, on ajoute les premiers codes
+			if(word_codes.length <= 0)
+			{
+				new_word_codes.push(code);
 			}
-			while (k < (word_codes.length*j/ilist.length)) {
-				word_codes[k]=word_codes[k] + ilist[j-1];
-				k++;
+			// Sinon on rajoute le code à la fin de chaque mot présent
+			else
+			{
+				for(k in word_codes)
+				{
+					new_word_codes.push(word_codes[k] + code);
+				}
 			}
-			j++;
 		}
-		i++;
+		
+		word_codes = new_word_codes;
 	}
+	
 	return word_codes;
 }
 

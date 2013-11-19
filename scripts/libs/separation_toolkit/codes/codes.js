@@ -30,14 +30,16 @@ function convertCode(value, code, police) {
 	return new_code;
 }
 
-function setCase(str, i, code) {	
-	if(i > str.length - 1) {
-		return str.toString();
-	} else {
-		if(code == code.toLowerCase()) {
-			return str.substr(0, i) + str[i].toLowerCase() + str.substr(i + 1);
+function setCase(str, i, code) {
+	if(code != undefined) {
+		if(i > str.length - 1) {
+			return str.toString();
 		} else {
-			return str.substr(0, i) + str[i].toUpperCase() + str.substr(i + 1);
+			if(code == code.toLowerCase()) {
+				return str.substr(0, i) + str[i].toLowerCase() + str.substr(i + 1);
+			} else {
+				return str.substr(0, i) + str[i].toUpperCase() + str.substr(i + 1);
+			}
 		}
 	}
 }
