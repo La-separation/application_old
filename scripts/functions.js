@@ -21,7 +21,7 @@ function randArray(array) {
 		array[rand2]=temp;
 		i++;
 	}
-	return array
+	return array;
 }
 
 scriptLoaded('scripts/functions.js');

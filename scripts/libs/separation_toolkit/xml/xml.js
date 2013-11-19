@@ -81,7 +81,7 @@ Xml.importLabRequest = function(word_requested) {
 			}
 		}
 	}
-	
+	p=randArray(p);
 	return p;
 }
 
