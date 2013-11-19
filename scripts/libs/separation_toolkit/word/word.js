@@ -104,7 +104,7 @@ Word.prototype.display = function(layer) {
 }
 
 Word.prototype.destroy = function() {
-	// this.font.destroy();
+	this.font.destroy();
 	Event.destroy(this.getId());
 	for(var i = 0; i < this.tween.length; i++) {
 		this.tween[i].pause();
