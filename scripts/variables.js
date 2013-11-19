@@ -9,6 +9,8 @@ code["coupable_haut_min"] = [["o"],["h"],["o"],["d"],["o"],["f"],["o"],["h"],["i
 code["coupable_haut_maj"] = [["A"],["A"],["A","C"],["A"],["A","C"],["C"],["A","C"],["II"],["I"],["I","T"],["II"],["I"],["M"],["A","II"],["A"],["A"],["A"],["A"],["A","C"],["T"],["II"],["II"],["III"],["II"],["II"],["Z"]];
 code["centrale"] = [["A"],["B"],["B"],["B"],["B"],["F"],["B"],["H"],["I"],["J"],["H"],["L"],["M"],["A"],["B"],["P"],["Q"],["A"],["B"],["T"],["U"],["V"],["W"],["H"],["Y"],["Z"]];
  
+police_list=["coupable_bas_min","coupable_bas_maj","coupable_haut_min","coupable_haut_maj","centrale"]
+
 var video = -1;
  
 var domaineSeparation = "http://i-trace.fr/2013/laseparation/P2MM";

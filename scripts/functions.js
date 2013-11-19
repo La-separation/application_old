@@ -13,7 +13,7 @@ function randRange(from,to) {
 function randArray(array) {
 	len=array.length;
 	i=0;
-	while (i<len) {
+	while (i<(len)) {
 		rand1=randRange(0,len-1);
 		rand2=randRange(0,len-1);
 		temp=array[rand1];

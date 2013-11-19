@@ -53,6 +53,7 @@ Xml.importStory = function(xml_path) {
 
 }
 
+/*
 Xml.importLabRequest = function(word_requested) {
 	var xml_file = Xml.load('http://192.185.52.237/~lasepa/beta/API/getWordPossibilities.php?word=' + word_requested);
 	
@@ -84,5 +85,6 @@ Xml.importLabRequest = function(word_requested) {
 	p=randArray(p);
 	return p;
 }
+*/
 
 scriptLoaded('scripts/libs/separation_toolkit/xml/xml.js');

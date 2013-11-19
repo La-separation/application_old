@@ -37,10 +37,7 @@ Labo.generateCloud = function() {
 	cloud.addCentralWord(new Word(word_searched));
 
 	setTimeout(function(){
-		//cloud.setPossibilities(Xml.importLabRequest("XML/lab_request.xml", cloud.getCentralWord()));
-		// http://192.185.52.237/~lasepa/beta/words.php?procedes=coupable_min_bas&word=utc&casse=1
-		// cloud.setPossibilities(Xml.importLabRequest('http://192.185.52.237/~lasepa/beta/words.php?procedes=' + police + '&word=' + word_searched + '&casse=' + casse, cloud.getCentralWord()));
-		cloud.setPossibilities(Xml.importLabRequest(word_searched));
+		cloud.setPossibilities(Db.wordPossibilities(word_searched));
 		Labo.displayCloud();
 	}, 1);
 }
