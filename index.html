@@ -12,7 +12,7 @@
 		
 		<script type="text/javascript">
 			var loaded_scripts = 0;
-			var n_scripts = 47;
+			var n_scripts = 48;
 			function scriptLoaded(script_path) {
 				loaded_scripts++;
 				//document.getElementById("main").innerHTML += "<p class=\"center\" >"+loaded_scripts+"/"+n_scripts+" : "+script_path+"</p>";
@@ -31,8 +31,8 @@
 		</div>
 		<div id="sound">
 			<audio id="ambiant" src="sounds/ambiant.ogg"></audio>
-			<audio id="rub1" src="sounds/rub.ogg"></audio>
-			<audio id="rub2" src="sounds/rub.ogg"></audio>
+			<audio id="rub1" src="sounds/rub1.ogg"></audio>
+			<audio id="rub2" src="sounds/rub2.ogg"></audio>
 			<audio id="tear" src="sounds/tear.ogg"></audio>
 			<audio id="tear1" src="sounds/tear1.ogg"></audio>
 			<audio id="tear2" src="sounds/tear2.ogg"></audio>
@@ -44,6 +44,9 @@
 		<!-- scripts -->
 		<script type="text/javascript" src="phonegap.js"></script>
 		<script type="text/javascript" src="appOnDevice.js"></script>
+		
+		<!-- database -->
+		<script type="text/javascript" src="db/local_db_fr.js"></script>
 
 		<!-- scripts/libs -->
 		<script type="text/javascript" src="scripts/libs/jquery-2.0.2.min.js"></script>

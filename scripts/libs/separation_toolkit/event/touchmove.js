@@ -57,7 +57,7 @@ Event.checkTouchMove = function(obj_list, coords) {
 		// Sinon on remets à 0 l'évènement
 		else
 		{
-			obj.onAbort();
+			obj.onAbort(obj.direction);
 			
 			obj.direction = 0;
 			obj.value = 0;

@@ -21,9 +21,13 @@ function Word(value, next_value, police, code) {
 	this.next_value = ((next_value == undefined) || (next_value == null)) ? value : next_value; // Valeur du mot après transformation
 	this.code = ((code == undefined) || (code == null)) ? value : code; // Code du mot
 	this.font = null; // Groupe Kinetic qui sera affiché
+	
 	this.animation = null; // Fonction de callback pour l'animation ('Animation.x')
 	this.animationOnChange = null; // Fonction de callback pour l'animation onChange ('Animation.xOnChange')
 	this.inAnimation = false; // Boolen pour savoir si le mot est entrain d'être animer
+	
+	// this.eventOnAbort = null; // Fonction de callback pour l'évènement onAbort
+	// this.eventOnBegin = null; // Fonction de callback pour l'évènement onAbort
 	
 	this.active = false; // Booléen pour savoir si il est mis en avant
 	this.zoomOnActive = true; // Active ou désactive le zoom/dezoom lors de l'activation

@@ -6,12 +6,23 @@
 */
 
 Animation.open = function(word, dir) {
-	if(dir == -1) word.is_open_up = true;
-	if(dir == 1) word.is_open_down = true;
+	if(dir == -1) {
+		word.is_open_up = true;
+		word.font.up.setOffsetY(word.font.up.getHeight() * 0.5);
+	}
+	if(dir == 1) {
+		word.is_open_down = true;
+		word.font.down.setOffsetY(-word.font.down.getHeight() * 0.5);
+	}
+	mainLayer.draw();
 	
 	if(word.is_open_down && word.is_open_up) {
-		var x_central = word.font.down.getX() / word.getScale();
-		var x_central_next = (screenWidth - word.getX()) / word.getScale();
+		if(1) {
+			var x_central = word.font.down.getX() / word.getScale();
+			var x_central_next = (screenWidth - word.getX()) / word.getScale();
+		} else {
+		
+		}
 		
 		word.font.central.setX(x_central);
 		word.font.next_central.setX(x_central_next);
@@ -21,7 +32,7 @@ Animation.open = function(word, dir) {
 			x: x_central_next,
 			duration: Word_cst.duration.downCut,
 			easing: Kinetic.Easings.EaseIn,
-			onFinish: function(){word.tween[1].play()},
+			onFinish: function(){word.tween[1].play();word.tween[2].play();word.tween[3].play();},
 			opacity: 0,
 		});
 		
@@ -34,6 +45,21 @@ Animation.open = function(word, dir) {
 			opacity: 1,
 		});
 		
+		word.tween[2] = new Kinetic.Tween({
+			node: word.font.up,
+			offsetY: 0,
+			duration: Word_cst.duration.downCut,
+			easing: Kinetic.Easings.EaseIn,
+		});
+		
+		word.tween[3] = new Kinetic.Tween({
+			node: word.font.down,
+			offsetY: 0,
+			duration: Word_cst.duration.downCut,
+			easing: Kinetic.Easings.EaseIn,
+		});
+		
+		sound_play('tear');
 		word.tween[0].play();
 	} else {
 		word.animationFinished(false);
@@ -51,11 +77,16 @@ Animation.onChange.openDown = function(word, dir, val) {
 }
 
 Animation.onChange.openUp = function(word, val) {
-	
+	word.font.up.setOffsetY(word.font.up.getHeight() * val * 0.5);
 }
 
 Animation.onChange.openDown = function(word, val) {
-	
+	word.font.down.setOffsetY(-word.font.down.getHeight() * val * 0.5);
+}
+
+Animation.onAbort.open = function(word) {
+	word.font.up.setOffsetY(0);
+	word.font.down.setOffsetY(0);
 }
 
 scriptLoaded('scripts/libs/separation_toolkit/word_animation/centrale.js');

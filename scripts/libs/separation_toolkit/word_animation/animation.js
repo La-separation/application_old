@@ -3,6 +3,8 @@
 */
 var Animation = {};
 Animation.onChange = {};
+// Animation.onBegin = {};
+Animation.onAbort = {};
 
 Word.prototype.animate = function(dir) {
 	if(!this.inAnimation) {
@@ -35,6 +37,8 @@ Word.prototype.animationFinished = function(event_finish) {
 			
 			this.generate();
 			this.display(mainLayer);
+		} else {
+			this.removeGesture();
 		}
 		this.done('eventFinished');
 	}
@@ -92,9 +96,9 @@ Word.prototype.setAnimationOnChange = function(dir) {
 			break;
 			case 2:
 				if(dir == -1) {
-					this.animationOnChange = Animation.onChange.openDown;
-				} else if (dir == 1) {
 					this.animationOnChange = Animation.onChange.openUp;
+				} else if (dir == 1) {
+					this.animationOnChange = Animation.onChange.openDown;
 				}
 			break;
 			case 3:

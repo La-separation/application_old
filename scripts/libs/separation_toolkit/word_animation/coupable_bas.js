@@ -14,7 +14,7 @@ Animation.upCut = function(word, x_up, x_up_next) {
 		node: word.font.up,
 		x: x_up_next,
 		duration: Word_cst.duration.upCut,
-		easing: Kinetic.Easings.EaseIn,
+		// easing: Kinetic.Easings.EaseIn,
 		onFinish: function(){word.tween[1].play();},
 		opacity: 0,
 	});
@@ -46,11 +46,15 @@ Animation.upCutRight = function(word, dir) {
 }
 
 Animation.onChange.upCutLeft = function(word, val) {
-	
+	word.font.up.setOffsetX(word.font.up.getWidth() * val * 0.8);
 }
 
 Animation.onChange.upCutRight = function(word, val) {
-	
+	word.font.up.setOffsetX(-word.font.up.getWidth() * val * 0.8);
+}
+
+Animation.onAbort.upCut = function(word) {
+	word.font.up.setOffsetX(0);
 }
 
 scriptLoaded('scripts/libs/separation_toolkit/word_animation/coupable_bas.js');

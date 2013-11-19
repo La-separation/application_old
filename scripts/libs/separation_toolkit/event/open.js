@@ -3,7 +3,7 @@
 */
 Event.open_obj = {};
 
-Event.onOpen = function(id, object, restart, callbackOnEvent, callbackOnChange, callbackOnBegin, callbackOnAbort) {
+Event.onOpen = function(id, object, callbackOnEvent, callbackOnChange, callbackOnBegin, callbackOnAbort) {
 	Event.open_obj[id] = {
 		y1: object.getX() + Math.floor(object.getWidth() * -0.1),
 		x1: object.getY() + Math.floor(object.getHeight() * 0.0),
@@ -16,7 +16,6 @@ Event.onOpen = function(id, object, restart, callbackOnEvent, callbackOnChange, 
 		direction: 0,
 		value: 0,
 		old_value: 0,
-		rect: null,
 	};
 }
 

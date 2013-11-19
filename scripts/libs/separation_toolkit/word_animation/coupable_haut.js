@@ -14,7 +14,7 @@ Animation.downCut = function(word, x_down, x_next_down) {
 		node: word.font.down,
 		x: x_next_down,
 		duration: Word_cst.duration.downCut,
-		easing: Kinetic.Easings.EaseIn,
+		// easing: Kinetic.Easings.EaseIn,
 		onFinish: function(){word.tween[1].play()},
 		opacity: 0,
 	});
@@ -51,6 +51,10 @@ Animation.onChange.downCutLeft = function(word, val) {
 
 Animation.onChange.downCutRight = function(word, val) {
 	word.font.down.setOffsetX(-word.font.down.getWidth() * val * 0.8);
+}
+
+Animation.onAbort.downCut = function(word) {
+	word.font.down.setOffsetX(0);
 }
 
 scriptLoaded('scripts/libs/separation_toolkit/word_animation/coupable_haut.js');

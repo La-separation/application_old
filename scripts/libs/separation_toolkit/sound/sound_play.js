@@ -1,4 +1,5 @@
 function sound_play(name) {
+	sound_stop(name);
 	if (appOnDevice()) {
 		sounds[name].play();
 	}

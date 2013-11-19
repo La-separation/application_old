@@ -5,6 +5,7 @@ Word.prototype.addGesture = function() {
 	
 	var word = this;
 	function onEvent(dir) {
+		// sound_police_end(word.getPolice());
 		word.setAnimation(dir);
 		word.animate(dir);
 	}
@@ -13,24 +14,29 @@ Word.prototype.addGesture = function() {
 		word.animateOnChange(value);
 	}
 	function onBegin(dir) {
-		
+		if(!word.inAnimation) {
+			sound_police_begin(word.getPolice(), dir);
+		}
 	}
 	function onAbort(dir) {
-		
+		if((dir != 0 || word.getPolice() == 3) && !word.inAnimation) {
+			sound_police_abort(word.getPolice());
+			word.eventOnAbort();
+		}
 	}
+	
+	var events_fct = {
+		0: 'onCut',
+		1: 'onCut',
+		2: 'onOpen',
+		3: 'onErase',
+		5: 'onCut',
+	};
 	
 	switch(this.police)
 	{
-		case 0:
-		case 1:
-		case 5:
-			Event.onCut(this.getId(), this, true, onEvent, onChange, onBegin, onAbort, true);
-		break;
-		case 2:
-			Event.onOpen(this.getId(), this, true, onEvent, onChange, onBegin, onAbort, true);
-		break;
-		case 3:
-			Event.onErase(this.getId(), this, true, onEvent, onChange, onBegin, onAbort, true);
+		case 0: case 1: case 2: case 3: case 5:
+			Event[events_fct[this.police]](this.getId(), this, onEvent, onChange, onBegin, onAbort);
 		break;
 		default:
 			alert('Police inconnue : ' + this.police + ' dans la fonction Word.addGesture()');
@@ -46,11 +52,11 @@ Word.prototype.removeGesture = function() {
 		case 5:
 			Event.destroy(this.getId(), 'cut');
 		break;
-		case 3:
-			Event.destroy(this.getId(), 'erase');
-		break;
 		case 2:
 			Event.destroy(this.getId(), 'open');
+		break;
+		case 3:
+			Event.destroy(this.getId(), 'erase');
 		break;
 		default:
 			alert('Police inconnue : ' + this.police + ' dans la fonction Word.removeGesture()');
@@ -65,6 +71,40 @@ Word.prototype.onTap = function(handler) {
 		if(!word_active)
 			handler(word);
 	}}(this), true);
+}
+
+Word.prototype.removeGesture = function() {
+	switch(this.police)
+	{
+		case 0:
+		case 1:
+		case 5:
+			Event.destroy(this.getId(), 'cut');
+		break;
+		case 2:
+			Event.destroy(this.getId(), 'open');
+		break;
+		case 3:
+			Event.destroy(this.getId(), 'erase');
+		break;
+		default:
+			alert('Police inconnue : ' + this.police + ' dans la fonction Word.removeGesture()');
+		break;
+	}
+}
+
+Word.prototype.eventOnAbort = function() {
+	var events_fct = { 0: 'downCut', 1: 'upCut', 2: 'open', 3: 'erase', 5: 'cut', 
+	};
+	switch(this.police) {
+		case 0: case 1: case 2: case 3: case 5:
+			Animation.onAbort[events_fct[this.police]](this);
+		break;
+		default:
+			alert('Police inconnue : ' + this.police + ' dans la fonction Word.setEventOnAbort()');
+		break;
+	}
+	mainLayer.draw();
 }
 
 Word.prototype.activeOnTap = function() {

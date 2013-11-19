@@ -1,13 +1,13 @@
 /*
-	Event cut
+	Event erase
 */
 Event.erase_obj = {};
 
-Event.onErase = function(id, object, restart, callbackOnEvent, callbackOnChange, callbackOnBegin, callbackOnAbort) {
+Event.onErase = function(id, object, callbackOnEvent, callbackOnChange, callbackOnBegin, callbackOnAbort) {
 	Event.erase_obj[id] = {
-		x1: object.getX() + Math.floor(object.getWidth() * 0.3),
+		x1: object.getX() + Math.floor(object.getWidth() * 0.4),
 		y1: object.getY() + Math.floor(object.getHeight() * -0.3),
-		x2: object.getX() + Math.floor(object.getWidth() * 0.7),
+		x2: object.getX() + Math.floor(object.getWidth() * 0.6),
 		y2: object.getY() + Math.floor(object.getHeight() * 1.3),
 		onEvent: callbackOnEvent,
 		onChange: callbackOnChange,
@@ -16,7 +16,6 @@ Event.onErase = function(id, object, restart, callbackOnEvent, callbackOnChange,
 		direction: 0,
 		value: 0,
 		old_value: 0,
-		rect: null,
 	};
 }
 

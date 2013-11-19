@@ -3,7 +3,7 @@
 */
 Event.cut_obj = {};
 
-Event.onCut = function(id, object, restart, callbackOnEvent, callbackOnChange, callbackOnBegin, callbackOnAbort) {
+Event.onCut = function(id, object, callbackOnEvent, callbackOnChange, callbackOnBegin, callbackOnAbort) {
 	Event.cut_obj[id] = {
 		x1: object.getX() + Math.floor(object.getWidth() * 0.1),
 		y1: object.getY() + Math.floor(object.getHeight() * -0.3),
@@ -16,7 +16,6 @@ Event.onCut = function(id, object, restart, callbackOnEvent, callbackOnChange, c
 		direction: 0,
 		value: 0,
 		old_value: 0,
-		rect: null,
 	};
 }
 

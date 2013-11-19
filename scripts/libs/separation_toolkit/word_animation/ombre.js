@@ -22,4 +22,9 @@ Animation.onChange.ombre = function(word, val) {
 	mainLayer.draw();
 }
 
+Animation.onAbort.erase = function(word) {
+	OMBRE.setOpacity(1);
+	opacity_OMBRE = 1;
+}
+
 scriptLoaded('scripts/libs/separation_toolkit/word_animation/ombre.js');
