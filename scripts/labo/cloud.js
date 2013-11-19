@@ -68,9 +68,6 @@ Cloud.prototype.generate = function(page) {
 	var y;
 	var angle = Math.PI / this.nb;
 
-	this.central_word.setZoom(2);
-	this.central_word.setZoomOnActive(false);
-
 	for(var i = 0; i < this.nb; i++) {
 		x = Math.floor(center[0] + Math.cos(angle) * screenWidth * 0.4);
 		y = Math.floor(center[1] + Math.sin(angle) * screenHeight * 0.4);
@@ -85,22 +82,25 @@ Cloud.prototype.generate = function(page) {
 		});
 	}
 
+	this.central_word.setZoom(2);
 	this.central_word.setCenterX(center[0]);
 	this.central_word.setCenterY(center[1]);
 	this.central_word.generate();
 }
 
 Cloud.prototype.generateCentralWord = function(next_value, police, code, center) {
-	this.central_word.setValue(this.central_word_value);
-	this.central_word.setNextValue(next_value);
-	this.central_word.setPolice(police);
-	this.central_word.setCode(code);
-
-	this.central_word.generate();
+	Destroy.objet(this.central_word);
+	
+	this.central_word = new Word(this.central_word_value, next_value, police, code);
+	this.central_word.setZoom(2);
+	
 	this.central_word.setCenterX(center[0]);
 	this.central_word.setCenterY(center[1]);
+	
+	this.central_word.addGesture();
 	this.central_word.display(mainLayer);
-	this.central_word.activate();
+	mainLayer.draw();
+	actionLayer.draw();
 }
 
 /*
