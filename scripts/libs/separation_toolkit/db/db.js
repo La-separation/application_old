@@ -10,8 +10,10 @@ Db.wordPossibilities = function(word) {
 			var code = word_codes[j];
 			words = window["gwc_"+police+"_"+code.length+"_"+code[0]](code);
 			for (var k in words) {
-				var word = words[k]
-				possibilities.push(new Possibility(word, npolice, code));
+				var xword = words[k];
+				if (xword != word) {
+					possibilities.push(new Possibility(xword, npolice, code));
+				}
 			}
 		}
 	}

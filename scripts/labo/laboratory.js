@@ -37,7 +37,8 @@ Labo.generateCloud = function() {
 	cloud.addCentralWord(new Word(word_searched));
 
 	setTimeout(function(){
-		cloud.setPossibilities(Xml.importLabRequest(word_searched));
+		// cloud.setPossibilities(Xml.importLabRequest(word_searched));
+		cloud.setPossibilities(Db.wordPossibilities(word_searched));
 		Labo.displayCloud();
 	}, 1);
 }
